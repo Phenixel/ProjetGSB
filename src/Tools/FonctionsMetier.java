@@ -5,8 +5,6 @@
  */
 package Tools;
 
-import Entity.Etat;
-import Entity.Ticket;
 import Entity.User;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
