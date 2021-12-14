@@ -14,7 +14,7 @@ import java.util.logging.Logger;
 
 /**
  *
- * @author jbuffeteau
+ * @author Phen
  */
 public class ConnexionBDD 
 {
@@ -30,7 +30,7 @@ public class ConnexionBDD
             // chargement du pilote
             Class.forName(pilote);
             // L'objet connexion à la BDD avec le nom de la base, le user et le password
-            cnx = DriverManager.getConnection("jdbc:mysql://localhost/bddtickets?serverTimezone="
+            cnx = DriverManager.getConnection("jdbc:mysql://localhost/projet java?serverTimezone="
                     + TimeZone.getDefault().getID(), "root", "");
         }
         catch (ClassNotFoundException ex)
