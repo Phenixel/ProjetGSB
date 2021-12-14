@@ -7,10 +7,6 @@ package Tools;
 
 import java.util.ArrayList;
 
-/**
- *
- * @author jbuffeteau
- */
 public interface IMetier 
 {
 
