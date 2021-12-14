@@ -9,5 +9,27 @@ package Entity;
  * @author pheni
  */
 public class Interragis {
+    private int med_perturbateur;
+    private int med_perturbe;
+    
+    public Interragis(int unPerturbateur, int unPerturbe){
+        med_perturbateur = unPerturbateur;
+        med_perturbe = unPerturbe;
+    }
+
+    /**
+     * @return the med_perturbateur
+     */
+    public int getMed_perturbateur() {
+        return med_perturbateur;
+    }
+
+    /**
+     * @return the med_perturbe
+     */
+    public int getMed_perturbe() {
+        return med_perturbe;
+    }
+    
     
 }
