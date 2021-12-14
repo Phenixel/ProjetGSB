@@ -5,9 +5,12 @@
  */
 package Tools;
 
+import Entity.utilisateur;
 import java.util.ArrayList;
 
 public interface IMetier 
 {
-
+    
+    
+    public utilisateur VerifierIdentifiants(String login, String mdp);
 }
