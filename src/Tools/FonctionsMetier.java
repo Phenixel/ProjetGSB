@@ -5,6 +5,7 @@
  */
 package Tools;
 
+import Entity.utilisateur;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -19,5 +20,28 @@ import java.util.logging.Logger;
  */
 public class FonctionsMetier implements IMetier
 {
+    private ResultSet rs;
+    private PreparedStatement ps;
+    private Connection maCnx;
+
+    @Override
+    public utilisateur VerifierIdentifiants(String login, String mdp) {
+        utilisateur user = null;
+        try {
+            
+            maCnx = ConnexionBDD.getCnx();
+            
+            ps = maCnx.prepareStatement("SELECT idUser, login, mdp from utilisateur where login = '"+ login +"' and mdp = '"+ mdp +"' ");
+            
+            rs = ps.executeQuery();
+            
+            if(rs.next()){
+                user = new utilisateur(Integer.parseInt(rs.getString(1)), rs.getString(2), rs.getString(3));
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(FonctionsMetier.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return user;
+    }
     
 }

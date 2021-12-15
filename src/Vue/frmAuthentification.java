@@ -4,6 +4,7 @@
  */
 package Vue;
 
+import Entity.utilisateur;
 import Tools.ConnexionBDD;
 import Tools.FonctionsMetier;
 //import Tools.Utilisateur;
@@ -123,10 +124,15 @@ public class frmAuthentification extends javax.swing.JFrame {
             cnx = new ConnexionBDD();
             fm = new FonctionsMetier();
             
-            Utilisateur unUser = fm.VerifierIdentifiants(txtLogin.getText(), txtMdp.getText());
+            utilisateur unUser = fm.VerifierIdentifiants(txtLogin.getText(), txtMdp.getText());
             
             if(unUser != null){
+                //A décommenter avec l'ajout de la partie graphique !
+                //frmMenuPrincipal frm = new frmAdmin();
+                //frm.setVisible(true);
                 
+                //En attendant
+                lblErreur.setText("Connection réussie !.");
             }else{
                 lblErreur.setText("Identifients incorrects.");
             }
