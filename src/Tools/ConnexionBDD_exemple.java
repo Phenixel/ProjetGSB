@@ -16,32 +16,36 @@ import java.util.logging.Logger;
  *
  * @author Phen
  */
-public class ConnexionBDD 
-{
-    // Mon objet connexion
-    private static Connection cnx;
-    
-    //static
-    public ConnexionBDD()
-    {
-        try
-        {
-            String pilote = "com.mysql.jdbc.Driver";
-            // chargement du pilote
-            Class.forName(pilote);
-            // L'objet connexion à la BDD avec le nom de la base, le user et le password
-            cnx = DriverManager.getConnection("jdbc:mysql://localhost/_______?serverTimezone="
-                    + TimeZone.getDefault().getID(), "root", "");
-        }
-        catch (ClassNotFoundException ex)
-        {
-            Logger.getLogger(ConnexionBDD.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (SQLException ex) {
-            Logger.getLogger(ConnexionBDD.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    } 
-    
-    public static Connection getCnx() {
-        return cnx;
-    }
-}
+        
+
+//Il faut decommenter la partie ci dessous et renseigner le nom de votre base
+        
+//public class ConnexionBDD 
+//{
+//    // Mon objet connexion
+//    private static Connection cnx;
+//    
+//    //static
+//    public ConnexionBDD()
+//    {
+//        try
+//        {
+//            String pilote = "com.mysql.jdbc.Driver";
+//            // chargement du pilote
+//            Class.forName(pilote);
+//            // L'objet connexion à la BDD avec le nom de la base, le user et le password
+//            cnx = DriverManager.getConnection("jdbc:mysql://localhost/_______?serverTimezone="
+//                    + TimeZone.getDefault().getID(), "root", "");
+//        }
+//        catch (ClassNotFoundException ex)
+//        {
+//            Logger.getLogger(ConnexionBDD.class.getName()).log(Level.SEVERE, null, ex);
+//        } catch (SQLException ex) {
+//            Logger.getLogger(ConnexionBDD.class.getName()).log(Level.SEVERE, null, ex);
+//        }
+//    } 
+//    
+//    public static Connection getCnx() {
+//        return cnx;
+//    }
+// }
