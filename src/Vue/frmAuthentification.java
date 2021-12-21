@@ -128,11 +128,11 @@ public class frmAuthentification extends javax.swing.JFrame {
             
             if(unUser != null){
                 //A décommenter avec l'ajout de la partie graphique !
-                //frmMenuPrincipal frm = new frmAdmin();
-                //frm.setVisible(true);
+                frmMenuPrincipal frm = new frmMenuPrincipal();
+                frm.setVisible(true);
                 
                 //En attendant
-                lblErreur.setText("Connection réussie !.");
+//                lblErreur.setText("Connection réussie !.");
             }else{
                 lblErreur.setText("Identifients incorrects.");
             }
