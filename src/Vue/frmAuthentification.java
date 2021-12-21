@@ -127,7 +127,6 @@ public class frmAuthentification extends javax.swing.JFrame {
             utilisateur unUser = fm.VerifierIdentifiants(txtLogin.getText(), txtMdp.getText());
             
             if(unUser != null){
-                //A décommenter avec l'ajout de la partie graphique !
                 frmMenuPrincipal frm = new frmMenuPrincipal();
                 frm.setVisible(true);
                 
