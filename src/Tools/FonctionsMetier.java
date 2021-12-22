@@ -5,6 +5,7 @@
  */
 package Tools;
 
+import Entity.Famille;
 import Entity.utilisateur;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -42,6 +43,11 @@ public class FonctionsMetier implements IMetier
             Logger.getLogger(FonctionsMetier.class.getName()).log(Level.SEVERE, null, ex);
         }
         return user;
+    }
+
+    @Override
+    public Famille GetAllFamille(Integer FAM_CODE, String FAM_LIBELLE) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
 }
