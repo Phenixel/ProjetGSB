@@ -5,7 +5,7 @@
  */
 package Tools;
 
-import Entity.Famille;
+import Entity.TypeIndividu;
 import Entity.utilisateur;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -46,8 +46,23 @@ public class FonctionsMetier implements IMetier
     }
 
     @Override
-    public Famille GetAllFamille(Integer FAM_CODE, String FAM_LIBELLE) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public ArrayList<TypeIndividu> GetAllTypeIndividu()
+    {
+        ArrayList<TypeIndividu> lesIndividus = new ArrayList<>();
+        try {
+            Connection cnx = ConnexionBDD.getCnx();
+            PreparedStatement ps = cnx.prepareStatement("SELECT TIN_CODE, TIN_LIBELLE FROM type_individu");
+            ResultSet rs = ps.executeQuery();
+            if(rs.next())
+            {
+                TypeIndividu tic = new TypeIndividu(rs.getInt("TIN_CODE"),rs.getString("TIN_LIBELLE"));
+                lesIndividus.add(tic);
+            }
+            ps.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(FonctionsMetier.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return lesIndividus;
     }
     
 }

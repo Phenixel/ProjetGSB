@@ -5,7 +5,7 @@
  */
 package Tools;
 
-import Entity.Famille;
+import Entity.TypeIndividu;
 import Entity.utilisateur;
 import java.util.ArrayList;
 
@@ -14,5 +14,5 @@ public interface IMetier
     
     
     public utilisateur VerifierIdentifiants(String login, String mdp);
-    public Famille GetAllFamille(Integer fam_code, String fam_libelle);
+    public ArrayList<TypeIndividu> GetAllTypeIndividu();
 }
