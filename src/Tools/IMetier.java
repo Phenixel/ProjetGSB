@@ -5,6 +5,7 @@
  */
 package Tools;
 
+import Entity.TypeIndividu;
 import Entity.utilisateur;
 import java.util.ArrayList;
 
@@ -13,4 +14,5 @@ public interface IMetier
     
     
     public utilisateur VerifierIdentifiants(String login, String mdp);
+    public ArrayList<TypeIndividu> GetAllTypeIndividu();
 }
