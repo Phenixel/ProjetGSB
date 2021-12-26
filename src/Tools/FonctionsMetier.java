@@ -53,7 +53,7 @@ public class FonctionsMetier implements IMetier
             Connection cnx = ConnexionBDD.getCnx();
             PreparedStatement ps = cnx.prepareStatement("SELECT TIN_CODE, TIN_LIBELLE FROM type_individu");
             ResultSet rs = ps.executeQuery();
-            if(rs.next())
+            while(rs.next())
             {
                 TypeIndividu tic = new TypeIndividu(rs.getInt("TIN_CODE"),rs.getString("TIN_LIBELLE"));
                 lesIndividus.add(tic);
