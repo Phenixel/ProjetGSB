@@ -3,7 +3,14 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/pheni/Nextcloud/Cours/info/Projet%20GSB%20-%20v001/src/Tools/FonctionsMetier.java</file>
+            <file>file:/C:/Users/pheni/Documents/Ecole/Projet%20GSB%20-%20Java/ProjetGSB-v001/src/Vue/frmAuthentification.java</file>
+            <file>file:/C:/Users/pheni/Documents/Ecole/Projet%20GSB%20-%20Java/ProjetGSB-v001/src/Vue/frmMenuPrincipal.java</file>
+            <file>file:/C:/Users/pheni/Documents/Ecole/Projet%20GSB%20-%20Java/ProjetGSB-v001/src/Entity/utilisateur.java</file>
+            <file>file:/C:/Users/pheni/Documents/Ecole/Projet%20GSB%20-%20Java/ProjetGSB-v001/src/Tools/.gitignore</file>
+            <file>file:/C:/Users/pheni/Documents/Ecole/Projet%20GSB%20-%20Java/ProjetGSB-v001/src/Entity/Prescrire.java</file>
+            <file>file:/C:/Users/pheni/Documents/Ecole/Projet%20GSB%20-%20Java/ProjetGSB-v001/src/Entity/Famille.java</file>
+            <file>file:/C:/Users/pheni/Documents/Ecole/Projet%20GSB%20-%20Java/ProjetGSB-v001/src/Model/ModelMedicament.java</file>
+            <file>file:/C:/Users/pheni/Documents/Ecole/Projet%20GSB%20-%20Java/ProjetGSB-v001/src/Tools/ConnexionBDD.java</file>
         </group>
     </open-files>
 </project-private>

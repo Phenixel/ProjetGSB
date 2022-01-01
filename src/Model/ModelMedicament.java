@@ -4,6 +4,8 @@
  */
 package Model;
 
+import Entity.Medicament;
+import java.util.ArrayList;
 import java.util.Vector;
 import javax.swing.table.AbstractTableModel;
 
@@ -31,9 +33,19 @@ public class ModelMedicament extends AbstractTableModel{
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
-@Override
+    @Override
     public String getColumnName(int index)
     {
         return colonnes[index];
+    }
+    
+    public void loadDatas(ArrayList<Medicament> lesMedicaments)
+    {
+        rows = new Vector<>();
+        for(Medicament med : lesMedicaments)
+        {
+            rows.add(new String[]{String.valueOf(med.getMed_depotlegal()),med.getMed_nomcommercial()});
+        }
+        fireTableChanged(null);
     }
 }
