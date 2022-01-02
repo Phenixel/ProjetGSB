@@ -1,19 +1,20 @@
 /*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
  */
 package Model;
 
-import Entity.Medicament;
+import Entity.TypeIndividu;
 import java.util.ArrayList;
 import java.util.Vector;
 import javax.swing.table.AbstractTableModel;
 
 /**
  *
- * @author pheni
+ * @author maxim
  */
-public class ModelMedicament extends AbstractTableModel{
+public class ModelTypeIndividu extends AbstractTableModel {
     
     private String[] colonnes = {"Numéro","Nom"};
     private Vector<String[]> rows;
@@ -32,20 +33,20 @@ public class ModelMedicament extends AbstractTableModel{
     public Object getValueAt(int rowIndex, int columnIndex) {
         return rows.get(rowIndex)[columnIndex];
     }
-
+    
     @Override
-    public String getColumnName(int column)
-    {
-        return colonnes[column];
+    public String getColumnName(int column) {
+        return colonnes[column]; 
     }
     
-    public void loadDatas(ArrayList<Medicament> lesMedicaments)
+    public void loadDatas(ArrayList<TypeIndividu> lesIndividus)
     {
         rows = new Vector<>();
-        for(Medicament med : lesMedicaments)
+        for(TypeIndividu tic : lesIndividus)
         {
-            rows.add(new String[]{String.valueOf(med.getMed_depotlegal()),med.getMed_nomcommercial()});
+            rows.add(new String[]{String.valueOf(tic.getTin_code()),tic.getTin_libelle()});
         }
         fireTableChanged(null);
+    
     }
 }

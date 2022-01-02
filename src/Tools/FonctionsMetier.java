@@ -6,6 +6,7 @@
 package Tools;
 
 import Entity.Medicament;
+import Entity.TypeIndividu;
 import Entity.utilisateur;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -45,6 +46,26 @@ public class FonctionsMetier implements IMetier
         return user;
     }
 
+    @Override
+    public ArrayList<TypeIndividu> GetAllTypeIndividu()
+    {
+        ArrayList<TypeIndividu> lesIndividus = new ArrayList<>();
+        try {
+            Connection cnx = ConnexionBDD.getCnx();
+            PreparedStatement ps = cnx.prepareStatement("SELECT TIN_CODE, TIN_LIBELLE FROM type_individu");
+            ResultSet rs = ps.executeQuery();
+            while(rs.next())
+            {
+                TypeIndividu tic = new TypeIndividu(rs.getInt("TIN_CODE"),rs.getString("TIN_LIBELLE"));
+                lesIndividus.add(tic);
+            }
+            ps.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(FonctionsMetier.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return lesIndividus;
+    }
+    
     @Override
     public ArrayList<Medicament> GetAllMedicament() {
         ArrayList<Medicament> lesMedicaments = new ArrayList<>();

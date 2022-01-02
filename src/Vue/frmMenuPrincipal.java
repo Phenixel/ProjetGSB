@@ -6,6 +6,7 @@
 package Vue;
 
 import Model.ModelMedicament;
+import Model.ModelTypeIndividu;
 import Tools.FonctionsMetier;
 
 /**
@@ -17,9 +18,8 @@ public class frmMenuPrincipal extends javax.swing.JFrame {
     FonctionsMetier fm;
     ModelMedicament mdlMedicament;
 
-    /**
-     * Creates new form frmMenuPrincipal
-     */
+    FonctionsMetier fm;
+    ModelTypeIndividu mdlTypeIndividu;
     public frmMenuPrincipal() {
         initComponents();
     }
@@ -236,6 +236,12 @@ public class frmMenuPrincipal extends javax.swing.JFrame {
         mdlMedicament = new ModelMedicament();
         mdlMedicament.loadDatas(fm.GetAllMedicament());
         tblMedicament.setModel(mdlMedicament);
+        
+        mdlTypeIndividu = new ModelTypeIndividu();
+        mdlTypeIndividu.loadDatas(fm.GetAllTypeIndividu());
+        tblTypeIndividu.setModel(mdlTypeIndividu);
+        
+        
     }//GEN-LAST:event_formWindowOpened
 
     /**
