@@ -18,7 +18,7 @@ public class frmMenuPrincipal extends javax.swing.JFrame {
     FonctionsMetier fm;
     ModelMedicament mdlMedicament;
 
-    FonctionsMetier fm;
+//    FonctionsMetier fm;
     ModelTypeIndividu mdlTypeIndividu;
     public frmMenuPrincipal() {
         initComponents();
