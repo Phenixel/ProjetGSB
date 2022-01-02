@@ -17,8 +17,6 @@ public class frmMenuPrincipal extends javax.swing.JFrame {
     
     FonctionsMetier fm;
     ModelMedicament mdlMedicament;
-
-//    FonctionsMetier fm;
     ModelTypeIndividu mdlTypeIndividu;
     public frmMenuPrincipal() {
         initComponents();
@@ -88,10 +86,6 @@ public class frmMenuPrincipal extends javax.swing.JFrame {
         jLabel2.setText("Le plus prescrit");
 
         jLabel3.setText("Le moins prescrit");
-
-        txtPlusPrescrit.setText("jTextField1");
-
-        txtMoinsPrescrit.setText("jTextField2");
 
         javax.swing.GroupLayout panel1Layout = new javax.swing.GroupLayout(panel1);
         panel1.setLayout(panel1Layout);
