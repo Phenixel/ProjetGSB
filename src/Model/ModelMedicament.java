@@ -15,28 +15,28 @@ import javax.swing.table.AbstractTableModel;
  */
 public class ModelMedicament extends AbstractTableModel{
     
-    private String[] colonnes;
+    private String[] colonnes = {"Numéro","Nom"};
     private Vector<String[]> rows;
 
     @Override
     public int getRowCount() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return rows.size();
     }
 
     @Override
     public int getColumnCount() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return colonnes.length;
     }
 
     @Override
     public Object getValueAt(int rowIndex, int columnIndex) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return rows.get(rowIndex)[columnIndex];
     }
 
     @Override
-    public String getColumnName(int index)
+    public String getColumnName(int column)
     {
-        return colonnes[index];
+        return colonnes[column];
     }
     
     public void loadDatas(ArrayList<Medicament> lesMedicaments)
@@ -47,5 +47,9 @@ public class ModelMedicament extends AbstractTableModel{
             rows.add(new String[]{String.valueOf(med.getMed_depotlegal()),med.getMed_nomcommercial()});
         }
         fireTableChanged(null);
+    }
+
+    public void setModel(ModelMedicament mdlMedicament) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }

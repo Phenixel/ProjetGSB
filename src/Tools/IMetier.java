@@ -5,12 +5,13 @@
  */
 package Tools;
 
+import Entity.Medicament;
 import Entity.utilisateur;
 import java.util.ArrayList;
 
 public interface IMetier 
 {
     
-    
+    public ArrayList<Medicament> GetAllMedicament();
     public utilisateur VerifierIdentifiants(String login, String mdp);
 }

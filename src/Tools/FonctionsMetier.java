@@ -5,6 +5,7 @@
  */
 package Tools;
 
+import Entity.Medicament;
 import Entity.utilisateur;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -42,6 +43,25 @@ public class FonctionsMetier implements IMetier
             Logger.getLogger(FonctionsMetier.class.getName()).log(Level.SEVERE, null, ex);
         }
         return user;
+    }
+
+    @Override
+    public ArrayList<Medicament> GetAllMedicament() {
+        ArrayList<Medicament> lesMedicaments = new ArrayList<>();
+        try {
+            Connection cnx = ConnexionBDD.getCnx();
+            PreparedStatement ps = cnx.prepareStatement("SELECT MED_DEPOTLEGAL, MED_NOMCOMMERCIAL, FAM_CODE, MED_COMPOSITION, MED_EFFETS, MED_CONTREINDIC, MED_PRIXECHANTILLON FROM medicament");
+            ResultSet rs = ps.executeQuery();
+            while(rs.next())
+            {
+                Medicament med = new Medicament(rs.getInt("MED_DEPOTLEGAL"),rs.getString("MED_NOMCOMMERCIAL"), rs.getInt("FAM_CODE"), rs.getString("MED_COMPOSITION"), rs.getString("MED_EFFETS"), rs.getString("MED_CONTREINDIC"), rs.getFloat("MED_PRIXECHANTILLON"));
+                lesMedicaments.add(med);
+            }
+            ps.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(FonctionsMetier.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return lesMedicaments;
     }
     
 }

@@ -5,11 +5,17 @@
  */
 package Vue;
 
+import Model.ModelMedicament;
+import Tools.FonctionsMetier;
+
 /**
  *
  * @author maxim
  */
 public class frmMenuPrincipal extends javax.swing.JFrame {
+    
+    FonctionsMetier fm;
+    ModelMedicament mdlMedicament;
 
     /**
      * Creates new form frmMenuPrincipal
@@ -47,6 +53,11 @@ public class frmMenuPrincipal extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(102, 255, 51));
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowOpened(java.awt.event.WindowEvent evt) {
+                formWindowOpened(evt);
+            }
+        });
 
         tblMedicament.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -192,7 +203,7 @@ public class frmMenuPrincipal extends javax.swing.JFrame {
                                         .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
                                     .addComponent(panel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(btnAddMedic)
                                     .addComponent(btnAddType)))
                             .addComponent(jLabel4))
@@ -217,6 +228,15 @@ public class frmMenuPrincipal extends javax.swing.JFrame {
         
       
     }//GEN-LAST:event_btnAddTypeMouseClicked
+
+    private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
+        // TODO add your handling code here:
+        
+        fm = new FonctionsMetier();
+        mdlMedicament = new ModelMedicament();
+        mdlMedicament.loadDatas(fm.GetAllMedicament());
+        mdlMedicament.setModel(mdlMedicament);
+    }//GEN-LAST:event_formWindowOpened
 
     /**
      * @param args the command line arguments
