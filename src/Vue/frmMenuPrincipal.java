@@ -5,6 +5,7 @@
  */
 package Vue;
 
+import Model.ModelMedicament;
 import Model.ModelTypeIndividu;
 import Tools.FonctionsMetier;
 
@@ -13,6 +14,9 @@ import Tools.FonctionsMetier;
  * @author maxim
  */
 public class frmMenuPrincipal extends javax.swing.JFrame {
+    
+    FonctionsMetier fm;
+    ModelMedicament mdlMedicament;
 
     FonctionsMetier fm;
     ModelTypeIndividu mdlTypeIndividu;
@@ -226,8 +230,13 @@ public class frmMenuPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_btnAddTypeMouseClicked
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
+        // TODO add your handling code here:
         
         fm = new FonctionsMetier();
+        mdlMedicament = new ModelMedicament();
+        mdlMedicament.loadDatas(fm.GetAllMedicament());
+        tblMedicament.setModel(mdlMedicament);
+        
         mdlTypeIndividu = new ModelTypeIndividu();
         mdlTypeIndividu.loadDatas(fm.GetAllTypeIndividu());
         tblTypeIndividu.setModel(mdlTypeIndividu);

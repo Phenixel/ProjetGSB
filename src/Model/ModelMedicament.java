@@ -4,6 +4,8 @@
  */
 package Model;
 
+import Entity.Medicament;
+import java.util.ArrayList;
 import java.util.Vector;
 import javax.swing.table.AbstractTableModel;
 
@@ -13,27 +15,37 @@ import javax.swing.table.AbstractTableModel;
  */
 public class ModelMedicament extends AbstractTableModel{
     
-    private String[] colonnes;
+    private String[] colonnes = {"Numéro","Nom"};
     private Vector<String[]> rows;
 
     @Override
     public int getRowCount() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return rows.size();
     }
 
     @Override
     public int getColumnCount() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return colonnes.length;
     }
 
     @Override
     public Object getValueAt(int rowIndex, int columnIndex) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return rows.get(rowIndex)[columnIndex];
     }
 
-@Override
-    public String getColumnName(int index)
+    @Override
+    public String getColumnName(int column)
     {
-        return colonnes[index];
+        return colonnes[column];
+    }
+    
+    public void loadDatas(ArrayList<Medicament> lesMedicaments)
+    {
+        rows = new Vector<>();
+        for(Medicament med : lesMedicaments)
+        {
+            rows.add(new String[]{String.valueOf(med.getMed_depotlegal()),med.getMed_nomcommercial()});
+        }
+        fireTableChanged(null);
     }
 }
