@@ -48,8 +48,4 @@ public class ModelMedicament extends AbstractTableModel{
         }
         fireTableChanged(null);
     }
-
-    public void setModel(ModelMedicament mdlMedicament) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
 }

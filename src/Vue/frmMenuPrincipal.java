@@ -235,7 +235,7 @@ public class frmMenuPrincipal extends javax.swing.JFrame {
         fm = new FonctionsMetier();
         mdlMedicament = new ModelMedicament();
         mdlMedicament.loadDatas(fm.GetAllMedicament());
-        mdlMedicament.setModel(mdlMedicament);
+        tblMedicament.setModel(mdlMedicament);
     }//GEN-LAST:event_formWindowOpened
 
     /**
