@@ -31,6 +31,7 @@ public class frmAjoutMedic extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jToggleButton1 = new javax.swing.JToggleButton();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         txtNomMedic = new javax.swing.JTextField();
@@ -51,6 +52,8 @@ public class frmAjoutMedic extends javax.swing.JFrame {
         tblInteraction = new javax.swing.JTable();
         btnAddMedic = new javax.swing.JButton();
 
+        jToggleButton1.setText("jToggleButton1");
+
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jLabel1.setFont(new java.awt.Font("Dialog", 1, 36)); // NOI18N
@@ -61,6 +64,11 @@ public class frmAjoutMedic extends javax.swing.JFrame {
         jLabel3.setText("Famille");
 
         cbmNomFamille.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "antalgique", "analgésique", "antidépresseur", "anxiolytiques", "antibiotique" }));
+        cbmNomFamille.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cbmNomFamilleActionPerformed(evt);
+            }
+        });
 
         jLabel4.setText("Composition");
 
@@ -136,7 +144,7 @@ public class frmAjoutMedic extends javax.swing.JFrame {
                                 .addComponent(jScrollPane1)))))
                 .addGap(50, 50, 50))
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(186, 186, 186)
                 .addComponent(btnAddMedic)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -172,10 +180,10 @@ public class frmAjoutMedic extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel8)
-                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 227, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 33, Short.MAX_VALUE)
+                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(30, 30, 30)
                 .addComponent(btnAddMedic)
-                .addGap(22, 22, 22))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
@@ -188,6 +196,11 @@ public class frmAjoutMedic extends javax.swing.JFrame {
         fm.AddMecicament(txtNomMedic.getText(), cbmNomFamille.getComponentCount(), txtComposition.getText(), txtEffets.getText(), txtContreIndic.getText(), Float.parseFloat(txtPrix.getText()));
         
     }//GEN-LAST:event_btnAddMedicMouseClicked
+
+    private void cbmNomFamilleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbmNomFamilleActionPerformed
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_cbmNomFamilleActionPerformed
 
     /**
      * @param args the command line arguments
@@ -238,6 +251,7 @@ public class frmAjoutMedic extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JToggleButton jToggleButton1;
     private javax.swing.JTable tblInteraction;
     private javax.swing.JTextArea txtComposition;
     private javax.swing.JTextField txtContreIndic;
