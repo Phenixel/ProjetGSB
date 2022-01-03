@@ -135,6 +135,9 @@
               <Table columnCount="0" rowCount="0"/>
             </Property>
           </Properties>
+          <Events>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="tblMedicamentMouseClicked"/>
+          </Events>
         </Component>
       </SubComponents>
     </Container>
@@ -232,6 +235,9 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="+"/>
       </Properties>
+      <Events>
+        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="btnAddMedicMouseClicked"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="btnAddType">
       <Properties>

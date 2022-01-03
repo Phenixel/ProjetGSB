@@ -65,6 +65,11 @@ public class frmMenuPrincipal extends javax.swing.JFrame {
 
             }
         ));
+        tblMedicament.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblMedicamentMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(tblMedicament);
 
         jLabel1.setText("Gestion Médicaments");
@@ -119,6 +124,11 @@ public class frmMenuPrincipal extends javax.swing.JFrame {
         );
 
         btnAddMedic.setText("+");
+        btnAddMedic.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnAddMedicMouseClicked(evt);
+            }
+        });
 
         btnAddType.setText("+");
         btnAddType.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -237,6 +247,25 @@ public class frmMenuPrincipal extends javax.swing.JFrame {
         
         
     }//GEN-LAST:event_formWindowOpened
+
+    private void tblMedicamentMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblMedicamentMouseClicked
+        // TODO add your handling code here:
+        
+        int selectedMedic = Integer.parseInt(tblMedicament.getValueAt(tblMedicament.getSelectedRow(), 0).toString());
+        
+        frmModifMedic frm = new frmModifMedic();
+        frm.setVisible(true);
+        
+        
+    }//GEN-LAST:event_tblMedicamentMouseClicked
+
+    private void btnAddMedicMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAddMedicMouseClicked
+        // TODO add your handling code here:
+        
+        frmAjoutMedic frm = new frmAjoutMedic();
+        frm.setVisible(true);
+        
+    }//GEN-LAST:event_btnAddMedicMouseClicked
 
     /**
      * @param args the command line arguments
