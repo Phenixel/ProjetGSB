@@ -42,7 +42,7 @@ public class frmAuthentification extends javax.swing.JFrame {
         btnConnexion = new javax.swing.JButton();
         lblErreur = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         jLabel1.setText("Authentification");
@@ -129,6 +129,7 @@ public class frmAuthentification extends javax.swing.JFrame {
             if(unUser != null){
                 frmMenuPrincipal frm = new frmMenuPrincipal();
                 frm.setVisible(true);
+                dispose();
                 
                 //En attendant
 //                lblErreur.setText("Connection réussie !.");

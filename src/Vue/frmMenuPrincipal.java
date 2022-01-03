@@ -49,7 +49,7 @@ public class frmMenuPrincipal extends javax.swing.JFrame {
         jLabel6 = new javax.swing.JLabel();
         btnAddPrescription = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setBackground(new java.awt.Color(102, 255, 51));
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowOpened(java.awt.event.WindowEvent evt) {
@@ -147,6 +147,11 @@ public class frmMenuPrincipal extends javax.swing.JFrame {
         jLabel5.setText("Médicaments");
 
         btnAddPrescription.setText("Nouvelles prescription");
+        btnAddPrescription.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnAddPrescriptionMouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -266,6 +271,11 @@ public class frmMenuPrincipal extends javax.swing.JFrame {
         frm.setVisible(true);
         
     }//GEN-LAST:event_btnAddMedicMouseClicked
+
+    private void btnAddPrescriptionMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAddPrescriptionMouseClicked
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_btnAddPrescriptionMouseClicked
 
     /**
      * @param args the command line arguments
