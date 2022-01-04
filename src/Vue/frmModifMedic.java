@@ -5,6 +5,7 @@
  */
 package Vue;
 
+import Entity.Famille;
 import Entity.TypeIndividu;
 import Tools.FonctionsMetier;
 
@@ -170,8 +171,8 @@ public class frmModifMedic extends javax.swing.JFrame {
         
         fm = new FonctionsMetier();
         
-        for (TypeIndividu ty : fm.GetAllTypeIndividu()){
-            cbmNomFamille.addItem(ty.getTin_libelle());
+        for (Famille fam : fm.GetAllFamille()){
+            cbmNomFamille.addItem(fam.getFam_libelle());
         }
         
         String nomMedic = fm.GetUnMedic(leMedicament).getMed_nomcommercial();
