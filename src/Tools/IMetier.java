@@ -20,5 +20,6 @@ public interface IMetier
     public Medicament AddMecicament(String nomMedicament, int famCode, String medComposition, String medEffets, String medContreIndic, float prix);
     public TypeIndividu addTypeIndividu();
     public Prescrire addPrescription();
-    public Medicament GetModifMedic();
+    public Medicament GetAllMedic();
+    public Medicament GetNomMedic(String nomMedic);
 }

@@ -121,7 +121,7 @@ public class FonctionsMetier implements IMetier
     }
 
     @Override
-    public Medicament GetModifMedic() {
+    public Medicament GetAllMedic() {
         Medicament leMedicament = null;
         
         try {
@@ -133,6 +133,25 @@ public class FonctionsMetier implements IMetier
                 leMedicament = new Medicament(rs.getInt(1), rs.getString(2), rs.getInt(3), rs.getString(4), rs.getString(5), rs.getString(6), rs.getFloat(7));
             }
             
+        } catch (SQLException ex) {
+            Logger.getLogger(FonctionsMetier.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        return leMedicament;
+    }
+
+    @Override
+    public Medicament GetNomMedic(String nomMedic) {
+        Medicament leMedicament = null;
+        
+        try {
+            maCnx = ConnexionBDD.getCnx();
+            ps = maCnx.prepareStatement("SELECT MED_DEPOTLEGAL, MED_NOMCOMMERCIAL FROM medicament WHERE MED_NOMCOMMERCIAL = '" +nomMedic+ "'");
+            rs = ps.executeQuery();
+            
+            if(rs.next()){
+                leMedicament = new Medicament(rs.getInt(1), rs.getString(2), rs.getInt(3), rs.getString(4), rs.getString(5), rs.getString(6), rs.getFloat(7));
+            }
         } catch (SQLException ex) {
             Logger.getLogger(FonctionsMetier.class.getName()).log(Level.SEVERE, null, ex);
         }

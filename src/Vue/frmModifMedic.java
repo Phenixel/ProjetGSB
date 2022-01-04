@@ -153,7 +153,7 @@ public class frmModifMedic extends javax.swing.JFrame {
         // TODO add your handling code here:
         
         fm = new FonctionsMetier();
-        String nom = fm.GetModifMedic().toString();
+        String nom = fm.GetAllMedic().toString();
         
         txtNomMedic.setText(nom);
         
