@@ -6,6 +6,7 @@
 package Vue;
 
 import Tools.FonctionsMetier;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -51,6 +52,7 @@ public class frmAjoutMedic extends javax.swing.JFrame {
         jScrollPane3 = new javax.swing.JScrollPane();
         tblInteraction = new javax.swing.JTable();
         btnAddMedic = new javax.swing.JButton();
+        lblStatus = new javax.swing.JLabel();
 
         jToggleButton1.setText("jToggleButton1");
 
@@ -146,6 +148,8 @@ public class frmAjoutMedic extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(186, 186, 186)
                 .addComponent(btnAddMedic)
+                .addGap(32, 32, 32)
+                .addComponent(lblStatus)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -182,7 +186,9 @@ public class frmAjoutMedic extends javax.swing.JFrame {
                     .addComponent(jLabel8)
                     .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(30, 30, 30)
-                .addComponent(btnAddMedic)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnAddMedic)
+                    .addComponent(lblStatus))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -192,8 +198,14 @@ public class frmAjoutMedic extends javax.swing.JFrame {
     private void btnAddMedicMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAddMedicMouseClicked
         // TODO add your handling code here:
         
-        fm = new FonctionsMetier();
-        fm.AddMecicament(txtNomMedic.getText(), cbmNomFamille.getComponentCount(), txtComposition.getText(), txtEffets.getText(), txtContreIndic.getText(), Float.parseFloat(txtPrix.getText()));
+        if(txtNomMedic.getText().compareTo("") == 0 || txtComposition.getText().compareTo("") == 0 || txtEffets.getText().compareTo("") == 0 || txtContreIndic.getText().compareTo("") == 0 || txtPrix.getText().compareTo("") == 0){
+            JOptionPane.showMessageDialog(this, "Merci de vérifier que tous les champs soient rempli"," Erreur ",JOptionPane.WARNING_MESSAGE);
+        }
+        else{
+            fm = new FonctionsMetier();
+            fm.AddMecicament(txtNomMedic.getText(), cbmNomFamille.getComponentCount(), txtComposition.getText(), txtEffets.getText(), txtContreIndic.getText(), Float.parseFloat(txtPrix.getText()));
+            lblStatus.setText("Médicament ajouté !");
+        }
         
     }//GEN-LAST:event_btnAddMedicMouseClicked
 
@@ -252,6 +264,7 @@ public class frmAjoutMedic extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JToggleButton jToggleButton1;
+    private javax.swing.JLabel lblStatus;
     private javax.swing.JTable tblInteraction;
     private javax.swing.JTextArea txtComposition;
     private javax.swing.JTextField txtContreIndic;

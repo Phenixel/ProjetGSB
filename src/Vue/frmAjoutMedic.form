@@ -80,6 +80,8 @@
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace min="-2" pref="186" max="-2" attributes="0"/>
               <Component id="btnAddMedic" min="-2" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
+              <Component id="lblStatus" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="32767" attributes="0"/>
           </Group>
       </Group>
@@ -125,7 +127,10 @@
                   <Component id="jScrollPane3" min="-2" pref="50" max="-2" attributes="0"/>
               </Group>
               <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
-              <Component id="btnAddMedic" min="-2" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="btnAddMedic" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="lblStatus" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
               <EmptySpace max="32767" attributes="0"/>
           </Group>
       </Group>
@@ -254,6 +259,8 @@
       <Events>
         <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="btnAddMedicMouseClicked"/>
       </Events>
+    </Component>
+    <Component class="javax.swing.JLabel" name="lblStatus">
     </Component>
   </SubComponents>
 </Form>
