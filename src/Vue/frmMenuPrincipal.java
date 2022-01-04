@@ -234,7 +234,8 @@ public class frmMenuPrincipal extends javax.swing.JFrame {
     private void btnAddTypeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAddTypeMouseClicked
         // Ici ajouter un type individu
         
-        
+        frmAjoutTypeIndividu frm = new frmAjoutTypeIndividu();
+        frm.setVisible(true);
       
     }//GEN-LAST:event_btnAddTypeMouseClicked
 

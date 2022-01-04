@@ -109,6 +109,19 @@ public class FonctionsMetier implements IMetier
         }
         return unMedicament;
     }
+    
+    @Override
+    public TypeIndividu addTypeIndividu(String unNom) {
+        TypeIndividu unType = null;
+        try {
+            maCnx = ConnexionBDD.getCnx();
+            ps = maCnx.prepareStatement("INSERT INTO type_individu (TIN_LIBELLE) VALUE ('"+unNom+"')");
+            ps.executeUpdate();
+        } catch (SQLException ex) {
+            Logger.getLogger(FonctionsMetier.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return unType;
+    }
 
     @Override
     public TypeIndividu addTypeIndividu() {
