@@ -27,6 +27,11 @@ public class Medicament {
         med_contreindic = uneContreindic;
         med_prixechantillon = unPrix;
     }
+     public Medicament (int unDepotLegal, String unNom){
+        med_depotlegal = unDepotLegal;
+        med_nomcommercial = unNom;
+
+    }
 
     /**
      * @return the med_depotlegal

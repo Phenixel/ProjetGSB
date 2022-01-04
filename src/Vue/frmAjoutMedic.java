@@ -60,6 +60,11 @@ public class frmAjoutMedic extends javax.swing.JFrame {
         jToggleButton1.setText("jToggleButton1");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowOpened(java.awt.event.WindowEvent evt) {
+                formWindowOpened(evt);
+            }
+        });
 
         jLabel1.setFont(new java.awt.Font("Dialog", 1, 36)); // NOI18N
         jLabel1.setText("Ajouter medicament");
@@ -201,10 +206,6 @@ public class frmAjoutMedic extends javax.swing.JFrame {
         // TODO add your handling code here:
         fm = new FonctionsMetier();
         
-        for (TypeIndividu ty : fm.GetAllTypeIndividu()){
-            cbmNomFamille.addItem(ty.toString());
-        }
-        
         if(txtNomMedic.getText().compareTo("") == 0 || txtComposition.getText().compareTo("") == 0 || txtEffets.getText().compareTo("") == 0 || txtContreIndic.getText().compareTo("") == 0 || txtPrix.getText().compareTo("") == 0){
             JOptionPane.showMessageDialog(this, "Merci de vérifier que tous les champs soient rempli"," Erreur ",JOptionPane.WARNING_MESSAGE);
         }
@@ -213,7 +214,6 @@ public class frmAjoutMedic extends javax.swing.JFrame {
             if(unMedicament != null){
                 fm.AddMedicament(txtNomMedic.getText(), cbmNomFamille.getSelectedItem().toString(), txtComposition.getText(), txtEffets.getText(), txtContreIndic.getText(), Float.parseFloat(txtPrix.getText()));
                 lblStatus.setText("Médicament ajouté !");
-                
             }
             else{
                 JOptionPane d = new JOptionPane();
@@ -231,6 +231,15 @@ public class frmAjoutMedic extends javax.swing.JFrame {
         // TODO add your handling code here:
         
     }//GEN-LAST:event_cbmNomFamilleActionPerformed
+
+    private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
+        // TODO add your handling code here:
+        
+        for (TypeIndividu ty : fm.GetAllTypeIndividu()){
+            cbmNomFamille.addItem(ty.getTin_libelle());
+        }
+        
+    }//GEN-LAST:event_formWindowOpened
 
     /**
      * @param args the command line arguments

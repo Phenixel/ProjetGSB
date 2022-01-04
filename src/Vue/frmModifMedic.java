@@ -5,6 +5,7 @@
  */
 package Vue;
 
+import Entity.TypeIndividu;
 import Tools.FonctionsMetier;
 
 /**
@@ -52,6 +53,7 @@ public class frmModifMedic extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         txtComposition = new javax.swing.JTextArea();
+        jLabel8 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         addWindowListener(new java.awt.event.WindowAdapter() {
@@ -71,7 +73,7 @@ public class frmModifMedic extends javax.swing.JFrame {
         jLabel7.setText("Prix");
 
         jLabel1.setFont(new java.awt.Font("Dialog", 1, 36)); // NOI18N
-        jLabel1.setText("Ajouter medicament");
+        jLabel1.setText("Medicament");
 
         jLabel2.setText("Nom");
 
@@ -82,6 +84,8 @@ public class frmModifMedic extends javax.swing.JFrame {
         txtComposition.setColumns(20);
         txtComposition.setRows(5);
         jScrollPane1.setViewportView(txtComposition);
+
+        jLabel8.setText("€");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -97,9 +101,12 @@ public class frmModifMedic extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(txtContreIndic)
-                            .addComponent(txtPrix)))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(txtPrix, javax.swing.GroupLayout.PREFERRED_SIZE, 202, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jLabel8)
+                                .addGap(0, 0, Short.MAX_VALUE))))
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING)
                         .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addComponent(jLabel2)
@@ -117,6 +124,10 @@ public class frmModifMedic extends javax.swing.JFrame {
                                 .addComponent(jScrollPane2)
                                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 269, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addGap(26, 26, 26))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel1)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -146,7 +157,8 @@ public class frmModifMedic extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel7)
-                    .addComponent(txtPrix, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtPrix, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel8))
                 .addContainerGap(115, Short.MAX_VALUE))
         );
 
@@ -158,14 +170,19 @@ public class frmModifMedic extends javax.swing.JFrame {
         
         fm = new FonctionsMetier();
         
+        for (TypeIndividu ty : fm.GetAllTypeIndividu()){
+            cbmNomFamille.addItem(ty.getTin_libelle());
+        }
+        
         String nomMedic = fm.GetUnMedic(leMedicament).getMed_nomcommercial();
         String compo = fm.GetUnMedic(leMedicament).getMed_composition();
         String effet = fm.GetUnMedic(leMedicament).getMed_effets();
         String contreIndic = fm.GetUnMedic(leMedicament).getMed_contreindic();
         float prix = fm.GetUnMedic(leMedicament).getMed_prixechantillon();
+        int nomFamille = fm.GetUnMedic(leMedicament).getFam_code();
         
         txtNomMedic.setText(nomMedic);
-        //Ici combo box
+        cbmNomFamille.getItemAt(WIDTH);
         txtComposition.setText(compo);
         txtEffets.setText(effet);
         txtContreIndic.setText(contreIndic);
@@ -217,6 +234,7 @@ public class frmModifMedic extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTextArea txtComposition;
