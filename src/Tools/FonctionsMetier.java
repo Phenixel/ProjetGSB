@@ -5,6 +5,7 @@
  */
 package Tools;
 
+import Entity.Famille;
 import Entity.Medicament;
 import Entity.Prescrire;
 import Entity.TypeIndividu;
@@ -92,7 +93,7 @@ public class FonctionsMetier implements IMetier
         try {
             maCnx = ConnexionBDD.getCnx();
             
-            ps = maCnx.prepareStatement("SELECT tin_code FROM Type_Individu WHERE tin_libelle = '"+famCode+"'");
+            ps = maCnx.prepareStatement("SELECT fam_code FROM famille WHERE fam_libelle = '"+famCode+"'");
             rs = ps.executeQuery();
             rs.next();
             
@@ -155,16 +156,35 @@ public class FonctionsMetier implements IMetier
         
         try {
             maCnx = ConnexionBDD.getCnx();
-            ps = maCnx.prepareStatement("SELECT MED_DEPOTLEGAL, MED_NOMCOMMERCIAL FROM medicament WHERE MED_NOMCOMMERCIAL = '" +nomMedic+ "'");
+            ps = maCnx.prepareStatement("SELECT MED_NOMCOMMERCIAL FROM medicament WHERE MED_NOMCOMMERCIAL = '" +nomMedic+ "'");
             rs = ps.executeQuery();
             
             if(rs.next()){
-                leMedicament = new Medicament(rs.getInt(1), rs.getString(2));//, rs.getInt(3), rs.getString(4), rs.getString(5), rs.getString(6), rs.getFloat(7));
+                leMedicament = new Medicament(rs.getString(1));
             }
         } catch (SQLException ex) {
             Logger.getLogger(FonctionsMetier.class.getName()).log(Level.SEVERE, null, ex);
         }
         
         return leMedicament;
+    }
+
+    @Override
+    public ArrayList<Famille> GetAllFamille() {
+        ArrayList<Famille> lesFamille = new ArrayList<>();
+        try {
+            maCnx = ConnexionBDD.getCnx();
+            ps = maCnx.prepareStatement("SELECT fam_code, fam_LIBELLE FROM famille");
+            rs = ps.executeQuery();
+            while(rs.next())
+            {
+                Famille fam = new Famille(rs.getInt("fam_code"),rs.getString("fam_LIBELLE"));
+                lesFamille.add(fam);
+            }
+            ps.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(FonctionsMetier.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return lesFamille;
     }
 }

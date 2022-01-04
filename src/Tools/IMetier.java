@@ -5,6 +5,7 @@
  */
 package Tools;
 
+import Entity.Famille;
 import Entity.Medicament;
 import Entity.Prescrire;
 import Entity.TypeIndividu;
@@ -17,6 +18,7 @@ public interface IMetier
     public ArrayList<Medicament> GetAllMedicament();
     public utilisateur VerifierIdentifiants(String login, String mdp);
     public ArrayList<TypeIndividu> GetAllTypeIndividu();
+    public ArrayList<Famille> GetAllFamille();
     public Medicament AddMedicament(String nomMedicament, String famCode, String medComposition, String medEffets, String medContreIndic, float prix);
     public TypeIndividu addTypeIndividu();
     public Prescrire addPrescription();

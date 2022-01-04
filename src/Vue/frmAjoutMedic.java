@@ -5,6 +5,7 @@
  */
 package Vue;
 
+import Entity.Famille;
 import Entity.Medicament;
 import Entity.TypeIndividu;
 import Tools.FonctionsMetier;
@@ -211,7 +212,7 @@ public class frmAjoutMedic extends javax.swing.JFrame {
         }
         else{
             Medicament unMedicament = fm.GetNomMedic(txtNomMedic.getText());
-            if(unMedicament != null){
+            if(unMedicament == null){
                 fm.AddMedicament(txtNomMedic.getText(), cbmNomFamille.getSelectedItem().toString(), txtComposition.getText(), txtEffets.getText(), txtContreIndic.getText(), Float.parseFloat(txtPrix.getText()));
                 lblStatus.setText("Médicament ajouté !");
             }
@@ -235,8 +236,8 @@ public class frmAjoutMedic extends javax.swing.JFrame {
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
         // TODO add your handling code here:
         
-        for (TypeIndividu ty : fm.GetAllTypeIndividu()){
-            cbmNomFamille.addItem(ty.getTin_libelle());
+        for (Famille fam : fm.GetAllFamille()){
+            cbmNomFamille.addItem(fam.getFam_libelle());
         }
         
     }//GEN-LAST:event_formWindowOpened
