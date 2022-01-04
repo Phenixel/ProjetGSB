@@ -109,6 +109,37 @@ public class FonctionsMetier implements IMetier
         }
         return unMedicament;
     }
+    
+    @Override
+    public Prescrire addAjoutPres(String medDepotLegal, String tinCode, String dosCode, String prePosologie) {
+    Prescrire unePres = null;
+        try {
+        maCnx = ConnexionBDD.getCnx();
+        ps = maCnx.prepareStatement("SELECT p.MED_DEPOTLEGAL FROM prescrire as p INNER JOIN medicament as m ON p.MED_DEPOTLEGAL = m.MED_DEPOTLEGAL WHERE m.MED_NOMCOMMERCIAL ="+medDepotLegal);
+        rs = ps.executeQuery();
+        rs.next();
+        int depotLegal = rs.getInt(1);
+        rs.close();
+        
+        ps = maCnx.prepareStatement("SELECT p.TIN_CODE FROM prescrire as p INNER JOIN type_individu as t ON p.TIN_CODE = t.TIN_CODE WHERE t.TIN_LIBELLE ="+tinCode);
+        rs = ps.executeQuery();
+        rs.next();
+        int typeCode = rs.getInt(1);
+        rs.close(); 
+        
+        ps = maCnx.prepareStatement("");
+        rs = ps.executeQuery();
+        rs.next();
+        int dosageCode = rs.getInt(1);
+        rs.close(); 
+        
+            ps = maCnx.prepareStatement("INSERT INTO prescrire (MED_DEPOTLEGAL, TIN_CODE, DOS_CODE, PRE_POSOLOGIE) VALUES ('"+ depotLegal + typeCode + dosCode+"'"+prePosologie+"')");
+            ps.executeUpdate();
+        } catch (SQLException ex) {
+            Logger.getLogger(FonctionsMetier.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return unePres;
+    }
 
     @Override
     public TypeIndividu addTypeIndividu() {

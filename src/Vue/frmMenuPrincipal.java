@@ -274,6 +274,8 @@ public class frmMenuPrincipal extends javax.swing.JFrame {
 
     private void btnAddPrescriptionMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAddPrescriptionMouseClicked
         // TODO add your handling code here:
+        frmAjoutPrescription frm = new frmAjoutPrescription();
+        frm.setVisible(true);
         
     }//GEN-LAST:event_btnAddPrescriptionMouseClicked
 

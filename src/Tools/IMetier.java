@@ -21,4 +21,5 @@ public interface IMetier
     public TypeIndividu addTypeIndividu();
     public Prescrire addPrescription();
     public Medicament GetModifMedic();
+    public Prescrire addAjoutPres(String medDepotLegal, String tinCode, String dosCode, String prePosologie);
 }
