@@ -158,17 +158,6 @@
       </Properties>
     </Component>
     <Component class="javax.swing.JComboBox" name="cbmNomFamille">
-      <Properties>
-        <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-          <StringArray count="5">
-            <StringItem index="0" value="antalgique"/>
-            <StringItem index="1" value="analg&#xe9;sique"/>
-            <StringItem index="2" value="antid&#xe9;presseur"/>
-            <StringItem index="3" value="anxiolytiques"/>
-            <StringItem index="4" value="antibiotique"/>
-          </StringArray>
-        </Property>
-      </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="cbmNomFamilleActionPerformed"/>
       </Events>

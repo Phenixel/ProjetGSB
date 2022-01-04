@@ -6,6 +6,7 @@
 package Vue;
 
 import Entity.Medicament;
+import Entity.TypeIndividu;
 import Tools.FonctionsMetier;
 import javax.swing.JOptionPane;
 import static javax.swing.JOptionPane.OK_OPTION;
@@ -67,7 +68,6 @@ public class frmAjoutMedic extends javax.swing.JFrame {
 
         jLabel3.setText("Famille");
 
-        cbmNomFamille.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "antalgique", "analgésique", "antidépresseur", "anxiolytiques", "antibiotique" }));
         cbmNomFamille.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cbmNomFamilleActionPerformed(evt);
@@ -201,13 +201,17 @@ public class frmAjoutMedic extends javax.swing.JFrame {
         // TODO add your handling code here:
         fm = new FonctionsMetier();
         
+        for (TypeIndividu ty : fm.GetAllTypeIndividu()){
+            cbmNomFamille.addItem(ty.toString());
+        }
+        
         if(txtNomMedic.getText().compareTo("") == 0 || txtComposition.getText().compareTo("") == 0 || txtEffets.getText().compareTo("") == 0 || txtContreIndic.getText().compareTo("") == 0 || txtPrix.getText().compareTo("") == 0){
             JOptionPane.showMessageDialog(this, "Merci de vérifier que tous les champs soient rempli"," Erreur ",JOptionPane.WARNING_MESSAGE);
         }
         else{
             Medicament unMedicament = fm.GetNomMedic(txtNomMedic.getText());
             if(unMedicament != null){
-                fm.AddMecicament(txtNomMedic.getText(), cbmNomFamille.getComponentCount(), txtComposition.getText(), txtEffets.getText(), txtContreIndic.getText(), Float.parseFloat(txtPrix.getText()));
+                fm.AddMedicament(txtNomMedic.getText(), cbmNomFamille.getSelectedItem().toString(), txtComposition.getText(), txtEffets.getText(), txtContreIndic.getText(), Float.parseFloat(txtPrix.getText()));
                 lblStatus.setText("Médicament ajouté !");
                 
             }
@@ -215,7 +219,7 @@ public class frmAjoutMedic extends javax.swing.JFrame {
                 JOptionPane d = new JOptionPane();
                 int retour = d.showConfirmDialog(this, "le nom du médicament que vous souhaitez ajouter existe déjà. Etes vous sur que vous voulez l'ajouter à la base de donnée ?", "Possible duplication", JOptionPane.OK_CANCEL_OPTION);
                 if(retour == OK_OPTION){
-                    fm.AddMecicament(txtNomMedic.getText(), cbmNomFamille.getComponentCount(), txtComposition.getText(), txtEffets.getText(), txtContreIndic.getText(), Float.parseFloat(txtPrix.getText()));
+                    fm.AddMedicament(txtNomMedic.getText(), cbmNomFamille.getSelectedItem().toString(), txtComposition.getText(), txtEffets.getText(), txtContreIndic.getText(), Float.parseFloat(txtPrix.getText()));
                     lblStatus.setText("Médicament ajouté !");
                 }
             }

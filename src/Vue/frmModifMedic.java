@@ -15,10 +15,16 @@ public class frmModifMedic extends javax.swing.JFrame {
     
     FonctionsMetier fm;
 
+    static int leMedicament;
     /**
      * Creates new form frmModifMedic
      */
-    public frmModifMedic() {
+    public frmModifMedic(int selectedRow) {
+        initComponents();
+        leMedicament = selectedRow;
+    }
+
+    private frmModifMedic() {
         initComponents();
     }
 
@@ -70,8 +76,6 @@ public class frmModifMedic extends javax.swing.JFrame {
         jLabel2.setText("Nom");
 
         jLabel3.setText("Famille");
-
-        cbmNomFamille.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "antalgique", "analgésique", "antidépresseur", "anxiolytiques", "antibiotique" }));
 
         jLabel4.setText("Composition");
 
@@ -143,7 +147,7 @@ public class frmModifMedic extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel7)
                     .addComponent(txtPrix, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(117, Short.MAX_VALUE))
+                .addContainerGap(115, Short.MAX_VALUE))
         );
 
         pack();
@@ -153,9 +157,19 @@ public class frmModifMedic extends javax.swing.JFrame {
         // TODO add your handling code here:
         
         fm = new FonctionsMetier();
-        String nom = fm.GetAllMedic().toString();
         
-        txtNomMedic.setText(nom);
+        String nomMedic = fm.GetUnMedic(leMedicament).getMed_nomcommercial();
+        String compo = fm.GetUnMedic(leMedicament).getMed_composition();
+        String effet = fm.GetUnMedic(leMedicament).getMed_effets();
+        String contreIndic = fm.GetUnMedic(leMedicament).getMed_contreindic();
+        float prix = fm.GetUnMedic(leMedicament).getMed_prixechantillon();
+        
+        txtNomMedic.setText(nomMedic);
+        //Ici combo box
+        txtComposition.setText(compo);
+        txtEffets.setText(effet);
+        txtContreIndic.setText(contreIndic);
+        txtPrix.setText(String.valueOf(prix));
         
     }//GEN-LAST:event_formWindowOpened
 

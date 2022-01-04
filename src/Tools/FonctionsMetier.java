@@ -87,14 +87,23 @@ public class FonctionsMetier implements IMetier
     }
 
     @Override
-    public Medicament AddMecicament(String nomMedicament, int famCode, String medComposition, String medEffets, String medContreIndic, float prix) {
+    public Medicament AddMedicament(String nomMedicament, String famCode, String medComposition, String medEffets, String medContreIndic, float prix) {
         Medicament unMedicament = null;
         try {
             maCnx = ConnexionBDD.getCnx();
+            
+            ps = maCnx.prepareStatement("SELECT m.fam_code FROM medicament as m INNER JOIN famille as f on m.FAM_CODE = f.FAM_CODE where f.fam_libelle = '"+famCode+"'");
+            rs = ps.executeQuery();
+            rs.next();
+            
+            int numFam = rs.getInt(1);
+            rs.close();
+            
+            
             ps = maCnx.prepareStatement("INSERT INTO medicament "
                     + "(MED_NOMCOMMERCIAL, FAM_CODE, MED_COMPOSITION, MED_EFFETS, MED_CONTREINDIC, MED_PRIXECHANTILLON) "
                     + "VALUES ('"+ nomMedicament +"',"
-                    + famCode+ ","
+                    + numFam+ ","
                     + "'"+ medComposition + "',"
                     + "'"+ medEffets + "',"
                     + "'"+ medContreIndic + "',"
@@ -121,12 +130,12 @@ public class FonctionsMetier implements IMetier
     }
 
     @Override
-    public Medicament GetAllMedic() {
+    public Medicament GetUnMedic(int idMedic) {
         Medicament leMedicament = null;
         
         try {
             maCnx = ConnexionBDD.getCnx();
-            ps = maCnx.prepareStatement("SELECT MED_DEPOTLEGAL, MED_NOMCOMMERCIAL, FAM_CODE, MED_COMPOSITION, MED_EFFETS, MED_CONTREINDIC, MED_PRIXECHANTILLON from medicament WHERE MED_DEPOTLEGAL = 1");
+            ps = maCnx.prepareStatement("SELECT MED_DEPOTLEGAL, MED_NOMCOMMERCIAL, FAM_CODE, MED_COMPOSITION, MED_EFFETS, MED_CONTREINDIC, MED_PRIXECHANTILLON from medicament WHERE MED_DEPOTLEGAL = "+ idMedic);
             rs = ps.executeQuery();
             
             if(rs.next()){
