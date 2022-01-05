@@ -187,4 +187,37 @@ public class FonctionsMetier implements IMetier
         }
         return lesFamille;
     }
+
+    @Override
+    public Medicament SetModifMedic(int medId, String nomMedicament, String famCode, String medComposition, String medEffets, String medContreIndic, float prix) {
+        Medicament unMedicament = null;
+        try {
+            maCnx = ConnexionBDD.getCnx();
+            
+            ps = maCnx.prepareStatement("SELECT fam_code FROM famille WHERE fam_libelle = '"+famCode+"'");
+            rs = ps.executeQuery();
+            rs.next();
+            
+            int numFam = rs.getInt(1);
+            rs.close();
+            
+            
+            
+            ps = maCnx.prepareStatement("UPDATE medicament "
+                    + "SET "
+                    + "MED_NOMCOMMERCIAL = '"+ nomMedicament +"',"
+                    + "FAM_CODE = " + numFam+ ","
+                    + "MED_COMPOSITION = '"+ medComposition + "',"
+                    + "MED_EFFETS = '"+ medEffets + "',"
+                    + "MED_CONTREINDIC = '"+ medContreIndic + "',"
+                    + "MED_PRIXECHANTILLON = " + prix + " "
+                    + "WHERE MED_DEPOTLEGAL =" + medId +
+                    ";");
+            ps.executeUpdate();
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(FonctionsMetier.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return unMedicament;
+    }
 }

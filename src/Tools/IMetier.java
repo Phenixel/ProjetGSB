@@ -24,4 +24,5 @@ public interface IMetier
     public Prescrire addPrescription();
     public Medicament GetUnMedic(int idMedic);
     public Medicament GetNomMedic(String nomMedic);
+    public Medicament SetModifMedic(int medId, String nomMedicament, String famCode, String medComposition, String medEffets, String medContreIndic, float prix);
 }

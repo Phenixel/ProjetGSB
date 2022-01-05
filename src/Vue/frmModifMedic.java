@@ -8,6 +8,8 @@ package Vue;
 import Entity.Famille;
 import Entity.TypeIndividu;
 import Tools.FonctionsMetier;
+import javax.swing.JOptionPane;
+import static javax.swing.JOptionPane.OK_OPTION;
 
 /**
  *
@@ -55,8 +57,11 @@ public class frmModifMedic extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         txtComposition = new javax.swing.JTextArea();
         jLabel8 = new javax.swing.JLabel();
+        tglBtnModif = new javax.swing.JToggleButton();
+        btnConfirmer = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setResizable(false);
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowOpened(java.awt.event.WindowEvent evt) {
                 formWindowOpened(evt);
@@ -65,28 +70,52 @@ public class frmModifMedic extends javax.swing.JFrame {
 
         jLabel5.setText("Effets");
 
+        txtEffets.setEditable(false);
         txtEffets.setColumns(20);
+        txtEffets.setLineWrap(true);
         txtEffets.setRows(5);
         jScrollPane2.setViewportView(txtEffets);
 
         jLabel6.setText("Contre indication");
 
+        txtContreIndic.setEditable(false);
+
         jLabel7.setText("Prix");
+
+        txtPrix.setEditable(false);
 
         jLabel1.setFont(new java.awt.Font("Dialog", 1, 36)); // NOI18N
         jLabel1.setText("Medicament");
 
         jLabel2.setText("Nom");
 
+        txtNomMedic.setEditable(false);
+
         jLabel3.setText("Famille");
 
         jLabel4.setText("Composition");
 
+        txtComposition.setEditable(false);
         txtComposition.setColumns(20);
+        txtComposition.setLineWrap(true);
         txtComposition.setRows(5);
         jScrollPane1.setViewportView(txtComposition);
 
         jLabel8.setText("€");
+
+        tglBtnModif.setText("Modifier");
+        tglBtnModif.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tglBtnModifMouseClicked(evt);
+            }
+        });
+
+        btnConfirmer.setText("Confirmer");
+        btnConfirmer.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnConfirmerMouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -95,18 +124,6 @@ public class frmModifMedic extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(23, 23, 23)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel6)
-                            .addComponent(jLabel7))
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtContreIndic)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(txtPrix, javax.swing.GroupLayout.PREFERRED_SIZE, 202, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jLabel8)
-                                .addGap(0, 0, Short.MAX_VALUE))))
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                         .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -123,11 +140,31 @@ public class frmModifMedic extends javax.swing.JFrame {
                             .addGap(18, 18, 18)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addComponent(jScrollPane2)
-                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 269, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 269, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel6)
+                            .addComponent(jLabel7))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txtContreIndic)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(txtPrix, javax.swing.GroupLayout.PREFERRED_SIZE, 202, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jLabel8)
+                                .addGap(0, 0, Short.MAX_VALUE)))))
                 .addGap(26, 26, 26))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+            .addGroup(layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel1)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnConfirmer)
+                .addContainerGap())
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(tglBtnModif)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -160,10 +197,15 @@ public class frmModifMedic extends javax.swing.JFrame {
                     .addComponent(jLabel7)
                     .addComponent(txtPrix, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel8))
-                .addContainerGap(115, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 69, Short.MAX_VALUE)
+                .addComponent(tglBtnModif)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(btnConfirmer)
+                .addGap(8, 8, 8))
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
@@ -190,6 +232,53 @@ public class frmModifMedic extends javax.swing.JFrame {
         txtPrix.setText(String.valueOf(prix));
         
     }//GEN-LAST:event_formWindowOpened
+
+    private void tglBtnModifMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tglBtnModifMouseClicked
+        // TODO add your handling code here:
+        
+        if(tglBtnModif.isSelected()){
+            //Lorsque le bouton est appuyer
+            tglBtnModif.setText("Modifications en cours - Cliquer pour arreter");
+            txtNomMedic.setEditable(true);
+            txtComposition.setEditable(true);
+            txtEffets.setEditable(true);
+            txtContreIndic.setEditable(true);
+            txtPrix.setEditable(true);
+            
+            //Permettre la confirmation
+            btnConfirmer.setEnabled(true);
+        }else{
+            //Lorsque le bouton est relacher
+            tglBtnModif.setText("Modifier");
+            txtNomMedic.setEditable(false);
+            txtComposition.setEditable(false);
+            txtEffets.setEditable(false);
+            txtContreIndic.setEditable(false);
+            txtPrix.setEditable(false);
+            
+            //Bloquer la confirmation
+            btnConfirmer.setEnabled(false);
+        }
+        
+        //JOptionPane.showMessageDialog(this, "Merci de vérifier que tous les champs soient rempli"," Erreur ",JOptionPane.INFORMATION_MESSAGE);
+        
+        
+    }//GEN-LAST:event_tglBtnModifMouseClicked
+
+    private void btnConfirmerMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnConfirmerMouseClicked
+        // TODO add your handling code here:
+        
+        //Récupérer les nouvelles informations
+        
+        //Insérer l'update
+        fm.SetModifMedic(leMedicament, txtNomMedic.getText(), cbmNomFamille.getSelectedItem().toString(), txtComposition.getText(), txtEffets.getText(), txtContreIndic.getText(), Float.parseFloat(txtPrix.getText()));
+        
+        JOptionPane d = new JOptionPane();
+        int retour = d.showConfirmDialog(this, "Votre modification à bien été prise en compte. Souaitez vous quitter cette fenêtre ?"," Modification effectuée", JOptionPane.OK_CANCEL_OPTION);
+        if(retour == OK_OPTION){
+            dispose();
+        }
+    }//GEN-LAST:event_btnConfirmerMouseClicked
 
     /**
      * @param args the command line arguments
@@ -227,6 +316,7 @@ public class frmModifMedic extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnConfirmer;
     private javax.swing.JComboBox<String> cbmNomFamille;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -238,6 +328,7 @@ public class frmModifMedic extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JToggleButton tglBtnModif;
     private javax.swing.JTextArea txtComposition;
     private javax.swing.JTextField txtContreIndic;
     private javax.swing.JTextArea txtEffets;
