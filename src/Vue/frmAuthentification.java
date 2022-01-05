@@ -78,7 +78,9 @@ public class frmAuthentification extends javax.swing.JFrame {
         jLabel3.setFont(new java.awt.Font("Arial Black", 0, 18)); // NOI18N
         jLabel3.setText("Mot de passe");
 
-        btnConnexion.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
+        btnConnexion.setBackground(new java.awt.Color(51, 102, 0));
+        btnConnexion.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        btnConnexion.setForeground(new java.awt.Color(255, 255, 255));
         btnConnexion.setText("Se connecter");
         btnConnexion.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
