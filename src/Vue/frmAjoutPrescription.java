@@ -4,6 +4,8 @@
  * and open the template in the editor.
  */
 package Vue;
+import Entity.Dosage;
+import Entity.Medicament;
 import Entity.TypeIndividu;
 import Tools.FonctionsMetier;
 
@@ -35,10 +37,7 @@ public class frmAjoutPrescription extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         cmbMedicament = new javax.swing.JComboBox<>();
         jLabel4 = new javax.swing.JLabel();
-        txtUnite = new javax.swing.JTextField();
-        txtQuantite = new javax.swing.JTextField();
-        jLabel5 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
+        txtPoso = new javax.swing.JTextField();
         btnAddPrescription = new javax.swing.JButton();
         jLabel7 = new javax.swing.JLabel();
         cmbDosCode = new javax.swing.JComboBox<>();
@@ -52,7 +51,7 @@ public class frmAjoutPrescription extends javax.swing.JFrame {
         });
 
         jLabel1.setFont(new java.awt.Font("Dialog", 1, 36)); // NOI18N
-        jLabel1.setText("Ajout Prescription");
+        jLabel1.setText("Ajouter Prescription");
 
         jLabel2.setText("Type d'individu");
 
@@ -60,21 +59,11 @@ public class frmAjoutPrescription extends javax.swing.JFrame {
 
         jLabel4.setText("Posologie");
 
-        txtUnite.addActionListener(new java.awt.event.ActionListener() {
+        txtPoso.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtUniteActionPerformed(evt);
+                txtPosoActionPerformed(evt);
             }
         });
-
-        txtQuantite.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtQuantiteActionPerformed(evt);
-            }
-        });
-
-        jLabel5.setText("Unité");
-
-        jLabel6.setText("Quantité");
 
         btnAddPrescription.setText("Ajouter");
         btnAddPrescription.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -90,31 +79,14 @@ public class frmAjoutPrescription extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(187, 187, 187)
-                .addComponent(btnAddPrescription, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(185, 185, 185))
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(103, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(120, 120, 120)
-                                .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(85, 85, 85)
-                                .addComponent(jLabel6))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                        .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(jLabel7)
-                                        .addGap(46, 46, 46)))
-                                .addComponent(txtUnite, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(txtQuantite, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel7))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(txtPoso, javax.swing.GroupLayout.PREFERRED_SIZE, 257, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                         .addComponent(jLabel1)
                         .addGroup(layout.createSequentialGroup()
@@ -125,15 +97,18 @@ public class frmAjoutPrescription extends javax.swing.JFrame {
                             .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGap(18, 18, 18)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(cmbMedicament, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addGroup(layout.createSequentialGroup()
-                                    .addComponent(cmbDosCode, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGap(0, 0, Short.MAX_VALUE)))))))
+                                .addComponent(cmbDosCode, javax.swing.GroupLayout.PREFERRED_SIZE, 249, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(cmbMedicament, javax.swing.GroupLayout.PREFERRED_SIZE, 249, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                .addContainerGap(94, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnAddPrescription, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(225, 225, 225))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel1)
                 .addGap(34, 34, 34)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -147,35 +122,26 @@ public class frmAjoutPrescription extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel7)
                     .addComponent(cmbDosCode, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(19, 19, 19)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel5)
-                    .addComponent(jLabel6))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(39, 39, 39)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
-                    .addComponent(txtUnite, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtQuantite, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtPoso, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(btnAddPrescription)
-                .addGap(19, 19, 19))
+                .addContainerGap(19, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void txtQuantiteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtQuantiteActionPerformed
+    private void txtPosoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPosoActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtQuantiteActionPerformed
-
-    private void txtUniteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtUniteActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtUniteActionPerformed
+    }//GEN-LAST:event_txtPosoActionPerformed
 
     private void btnAddPrescriptionMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAddPrescriptionMouseClicked
         // TODO add your handling code here:
         fm = new FonctionsMetier();
-        fm.addAjoutPres(cmbMedicament.getSelectedItem().toString(), cbmTypeIndividu.getSelectedItem().toString(), cmbDosCode.getSelectedItem().toString(), txtUnite.getText()+" "+txtQuantite.getText());
+        fm.addAjoutPres(cmbMedicament.getSelectedItem().toString(), cbmTypeIndividu.getSelectedItem().toString(), cmbDosCode.getSelectedItem().toString(), txtPoso.getText());
         
     }//GEN-LAST:event_btnAddPrescriptionMouseClicked
 
@@ -185,6 +151,12 @@ public class frmAjoutPrescription extends javax.swing.JFrame {
         for(TypeIndividu ty : fm.GetAllTypeIndividu()){
             cbmTypeIndividu.addItem(ty.getTin_libelle());
             
+        }
+        for(Medicament med : fm.GetAllMedicament()) {
+            cmbMedicament.addItem(med.getMed_nomcommercial());
+        }
+        for (Dosage dos : fm.GetAllDosage()) {
+            cmbDosCode.addItem(dos.getDos_quantite()+" "+dos.getDos_unite());
         }
     }//GEN-LAST:event_formWindowOpened
 
@@ -232,10 +204,7 @@ public class frmAjoutPrescription extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
-    private javax.swing.JTextField txtQuantite;
-    private javax.swing.JTextField txtUnite;
+    private javax.swing.JTextField txtPoso;
     // End of variables declaration//GEN-END:variables
 }
