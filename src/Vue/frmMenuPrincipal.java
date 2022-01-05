@@ -82,6 +82,11 @@ public class frmMenuPrincipal extends javax.swing.JFrame {
 
             }
         ));
+        tblTypeIndividu.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblTypeIndividuMouseClicked(evt);
+            }
+        });
         jScrollPane2.setViewportView(tblTypeIndividu);
 
         panel1.setBackground(new java.awt.Color(51, 255, 0));
@@ -277,6 +282,14 @@ public class frmMenuPrincipal extends javax.swing.JFrame {
         // TODO add your handling code here:
         
     }//GEN-LAST:event_btnAddPrescriptionMouseClicked
+
+    private void tblTypeIndividuMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblTypeIndividuMouseClicked
+        // TODO add your handling code here:
+        
+        int type = Integer.parseInt(tblTypeIndividu.getValueAt(tblTypeIndividu.getSelectedRow(), 0).toString());
+        frmModifType frm = new frmModifType();
+        frm.setVisible(true);
+    }//GEN-LAST:event_tblTypeIndividuMouseClicked
 
     /**
      * @param args the command line arguments
