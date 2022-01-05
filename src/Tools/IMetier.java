@@ -18,8 +18,8 @@ public interface IMetier
     public utilisateur VerifierIdentifiants(String login, String mdp);
     public ArrayList<TypeIndividu> GetAllTypeIndividu();
     public Medicament AddMecicament(String nomMedicament, int famCode, String medComposition, String medEffets, String medContreIndic, float prix);
-    public TypeIndividu addTypeIndividu();
     public Prescrire addPrescription();
     public Medicament GetModifMedic();
     public TypeIndividu addTypeIndividu(String nomIndividu);
+    public TypeIndividu GetNomType(String nomType);
 }

@@ -124,11 +124,6 @@ public class FonctionsMetier implements IMetier
     }
 
     @Override
-    public TypeIndividu addTypeIndividu() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
     public Prescrire addPrescription() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
@@ -151,5 +146,24 @@ public class FonctionsMetier implements IMetier
         }
         
         return leMedicament;
+    }
+    
+    @Override
+    public TypeIndividu GetNomType(String nomType){
+        TypeIndividu leType = null;
+        
+        try {
+            maCnx = ConnexionBDD.getCnx();
+            ps = maCnx.prepareStatement("SELECT TIN_LIBELLE FROM type_individu WHERE TIN_LIBELLE = '" +nomType+ "'");
+            rs = ps.executeQuery();
+            
+            if(rs.next()){
+                leType = new TypeIndividu(rs.getString(1));
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(FonctionsMetier.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        return leType;
     }
 }

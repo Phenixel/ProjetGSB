@@ -5,7 +5,10 @@
  */
 package Vue;
 
+import Entity.TypeIndividu;
 import Tools.FonctionsMetier;
+import javax.swing.JOptionPane;
+import static javax.swing.JOptionPane.OK_OPTION;
 
 /**
  *
@@ -34,6 +37,7 @@ public class frmAjoutTypeIndividu extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         txtNom = new javax.swing.JTextField();
         btnAjouter = new javax.swing.JButton();
+        lblErreur = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -49,6 +53,10 @@ public class frmAjoutTypeIndividu extends javax.swing.JFrame {
             }
         });
 
+        lblErreur.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        lblErreur.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblErreur.setBorder(new javax.swing.border.MatteBorder(null));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -62,9 +70,11 @@ public class frmAjoutTypeIndividu extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addComponent(txtNom)))
                 .addContainerGap(56, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+            .addGroup(layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(btnAjouter, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(64, 64, 64)
+                .addComponent(lblErreur, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -76,9 +86,11 @@ public class frmAjoutTypeIndividu extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(txtNom, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 97, Short.MAX_VALUE)
-                .addComponent(btnAjouter)
-                .addGap(50, 50, 50))
+                .addGap(98, 98, 98)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnAjouter)
+                    .addComponent(lblErreur))
+                .addGap(49, 49, 49))
         );
 
         pack();
@@ -88,7 +100,27 @@ public class frmAjoutTypeIndividu extends javax.swing.JFrame {
         // TODO add your handling code here:
         
         fm = new FonctionsMetier();
-        fm.addTypeIndividu(txtNom.getText());
+        
+        if(txtNom.getText().compareTo("")==0) {
+            JOptionPane.showMessageDialog(this, "Il est obligatoire de remplir le champ 'nom de l'individu'"," Erreur ",JOptionPane.WARNING_MESSAGE);
+        }
+        else {
+            TypeIndividu unType = fm.GetNomType(txtNom.getText());
+            if(unType == null){
+                fm.addTypeIndividu(txtNom.getText());
+                lblErreur.setText("Type d'individu ajouté !");
+            }
+            else{
+                JOptionPane d = new JOptionPane();
+                int retour = d.showConfirmDialog(this, "le nom de ce type d'individu que vous souhaitez ajouter existe déjà. Etes vous sur que vous voulez l'ajouter à la base de donnée ?", "Possible duplication", JOptionPane.OK_CANCEL_OPTION);
+                if(retour == OK_OPTION){
+                    fm.addTypeIndividu(txtNom.getText());
+                    lblErreur.setText("Médicament ajouté !");
+                }
+            
+        }
+    
+        }
         
     }//GEN-LAST:event_btnAjouterMouseClicked
 
@@ -131,6 +163,7 @@ public class frmAjoutTypeIndividu extends javax.swing.JFrame {
     private javax.swing.JButton btnAjouter;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel lblErreur;
     private javax.swing.JTextField txtNom;
     // End of variables declaration//GEN-END:variables
 }
