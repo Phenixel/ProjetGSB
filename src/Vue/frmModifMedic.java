@@ -93,6 +93,8 @@ public class frmModifMedic extends javax.swing.JFrame {
 
         jLabel3.setText("Famille");
 
+        cbmNomFamille.setEnabled(false);
+
         jLabel4.setText("Composition");
 
         txtComposition.setEditable(false);
@@ -198,9 +200,9 @@ public class frmModifMedic extends javax.swing.JFrame {
                     .addComponent(jLabel7)
                     .addComponent(txtPrix, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel8))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 66, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 64, Short.MAX_VALUE)
                 .addComponent(tglBtnModif)
-                .addGap(14, 14, 14)
+                .addGap(16, 16, 16)
                 .addComponent(btnConfirmer)
                 .addGap(8, 8, 8))
         );
@@ -238,13 +240,14 @@ public class frmModifMedic extends javax.swing.JFrame {
         // TODO add your handling code here:
         
         if(tglBtnModif.isSelected()){
-            //Lorsque le bouton est appuyer
+            //Lorsque le bouton est appuyer - Modification en cours
             tglBtnModif.setText("Modifications en cours - Cliquer pour arreter");
             txtNomMedic.setEditable(true);
             txtComposition.setEditable(true);
             txtEffets.setEditable(true);
             txtContreIndic.setEditable(true);
             txtPrix.setEditable(true);
+            cbmNomFamille.setEnabled(true);
             
             //Permettre la confirmation
             btnConfirmer.setEnabled(true);
@@ -256,6 +259,7 @@ public class frmModifMedic extends javax.swing.JFrame {
             txtEffets.setEditable(false);
             txtContreIndic.setEditable(false);
             txtPrix.setEditable(false);
+            cbmNomFamille.setEnabled(false);
             
             //Bloquer la confirmation
             btnConfirmer.setEnabled(false);
