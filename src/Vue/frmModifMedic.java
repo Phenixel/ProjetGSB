@@ -223,10 +223,10 @@ public class frmModifMedic extends javax.swing.JFrame {
         String effet = fm.GetUnMedic(leMedicament).getMed_effets();
         String contreIndic = fm.GetUnMedic(leMedicament).getMed_contreindic();
         float prix = fm.GetUnMedic(leMedicament).getMed_prixechantillon();
-        int nomFamille = fm.GetUnMedic(leMedicament).getFam_code();
+        String nomFamille = fm.GetUnMedic(leMedicament).getFam_libelle();
         
         txtNomMedic.setText(nomMedic);
-        cbmNomFamille.getItemAt(WIDTH);
+        cbmNomFamille.setSelectedItem(nomFamille);
         txtComposition.setText(compo);
         txtEffets.setText(effet);
         txtContreIndic.setText(contreIndic);

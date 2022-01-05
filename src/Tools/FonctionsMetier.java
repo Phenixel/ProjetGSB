@@ -136,11 +136,11 @@ public class FonctionsMetier implements IMetier
         
         try {
             maCnx = ConnexionBDD.getCnx();
-            ps = maCnx.prepareStatement("SELECT MED_DEPOTLEGAL, MED_NOMCOMMERCIAL, FAM_CODE, MED_COMPOSITION, MED_EFFETS, MED_CONTREINDIC, MED_PRIXECHANTILLON from medicament WHERE MED_DEPOTLEGAL = "+ idMedic);
+            ps = maCnx.prepareStatement("SELECT m.MED_DEPOTLEGAL, m.MED_NOMCOMMERCIAL, f.FAM_libelle, M.MED_COMPOSITION, m.MED_EFFETS, m.MED_CONTREINDIC, m.MED_PRIXECHANTILLON from medicament as m INNER join famille as f on m.FAM_CODE = f.FAM_CODE WHERE m.MED_DEPOTLEGAL = "+ idMedic);
             rs = ps.executeQuery();
             
             if(rs.next()){
-                leMedicament = new Medicament(rs.getInt(1), rs.getString(2), rs.getInt(3), rs.getString(4), rs.getString(5), rs.getString(6), rs.getFloat(7));
+                leMedicament = new Medicament(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6), rs.getFloat(7));
             }
             
         } catch (SQLException ex) {
