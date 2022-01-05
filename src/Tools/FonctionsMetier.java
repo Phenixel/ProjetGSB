@@ -200,20 +200,17 @@ public class FonctionsMetier implements IMetier
             
             int numFam = rs.getInt(1);
             rs.close();
-            
-            
-            
-            ps = maCnx.prepareStatement("UPDATE medicament "
-                    + "SET "
-                    + "MED_NOMCOMMERCIAL = '"+ nomMedicament +"',"
-                    + "FAM_CODE = " + numFam+ ","
-                    + "MED_COMPOSITION = '"+ medComposition + "',"
-                    + "MED_EFFETS = '"+ medEffets + "',"
-                    + "MED_CONTREINDIC = '"+ medContreIndic + "',"
-                    + "MED_PRIXECHANTILLON = " + prix + " "
-                    + "WHERE MED_DEPOTLEGAL =" + medId +
-                    ";");
+
+            ps = maCnx.prepareStatement("UPDATE medicament SET MED_NOMCOMMERCIAL = ? ,FAM_CODE = ?,MED_COMPOSITION = ?,MED_EFFETS = ?,MED_CONTREINDIC = ?,MED_PRIXECHANTILLON = ? WHERE MED_DEPOTLEGAL = ?;");
+            ps.setString(1, nomMedicament);
+            ps.setInt(2, numFam);
+            ps.setString(3, medComposition);
+            ps.setString(4, medEffets);
+            ps.setString(5, medContreIndic);
+            ps.setFloat(6, prix);
+            ps.setInt(7, medId);
             ps.executeUpdate();
+            
             
         } catch (SQLException ex) {
             Logger.getLogger(FonctionsMetier.class.getName()).log(Level.SEVERE, null, ex);
