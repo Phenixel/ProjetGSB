@@ -10,6 +10,7 @@ import Entity.Medicament;
 import Entity.Prescrire;
 import Entity.TypeIndividu;
 import Entity.utilisateur;
+import Entity.Dosage;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -216,5 +217,55 @@ public class FonctionsMetier implements IMetier
             Logger.getLogger(FonctionsMetier.class.getName()).log(Level.SEVERE, null, ex);
         }
         return unMedicament;
+    }
+
+    @Override
+    public Prescrire addAjoutPres(String medDepotLegal, String tinCode, String dosCode, String prePosologie) {
+    Prescrire unePres = null;
+        try {
+        maCnx = ConnexionBDD.getCnx();
+        ps = maCnx.prepareStatement("SELECT MED_DEPOTLEGAL FROM medicament WHERE MED_NOMCOMMERCIAL = '"+medDepotLegal+"'");
+        rs = ps.executeQuery();
+        rs.next();
+        int depotLegal = rs.getInt(1);
+        rs.close();
+        
+        ps = maCnx.prepareStatement("SELECT TIN_CODE FROM type_individu WHERE TIN_LIBELLE = '"+tinCode+"'");
+        rs = ps.executeQuery();
+        rs.next();
+        int typeCode = rs.getInt(1);
+        rs.close(); 
+        
+        ps = maCnx.prepareStatement("SELECT DOS_CODE FROM dosage WHERE CONCAT(DOS_QUANTITE,' ',DOS_UNITE) = '"+dosCode+"'");
+        rs = ps.executeQuery();
+        rs.next();
+        int dosageCode = rs.getInt(1);
+        rs.close(); 
+        
+            ps = maCnx.prepareStatement("INSERT INTO prescrire (MED_DEPOTLEGAL, TIN_CODE, DOS_CODE, PRE_POSOLOGIE) VALUES ("+ depotLegal + "," + typeCode + "," + dosageCode+",'"+prePosologie+"')");
+            ps.executeUpdate();
+        } catch (SQLException ex) {
+            Logger.getLogger(FonctionsMetier.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return unePres;
+    }
+    
+    // Pas d'override ici parce qu'il fait chier et je sais pas pourquoi, à voir ensemble
+    public ArrayList<Dosage> GetAllDosage() {
+        ArrayList<Dosage> lesDosages = new ArrayList<>();
+        try {
+            maCnx = ConnexionBDD.getCnx();
+            ps = maCnx.prepareStatement("SELECT DOS_CODE, DOS_QUANTITE, DOS_UNITE FROM dosage");
+            rs = ps.executeQuery();
+            while(rs.next())
+            {
+                Dosage dos = new Dosage(rs.getInt("DOS_CODE"),rs.getString("DOS_QUANTITE"),rs.getString("DOS_UNITE"));
+                lesDosages.add(dos);
+            }
+            ps.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(FonctionsMetier.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return lesDosages;
     }
 }

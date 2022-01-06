@@ -22,6 +22,8 @@ public interface IMetier
     public Medicament AddMedicament(String nomMedicament, String famCode, String medComposition, String medEffets, String medContreIndic, float prix);
     public TypeIndividu addTypeIndividu();
     public Prescrire addPrescription();
+    public Medicament GetModifMedic();
+    public Prescrire addAjoutPres(String medDepotLegal, String tinCode, String dosCode, String prePosologie);
     public Medicament GetUnMedic(int idMedic);
     public Medicament GetNomMedic(String nomMedic);
     public Medicament SetModifMedic(int medId, String nomMedicament, String famCode, String medComposition, String medEffets, String medContreIndic, float prix);
