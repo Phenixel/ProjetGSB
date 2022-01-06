@@ -5,6 +5,7 @@
  */
 package Tools;
 
+import Entity.Dosage;
 import Entity.Famille;
 import Entity.Medicament;
 import Entity.Prescrire;
@@ -26,4 +27,5 @@ public interface IMetier
     public Medicament GetUnMedic(int idMedic);
     public Medicament GetNomMedic(String nomMedic);
     public Medicament SetModifMedic(int medId, String nomMedicament, String famCode, String medComposition, String medEffets, String medContreIndic, float prix);
+    public ArrayList<Dosage> GetAllDosage();
 }

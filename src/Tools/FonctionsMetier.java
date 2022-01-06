@@ -250,7 +250,7 @@ public class FonctionsMetier implements IMetier
         return unePres;
     }
     
-    // Pas d'override ici parce qu'il fait chier et je sais pas pourquoi, à voir ensemble
+    @Override
     public ArrayList<Dosage> GetAllDosage() {
         ArrayList<Dosage> lesDosages = new ArrayList<>();
         try {
