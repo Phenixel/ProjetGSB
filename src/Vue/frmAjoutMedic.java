@@ -83,12 +83,14 @@ public class frmAjoutMedic extends javax.swing.JFrame {
         jLabel4.setText("Composition");
 
         txtComposition.setColumns(20);
+        txtComposition.setLineWrap(true);
         txtComposition.setRows(5);
         jScrollPane1.setViewportView(txtComposition);
 
         jLabel5.setText("Effets");
 
         txtEffets.setColumns(20);
+        txtEffets.setLineWrap(true);
         txtEffets.setRows(5);
         jScrollPane2.setViewportView(txtEffets);
 
