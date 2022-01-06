@@ -21,5 +21,6 @@ public interface IMetier
     public Prescrire addPrescription();
     public Medicament GetModifMedic();
     public TypeIndividu addTypeIndividu(String nomIndividu);
-    public TypeIndividu GetNomType(String nomType);
+    public TypeIndividu GetNomType(int nomType);
+    public TypeIndividu SetModifType(int idType, String nomType);
 }

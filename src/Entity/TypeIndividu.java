@@ -20,6 +20,9 @@ public class TypeIndividu {
     public TypeIndividu (String unType) {
         tin_libelle = unType;
     }
+    public TypeIndividu(int idType) {
+        tin_code = idType;
+    }
 
     /**
      * @return the tin_code

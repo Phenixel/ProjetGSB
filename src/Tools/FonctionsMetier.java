@@ -149,21 +149,37 @@ public class FonctionsMetier implements IMetier
     }
     
     @Override
-    public TypeIndividu GetNomType(String nomType){
+    public TypeIndividu GetNomType(int nomType){
         TypeIndividu leType = null;
         
         try {
             maCnx = ConnexionBDD.getCnx();
-            ps = maCnx.prepareStatement("SELECT TIN_LIBELLE FROM type_individu WHERE TIN_LIBELLE = '" +nomType+ "'");
+            ps = maCnx.prepareStatement("SELECT TIN_CODE, TIN_LIBELLE FROM type_individu WHERE TIN_LIBELLE = '" +nomType+ "'");
             rs = ps.executeQuery();
             
             if(rs.next()){
-                leType = new TypeIndividu(rs.getString(1));
+                leType = new TypeIndividu(rs.getInt(1),rs.getString(2));
             }
         } catch (SQLException ex) {
             Logger.getLogger(FonctionsMetier.class.getName()).log(Level.SEVERE, null, ex);
         }
         
         return leType;
+    }
+    
+    // @Override
+    public TypeIndividu SetModifType(int idType, String nomType) {
+        TypeIndividu unType = null;
+        try {
+            maCnx = ConnexionBDD.getCnx();
+            
+            ps = maCnx.prepareStatement("UPDATE type_individu TIN_LIBELLE = ? WHERE TIN_CODE = ?");
+            ps.setString(1, nomType);
+            ps.setInt(2, idType);
+            ps.executeUpdate();
+        } catch (SQLException ex) {
+            Logger.getLogger(FonctionsMetier.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return unType;
     }
 }

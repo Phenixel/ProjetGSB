@@ -286,8 +286,8 @@ public class frmMenuPrincipal extends javax.swing.JFrame {
     private void tblTypeIndividuMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblTypeIndividuMouseClicked
         // TODO add your handling code here:
         
-        int type = Integer.parseInt(tblTypeIndividu.getValueAt(tblTypeIndividu.getSelectedRow(), 0).toString());
-        frmModifType frm = new frmModifType();
+        int selectedType = Integer.parseInt(tblTypeIndividu.getValueAt(tblTypeIndividu.getSelectedRow(), 0).toString());
+        frmModifType frm = new frmModifType(selectedType);
         frm.setVisible(true);
     }//GEN-LAST:event_tblTypeIndividuMouseClicked
 
