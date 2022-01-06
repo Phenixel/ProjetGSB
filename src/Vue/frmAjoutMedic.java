@@ -214,18 +214,23 @@ public class frmAjoutMedic extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Merci de vérifier que tous les champs soient rempli"," Erreur ",JOptionPane.WARNING_MESSAGE);
         }
         else{
-            Medicament unMedicament = fm.GetNomMedic(txtNomMedic.getText());
-            if(unMedicament == null){
-                fm.AddMedicament(txtNomMedic.getText(), cbmNomFamille.getSelectedItem().toString(), txtComposition.getText(), txtEffets.getText(), txtContreIndic.getText(), Float.parseFloat(txtPrix.getText()));
-                lblStatus.setText("Médicament ajouté !");
-            }
-            else{
-                JOptionPane d = new JOptionPane();
-                int retour = d.showConfirmDialog(this, "le nom du médicament que vous souhaitez ajouter existe déjà. Etes vous sur que vous voulez l'ajouter à la base de donnée ?", "Possible duplication", JOptionPane.OK_CANCEL_OPTION);
-                if(retour == OK_OPTION){
+            if(fm.checkLimitText(txtComposition.getText())){
+                Medicament unMedicament = fm.GetNomMedic(txtNomMedic.getText());
+                if(unMedicament == null){
                     fm.AddMedicament(txtNomMedic.getText(), cbmNomFamille.getSelectedItem().toString(), txtComposition.getText(), txtEffets.getText(), txtContreIndic.getText(), Float.parseFloat(txtPrix.getText()));
                     lblStatus.setText("Médicament ajouté !");
                 }
+                else{
+                    JOptionPane d = new JOptionPane();
+                    int retour = d.showConfirmDialog(this, "le nom du médicament que vous souhaitez ajouter existe déjà. Etes vous sur que vous voulez l'ajouter à la base de donnée ?", "Possible duplication", JOptionPane.OK_CANCEL_OPTION);
+                    if(retour == OK_OPTION){
+                        fm.AddMedicament(txtNomMedic.getText(), cbmNomFamille.getSelectedItem().toString(), txtComposition.getText(), txtEffets.getText(), txtContreIndic.getText(), Float.parseFloat(txtPrix.getText()));
+                        lblStatus.setText("Médicament ajouté !");
+                    }
+                }
+            }
+            else{
+                JOptionPane.showMessageDialog(this, "Merci de ne pas depasser 255 caractéres lors de vos ajouts de médicaments"," Erreur ",JOptionPane.WARNING_MESSAGE);
             }
         }
         

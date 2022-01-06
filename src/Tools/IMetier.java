@@ -28,4 +28,5 @@ public interface IMetier
     public Medicament GetNomMedic(String nomMedic);
     public Medicament SetModifMedic(int medId, String nomMedicament, String famCode, String medComposition, String medEffets, String medContreIndic, float prix);
     public ArrayList<Dosage> GetAllDosage();
+    public boolean checkLimitText(String text);
 }

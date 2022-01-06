@@ -268,4 +268,17 @@ public class FonctionsMetier implements IMetier
         }
         return lesDosages;
     }
+
+    @Override
+    public boolean checkLimitText(String text) {
+        
+        boolean longTextOk = true;
+        int txtLen = text.length();
+        
+        if(txtLen > 255){
+            longTextOk = false;
+        }
+        
+        return longTextOk;
+    }
 }
