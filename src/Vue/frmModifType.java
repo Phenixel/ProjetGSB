@@ -53,8 +53,6 @@ public class frmModifType extends javax.swing.JFrame {
 
         jLabel2.setText("Nom du type d'individu");
 
-        txtNom.setText("jTextField1");
-
         btnValider.setText("Valdier");
         btnValider.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -74,14 +72,14 @@ public class frmModifType extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(69, Short.MAX_VALUE)
+                .addContainerGap(67, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jLabel1)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel2)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(txtNom)))
-                .addContainerGap(64, Short.MAX_VALUE))
+                .addContainerGap(63, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(btnValider, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -128,7 +126,7 @@ public class frmModifType extends javax.swing.JFrame {
         // TODO add your handling code here:
         fm = new FonctionsMetier();
         
-        String nomType = fm.GetNomType(leType).getTin_libelle();
+        String nomType = fm.GetNomTypeModif(leType).getTin_libelle();
         txtNom.setText(nomType);
     }//GEN-LAST:event_formWindowOpened
 

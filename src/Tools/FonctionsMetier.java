@@ -148,8 +148,27 @@ public class FonctionsMetier implements IMetier
         return leMedicament;
     }
     
-    @Override
-    public TypeIndividu GetNomType(int nomType){
+    // @Override
+    public TypeIndividu GetNomTypeModif(int nomType){
+        TypeIndividu leType = null;
+        
+        try {
+            maCnx = ConnexionBDD.getCnx();
+            ps = maCnx.prepareStatement("SELECT TIN_CODE, TIN_LIBELLE FROM type_individu WHERE TIN_LIBELLE = '" +nomType+ "'");
+            rs = ps.executeQuery();
+            
+            if(rs.next()){
+                leType = new TypeIndividu(rs.getInt(1),rs.getString(2));
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(FonctionsMetier.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        return leType;
+    }
+    
+    // @Override
+    public TypeIndividu GetNomType(String nomType){
         TypeIndividu leType = null;
         
         try {
