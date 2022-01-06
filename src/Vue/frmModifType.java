@@ -21,6 +21,9 @@ public class frmModifType extends javax.swing.JFrame {
     /**
      * Creates new form frmModifType
      */
+    public frmModifType() {
+        initComponents();
+    }
     public frmModifType(int selectedRow) {
         initComponents();
         leType = selectedRow;
