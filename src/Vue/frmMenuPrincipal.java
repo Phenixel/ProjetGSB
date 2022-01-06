@@ -333,7 +333,7 @@ public class frmMenuPrincipal extends javax.swing.JFrame {
         
         int selectedMedic = Integer.parseInt(tblMedicament.getValueAt(tblMedicament.getSelectedRow(), 0).toString());
         
-        frmModifMedic frm = new frmModifMedic();
+        frmModifMedic frm = new frmModifMedic(selectedMedic);
         frm.setVisible(true);
         
         

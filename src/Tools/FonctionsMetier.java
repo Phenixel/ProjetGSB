@@ -5,6 +5,7 @@
  */
 package Tools;
 
+import Entity.Famille;
 import Entity.Medicament;
 import Entity.Prescrire;
 import Entity.TypeIndividu;
@@ -87,14 +88,23 @@ public class FonctionsMetier implements IMetier
     }
 
     @Override
-    public Medicament AddMecicament(String nomMedicament, int famCode, String medComposition, String medEffets, String medContreIndic, float prix) {
+    public Medicament AddMedicament(String nomMedicament, String famCode, String medComposition, String medEffets, String medContreIndic, float prix) {
         Medicament unMedicament = null;
         try {
             maCnx = ConnexionBDD.getCnx();
+            
+            ps = maCnx.prepareStatement("SELECT fam_code FROM famille WHERE fam_libelle = '"+famCode+"'");
+            rs = ps.executeQuery();
+            rs.next();
+            
+            int numFam = rs.getInt(1);
+            rs.close();
+            
+            
             ps = maCnx.prepareStatement("INSERT INTO medicament "
                     + "(MED_NOMCOMMERCIAL, FAM_CODE, MED_COMPOSITION, MED_EFFETS, MED_CONTREINDIC, MED_PRIXECHANTILLON) "
                     + "VALUES ('"+ nomMedicament +"',"
-                    + famCode+ ","
+                    + numFam+ ","
                     + "'"+ medComposition + "',"
                     + "'"+ medEffets + "',"
                     + "'"+ medContreIndic + "',"
@@ -121,16 +131,16 @@ public class FonctionsMetier implements IMetier
     }
 
     @Override
-    public Medicament GetModifMedic() {
+    public Medicament GetUnMedic(int idMedic) {
         Medicament leMedicament = null;
         
         try {
             maCnx = ConnexionBDD.getCnx();
-            ps = maCnx.prepareStatement("SELECT MED_DEPOTLEGAL, MED_NOMCOMMERCIAL, FAM_CODE, MED_COMPOSITION, MED_EFFETS, MED_CONTREINDIC, MED_PRIXECHANTILLON from medicament WHERE MED_DEPOTLEGAL = 1");
+            ps = maCnx.prepareStatement("SELECT m.MED_DEPOTLEGAL, m.MED_NOMCOMMERCIAL, f.FAM_libelle, M.MED_COMPOSITION, m.MED_EFFETS, m.MED_CONTREINDIC, m.MED_PRIXECHANTILLON from medicament as m INNER join famille as f on m.FAM_CODE = f.FAM_CODE WHERE m.MED_DEPOTLEGAL = "+ idMedic);
             rs = ps.executeQuery();
             
             if(rs.next()){
-                leMedicament = new Medicament(rs.getInt(1), rs.getString(2), rs.getInt(3), rs.getString(4), rs.getString(5), rs.getString(6), rs.getFloat(7));
+                leMedicament = new Medicament(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6), rs.getFloat(7));
             }
             
         } catch (SQLException ex) {
@@ -138,5 +148,73 @@ public class FonctionsMetier implements IMetier
         }
         
         return leMedicament;
+    }
+
+    @Override
+    public Medicament GetNomMedic(String nomMedic) {
+        Medicament leMedicament = null;
+        
+        try {
+            maCnx = ConnexionBDD.getCnx();
+            ps = maCnx.prepareStatement("SELECT MED_NOMCOMMERCIAL FROM medicament WHERE MED_NOMCOMMERCIAL = '" +nomMedic+ "'");
+            rs = ps.executeQuery();
+            
+            if(rs.next()){
+                leMedicament = new Medicament(rs.getString(1));
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(FonctionsMetier.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        return leMedicament;
+    }
+
+    @Override
+    public ArrayList<Famille> GetAllFamille() {
+        ArrayList<Famille> lesFamille = new ArrayList<>();
+        try {
+            maCnx = ConnexionBDD.getCnx();
+            ps = maCnx.prepareStatement("SELECT fam_code, fam_LIBELLE FROM famille");
+            rs = ps.executeQuery();
+            while(rs.next())
+            {
+                Famille fam = new Famille(rs.getInt("fam_code"),rs.getString("fam_LIBELLE"));
+                lesFamille.add(fam);
+            }
+            ps.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(FonctionsMetier.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return lesFamille;
+    }
+
+    @Override
+    public Medicament SetModifMedic(int medId, String nomMedicament, String famCode, String medComposition, String medEffets, String medContreIndic, float prix) {
+        Medicament unMedicament = null;
+        try {
+            maCnx = ConnexionBDD.getCnx();
+            
+            ps = maCnx.prepareStatement("SELECT fam_code FROM famille WHERE fam_libelle = '"+famCode+"'");
+            rs = ps.executeQuery();
+            rs.next();
+            
+            int numFam = rs.getInt(1);
+            rs.close();
+
+            ps = maCnx.prepareStatement("UPDATE medicament SET MED_NOMCOMMERCIAL = ? ,FAM_CODE = ?,MED_COMPOSITION = ?,MED_EFFETS = ?,MED_CONTREINDIC = ?,MED_PRIXECHANTILLON = ? WHERE MED_DEPOTLEGAL = ?;");
+            ps.setString(1, nomMedicament);
+            ps.setInt(2, numFam);
+            ps.setString(3, medComposition);
+            ps.setString(4, medEffets);
+            ps.setString(5, medContreIndic);
+            ps.setFloat(6, prix);
+            ps.setInt(7, medId);
+            ps.executeUpdate();
+            
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(FonctionsMetier.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return unMedicament;
     }
 }
