@@ -5,7 +5,12 @@
  */
 package Vue;
 
+import Entity.Famille;
+import Entity.Medicament;
+import Entity.TypeIndividu;
 import Tools.FonctionsMetier;
+import javax.swing.JOptionPane;
+import static javax.swing.JOptionPane.OK_OPTION;
 
 /**
  *
@@ -51,10 +56,16 @@ public class frmAjoutMedic extends javax.swing.JFrame {
         jScrollPane3 = new javax.swing.JScrollPane();
         tblInteraction = new javax.swing.JTable();
         btnAddMedic = new javax.swing.JButton();
+        lblStatus = new javax.swing.JLabel();
 
         jToggleButton1.setText("jToggleButton1");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowOpened(java.awt.event.WindowEvent evt) {
+                formWindowOpened(evt);
+            }
+        });
 
         jLabel1.setFont(new java.awt.Font("Dialog", 1, 36)); // NOI18N
         jLabel1.setText("Ajouter medicament");
@@ -63,7 +74,6 @@ public class frmAjoutMedic extends javax.swing.JFrame {
 
         jLabel3.setText("Famille");
 
-        cbmNomFamille.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "antalgique", "analgésique", "antidépresseur", "anxiolytiques", "antibiotique" }));
         cbmNomFamille.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cbmNomFamilleActionPerformed(evt);
@@ -146,6 +156,8 @@ public class frmAjoutMedic extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(186, 186, 186)
                 .addComponent(btnAddMedic)
+                .addGap(32, 32, 32)
+                .addComponent(lblStatus)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -182,18 +194,38 @@ public class frmAjoutMedic extends javax.swing.JFrame {
                     .addComponent(jLabel8)
                     .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(30, 30, 30)
-                .addComponent(btnAddMedic)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnAddMedic)
+                    .addComponent(lblStatus))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnAddMedicMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAddMedicMouseClicked
         // TODO add your handling code here:
-        
         fm = new FonctionsMetier();
-        fm.AddMecicament(txtNomMedic.getText(), cbmNomFamille.getComponentCount(), txtComposition.getText(), txtEffets.getText(), txtContreIndic.getText(), Float.parseFloat(txtPrix.getText()));
+        
+        if(txtNomMedic.getText().compareTo("") == 0 || txtComposition.getText().compareTo("") == 0 || txtEffets.getText().compareTo("") == 0 || txtContreIndic.getText().compareTo("") == 0 || txtPrix.getText().compareTo("") == 0){
+            JOptionPane.showMessageDialog(this, "Merci de vérifier que tous les champs soient rempli"," Erreur ",JOptionPane.WARNING_MESSAGE);
+        }
+        else{
+            Medicament unMedicament = fm.GetNomMedic(txtNomMedic.getText());
+            if(unMedicament == null){
+                fm.AddMedicament(txtNomMedic.getText(), cbmNomFamille.getSelectedItem().toString(), txtComposition.getText(), txtEffets.getText(), txtContreIndic.getText(), Float.parseFloat(txtPrix.getText()));
+                lblStatus.setText("Médicament ajouté !");
+            }
+            else{
+                JOptionPane d = new JOptionPane();
+                int retour = d.showConfirmDialog(this, "le nom du médicament que vous souhaitez ajouter existe déjà. Etes vous sur que vous voulez l'ajouter à la base de donnée ?", "Possible duplication", JOptionPane.OK_CANCEL_OPTION);
+                if(retour == OK_OPTION){
+                    fm.AddMedicament(txtNomMedic.getText(), cbmNomFamille.getSelectedItem().toString(), txtComposition.getText(), txtEffets.getText(), txtContreIndic.getText(), Float.parseFloat(txtPrix.getText()));
+                    lblStatus.setText("Médicament ajouté !");
+                }
+            }
+        }
         
     }//GEN-LAST:event_btnAddMedicMouseClicked
 
@@ -201,6 +233,15 @@ public class frmAjoutMedic extends javax.swing.JFrame {
         // TODO add your handling code here:
         
     }//GEN-LAST:event_cbmNomFamilleActionPerformed
+
+    private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
+        // TODO add your handling code here:
+        
+        for (Famille fam : fm.GetAllFamille()){
+            cbmNomFamille.addItem(fam.getFam_libelle());
+        }
+        
+    }//GEN-LAST:event_formWindowOpened
 
     /**
      * @param args the command line arguments
@@ -252,6 +293,7 @@ public class frmAjoutMedic extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JToggleButton jToggleButton1;
+    private javax.swing.JLabel lblStatus;
     private javax.swing.JTable tblInteraction;
     private javax.swing.JTextArea txtComposition;
     private javax.swing.JTextField txtContreIndic;

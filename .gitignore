@@ -11,6 +11,4 @@ nb-configuration.xml
 ConnexionBDD.java
 
 # Package Files #
-
-
-
+nbproject/private/private.properties
