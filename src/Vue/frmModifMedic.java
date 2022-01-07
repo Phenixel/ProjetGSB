@@ -122,6 +122,11 @@ public class frmModifMedic extends javax.swing.JFrame {
                 btnConfirmerMouseClicked(evt);
             }
         });
+        btnConfirmer.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnConfirmerActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -288,6 +293,11 @@ public class frmModifMedic extends javax.swing.JFrame {
 
     private void btnConfirmerMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnConfirmerMouseClicked
         // TODO add your handling code here:
+        
+    }//GEN-LAST:event_btnConfirmerMouseClicked
+
+    private void btnConfirmerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConfirmerActionPerformed
+        // TODO add your handling code here:
         //Insérer l'update
         fm.SetModifMedic(leMedicament, txtNomMedic.getText(), cbmNomFamille.getSelectedItem().toString(), txtComposition.getText(), txtEffets.getText(), txtContreIndic.getText(), Float.parseFloat(txtPrix.getText()));
         
@@ -296,7 +306,7 @@ public class frmModifMedic extends javax.swing.JFrame {
         if(retour == OK_OPTION){
             dispose();
         }
-    }//GEN-LAST:event_btnConfirmerMouseClicked
+    }//GEN-LAST:event_btnConfirmerActionPerformed
 
     /**
      * @param args the command line arguments
