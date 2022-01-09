@@ -6,7 +6,6 @@
 package Vue;
 
 import Entity.Famille;
-import Entity.TypeIndividu;
 import Tools.FonctionsMetier;
 import javax.swing.JOptionPane;
 import static javax.swing.JOptionPane.OK_OPTION;
@@ -294,18 +293,18 @@ public class frmModifMedic extends javax.swing.JFrame {
             //Bloquer la confirmation
             btnConfirmer.setEnabled(false);
         }
-        
-        //JOptionPane.showMessageDialog(this, "Merci de vérifier que tous les champs soient rempli"," Erreur ",JOptionPane.INFORMATION_MESSAGE);
-        
-        
     }//GEN-LAST:event_tglBtnModifMouseClicked
 
     private void btnConfirmerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConfirmerActionPerformed
         // TODO add your handling code here:
         //Insérer l'update
-        fm.SetModifMedic(leMedicament, txtNomMedic.getText(), cbmNomFamille.getSelectedItem().toString(), txtComposition.getText(), txtEffets.getText(), txtContreIndic.getText(), Float.parseFloat(txtPrix.getText()));
+        if(fm.isNumeric(txtPrix.getText())){
+            fm.SetModifMedic(leMedicament, txtNomMedic.getText(), cbmNomFamille.getSelectedItem().toString(), txtComposition.getText(), txtEffets.getText(), txtContreIndic.getText(), Float.parseFloat(txtPrix.getText()));
+        }
+        else{
+            JOptionPane.showMessageDialog(this, "Merci de vérifier que le prix ne comporte que des chiffres"," Erreur ",JOptionPane.WARNING_MESSAGE);
+        }
         
-        JOptionPane d = new JOptionPane();
         int retour = JOptionPane.showConfirmDialog(this, "Votre modification à bien été prise en compte. Souaitez vous quitter cette fenêtre ?"," Modification effectuée", JOptionPane.OK_CANCEL_OPTION);
         if(retour == OK_OPTION){
             dispose();

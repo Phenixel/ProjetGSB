@@ -234,20 +234,20 @@ public class frmAjoutMedic extends javax.swing.JFrame {
         if(txtNomMedic.getText().compareTo("") == 0 || txtComposition.getText().compareTo("") == 0 || txtEffets.getText().compareTo("") == 0 || txtContreIndic.getText().compareTo("") == 0 || txtPrix.getText().compareTo("") == 0){
             JOptionPane.showMessageDialog(this, "Merci de vérifier que tous les champs soient rempli"," Erreur ",JOptionPane.WARNING_MESSAGE);
         }
+        else if(!fm.isNumeric(txtPrix.getText())){
+            JOptionPane.showMessageDialog(this, "Merci de vérifier que le prix ne comporte que des chiffres"," Erreur ",JOptionPane.WARNING_MESSAGE);
+        }
         else{
             if(fm.checkLimitText(txtComposition.getText()) && fm.checkLimitText(txtContreIndic.getText()) && fm.checkLimitText(txtEffets.getText())){
                 Medicament unMedicament = fm.GetNomMedic(txtNomMedic.getText());
                 if(unMedicament == null){
                     fm.AddMedicament(txtNomMedic.getText(), cbmNomFamille.getSelectedItem().toString(), txtComposition.getText(), txtEffets.getText(), txtContreIndic.getText(), Float.parseFloat(txtPrix.getText()));
-                    //lblStatus.setText("Médicament ajouté !");
                     JOptionPane.showMessageDialog(this, "Médicament ajouté !"," Ajout ",JOptionPane.INFORMATION_MESSAGE);
                 }
                 else{
-                    JOptionPane d = new JOptionPane();
                     int retour = JOptionPane.showConfirmDialog(this, "le nom du médicament que vous souhaitez ajouter existe déjà. Etes vous sur que vous voulez l'ajouter à la base de donnée ?", "Possible duplication", JOptionPane.OK_CANCEL_OPTION);
                     if(retour == OK_OPTION){
                         fm.AddMedicament(txtNomMedic.getText(), cbmNomFamille.getSelectedItem().toString(), txtComposition.getText(), txtEffets.getText(), txtContreIndic.getText(), Float.parseFloat(txtPrix.getText()));
-                        //lblStatus.setText("Médicament ajouté !");
                         JOptionPane.showMessageDialog(this, "Médicament ajouté !"," Ajout ",JOptionPane.INFORMATION_MESSAGE);
                     }
                 }
