@@ -176,13 +176,18 @@ public class frmModifType extends javax.swing.JFrame {
 
     private void btnValiderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnValiderActionPerformed
         // TODO add your handling code here:
-        fm.SetModifType(leType, txtNom.getText());
         
-        JOptionPane d = new JOptionPane();
-        int retour = d.showConfirmDialog(this, "Votre modification à bien été prise en compte. Souhaitez vous quitter cette fenêtre ?"," Modification effectuée", JOptionPane.OK_CANCEL_OPTION);
-        if(retour == OK_OPTION){
+        if(fm.checkLimitText(txtNom.getText())) {
+            fm.SetModifType(leType, txtNom.getText());
+            JOptionPane d = new JOptionPane();
+            int retour = d.showConfirmDialog(this, "Votre modification à bien été prise en compte. Souhaitez vous quitter cette fenêtre ?"," Modification effectuée", JOptionPane.OK_CANCEL_OPTION);
+            if(retour == OK_OPTION){
             dispose();
-        }
+            } 
+        } else{
+                JOptionPane.showMessageDialog(this, "Merci de ne pas depasser 255 caractéres lors de vos modifications de type individu"," Erreur ",JOptionPane.WARNING_MESSAGE);
+            }
+        
     }//GEN-LAST:event_btnValiderActionPerformed
 
     private void btnSupprimerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSupprimerActionPerformed

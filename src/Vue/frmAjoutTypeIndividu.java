@@ -116,20 +116,24 @@ public class frmAjoutTypeIndividu extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Il est obligatoire de remplir le champ 'nom de l'individu'"," Erreur ",JOptionPane.WARNING_MESSAGE);
         }
         else {
-            TypeIndividu unType = fm.GetNomType(txtNom.getText());
-            if(unType == null){
-                fm.addTypeIndividu(txtNom.getText());
-                JOptionPane.showMessageDialog(this, "Type individu ajouté !"," Ajout effectué ",JOptionPane.INFORMATION_MESSAGE);
-            }
-            else{
-                JOptionPane d = new JOptionPane();
-                int retour = d.showConfirmDialog(this, "le nom de ce type d'individu que vous souhaitez ajouter existe déjà. Etes vous sur que vous voulez l'ajouter à la base de donnée ?", "Possible duplication", JOptionPane.OK_CANCEL_OPTION);
-                if(retour == OK_OPTION){
+            if(fm.checkLimitText(txtNom.getText())){
+                TypeIndividu unType = fm.GetNomType(txtNom.getText());
+                if(unType == null){
                     fm.addTypeIndividu(txtNom.getText());
                     JOptionPane.showMessageDialog(this, "Type individu ajouté !"," Ajout effectué ",JOptionPane.INFORMATION_MESSAGE);
                 }
-            
-        }
+                else{
+                    JOptionPane d = new JOptionPane();
+                    int retour = d.showConfirmDialog(this, "le nom de ce type d'individu que vous souhaitez ajouter existe déjà. Etes vous sur que vous voulez l'ajouter à la base de donnée ?", "Possible duplication", JOptionPane.OK_CANCEL_OPTION);
+                    if(retour == OK_OPTION){
+                        fm.addTypeIndividu(txtNom.getText());
+                        JOptionPane.showMessageDialog(this, "Type individu ajouté !"," Ajout effectué ",JOptionPane.INFORMATION_MESSAGE);
+                    }
+                }
+            }
+            else{
+                JOptionPane.showMessageDialog(this, "Merci de ne pas depasser 255 caractéres lors de vos ajouts de type individu"," Erreur ",JOptionPane.WARNING_MESSAGE);
+            }
     
         }
         
