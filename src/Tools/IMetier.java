@@ -30,4 +30,5 @@ public interface IMetier
     public boolean checkLimitText(String text);
     public boolean isNumeric(String str);
     public Prescrire getPrescription(String nomMedoc, String nomType, String dosCode);
+    public Medicament deleteMedic(int idMedic);
 }

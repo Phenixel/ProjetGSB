@@ -337,4 +337,19 @@ public class FonctionsMetier implements IMetier
         }
         return true;
     }
+
+    @Override
+    public Medicament deleteMedic(int idMedic) {
+        Medicament unMedicament = null;
+        try {
+            maCnx = ConnexionBDD.getCnx();
+            ps = maCnx.prepareStatement("DELETE FROM medicament WHERE MED_DEPOTLEGAL = ?;");
+            ps.setInt(1, idMedic);
+            ps.executeUpdate();
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(FonctionsMetier.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return unMedicament;
+    }
 }
