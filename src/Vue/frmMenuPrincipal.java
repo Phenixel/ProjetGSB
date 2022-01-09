@@ -101,6 +101,11 @@ public class frmMenuPrincipal extends javax.swing.JFrame {
 
             }
         ));
+        tblTypeIndividu.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblTypeIndividuMouseClicked(evt);
+            }
+        });
         jScrollPane2.setViewportView(tblTypeIndividu);
 
         panel1.setBackground(new java.awt.Color(204, 255, 204));
@@ -326,7 +331,8 @@ public class frmMenuPrincipal extends javax.swing.JFrame {
     private void btnAddTypeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAddTypeMouseClicked
         // Ici ajouter un type individu
         
-        
+        frmAjoutTypeIndividu frm = new frmAjoutTypeIndividu();
+        frm.setVisible(true);
       
     }//GEN-LAST:event_btnAddTypeMouseClicked
 
@@ -372,6 +378,14 @@ public class frmMenuPrincipal extends javax.swing.JFrame {
         
     }//GEN-LAST:event_btnAddPrescriptionMouseClicked
 
+    private void tblTypeIndividuMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblTypeIndividuMouseClicked
+        // TODO add your handling code here:
+        
+        int selectedType = Integer.parseInt(tblTypeIndividu.getValueAt(tblTypeIndividu.getSelectedRow(), 0).toString());
+        frmModifType frm = new frmModifType(selectedType);
+        frm.setVisible(true);
+    }//GEN-LAST:event_tblTypeIndividuMouseClicked
+  
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         
         System.exit(0);

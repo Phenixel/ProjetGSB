@@ -352,4 +352,86 @@ public class FonctionsMetier implements IMetier
         }
         return unMedicament;
     }
+
+    @Override
+    public TypeIndividu addTypeIndividu(String unNom) {
+        TypeIndividu unType = null;
+        try {
+            maCnx = ConnexionBDD.getCnx();
+            ps = maCnx.prepareStatement("INSERT INTO type_individu (TIN_LIBELLE) VALUE ('"+unNom+"')");
+            ps.executeUpdate();
+        } catch (SQLException ex) {
+            Logger.getLogger(FonctionsMetier.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return unType;
+    }
+
+    // @Override
+    public TypeIndividu GetNomTypeModif(int nomType){
+        TypeIndividu leType = null;
+        
+        try {
+            maCnx = ConnexionBDD.getCnx();
+            ps = maCnx.prepareStatement("SELECT TIN_CODE, TIN_LIBELLE FROM type_individu WHERE TIN_CODE = '" +nomType+ "'");
+            rs = ps.executeQuery();
+            
+            if(rs.next()){
+                leType = new TypeIndividu(rs.getInt(1),rs.getString(2));
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(FonctionsMetier.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        return leType;
+    }
+
+    // @Override
+    public TypeIndividu GetNomType(String nomType){
+        TypeIndividu leType = null;
+        
+        try {
+            maCnx = ConnexionBDD.getCnx();
+            ps = maCnx.prepareStatement("SELECT TIN_CODE, TIN_LIBELLE FROM type_individu WHERE TIN_LIBELLE = '" +nomType+ "'");
+            rs = ps.executeQuery();
+            
+            if(rs.next()){
+                leType = new TypeIndividu(rs.getInt(1),rs.getString(2));
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(FonctionsMetier.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        return leType;
+    }
+
+    // @Override
+    public TypeIndividu SetModifType(int idType, String nomType) {
+        TypeIndividu unType = null;
+        try {
+            maCnx = ConnexionBDD.getCnx();
+            
+            ps = maCnx.prepareStatement("UPDATE type_individu SET TIN_LIBELLE = ? WHERE TIN_CODE = ?");
+            ps.setString(1, nomType);
+            ps.setInt(2, idType);
+            ps.executeUpdate();
+        } catch (SQLException ex) {
+            Logger.getLogger(FonctionsMetier.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return unType;
+    }
+
+    @Override
+    public TypeIndividu deleteType(int idType) {
+        TypeIndividu unType = null;
+        try {
+            maCnx = ConnexionBDD.getCnx();
+            ps = maCnx.prepareStatement("DELETE FROM type_individu WHERE TIN_CODE = ?;");
+            ps.setInt(1, idType);
+            ps.executeUpdate();
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(FonctionsMetier.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return unType;
+    }
 }

@@ -31,4 +31,9 @@ public interface IMetier
     public boolean isNumeric(String str);
     public Prescrire getPrescription(String nomMedoc, String nomType, String dosCode);
     public Medicament deleteMedic(int idMedic);
+    public TypeIndividu addTypeIndividu(String nomIndividu);
+    public TypeIndividu GetNomTypeModif(int nomType);
+    public TypeIndividu GetNomType(String nomType);
+    public TypeIndividu SetModifType(int idType, String nomType);
+    public TypeIndividu deleteType(int idType);
 }
