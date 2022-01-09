@@ -61,6 +61,7 @@ public class frmModifMedic extends javax.swing.JFrame {
         jLabel9 = new javax.swing.JLabel();
         jScrollPane3 = new javax.swing.JScrollPane();
         txtContreIndic = new javax.swing.JTextArea();
+        btnSupprimer = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setResizable(false);
@@ -130,6 +131,15 @@ public class frmModifMedic extends javax.swing.JFrame {
         txtContreIndic.setRows(5);
         jScrollPane3.setViewportView(txtContreIndic);
 
+        btnSupprimer.setBackground(new java.awt.Color(255, 51, 51));
+        btnSupprimer.setForeground(new java.awt.Color(255, 255, 255));
+        btnSupprimer.setText("Supprimer");
+        btnSupprimer.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSupprimerActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -137,7 +147,9 @@ public class frmModifMedic extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addContainerGap()
+                        .addComponent(btnSupprimer)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(btnConfirmer))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -221,7 +233,9 @@ public class frmModifMedic extends javax.swing.JFrame {
                 .addGap(58, 58, 58)
                 .addComponent(tglBtnModif)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 25, Short.MAX_VALUE)
-                .addComponent(btnConfirmer)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnConfirmer)
+                    .addComponent(btnSupprimer))
                 .addContainerGap())
         );
 
@@ -311,6 +325,14 @@ public class frmModifMedic extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnConfirmerActionPerformed
 
+    private void btnSupprimerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSupprimerActionPerformed
+        // TODO add your handling code here:
+        int retour = JOptionPane.showConfirmDialog(this, "Etes vous sur de vouloir supprimer ce médicament ?"," Supprimer un médicament", JOptionPane.OK_CANCEL_OPTION);
+        if(retour == OK_OPTION){
+            fm.deleteMedic(leMedicament);
+        }
+    }//GEN-LAST:event_btnSupprimerActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -348,6 +370,7 @@ public class frmModifMedic extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnConfirmer;
+    private javax.swing.JButton btnSupprimer;
     private javax.swing.JComboBox<String> cbmNomFamille;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
