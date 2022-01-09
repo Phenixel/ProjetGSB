@@ -192,10 +192,25 @@ public class FonctionsMetier implements IMetier
         try {
             maCnx = ConnexionBDD.getCnx();
             
-            ps = maCnx.prepareStatement("UPDATE type_individu TIN_LIBELLE = ? WHERE TIN_CODE = ?");
+            ps = maCnx.prepareStatement("UPDATE type_individu SET TIN_LIBELLE = ? WHERE TIN_CODE = ?");
             ps.setString(1, nomType);
             ps.setInt(2, idType);
             ps.executeUpdate();
+        } catch (SQLException ex) {
+            Logger.getLogger(FonctionsMetier.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return unType;
+    }
+    
+    @Override
+    public TypeIndividu deleteType(int idType) {
+        TypeIndividu unType = null;
+        try {
+            maCnx = ConnexionBDD.getCnx();
+            ps = maCnx.prepareStatement("DELETE FROM type_individu WHERE TIN_CODE = ?;");
+            ps.setInt(1, idType);
+            ps.executeUpdate();
+            
         } catch (SQLException ex) {
             Logger.getLogger(FonctionsMetier.class.getName()).log(Level.SEVERE, null, ex);
         }

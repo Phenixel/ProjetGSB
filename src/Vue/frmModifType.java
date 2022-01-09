@@ -45,6 +45,7 @@ public class frmModifType extends javax.swing.JFrame {
         txtNom = new javax.swing.JTextField();
         btnValider = new javax.swing.JButton();
         tglBtnModifier = new javax.swing.JToggleButton();
+        btnSupprimer = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         addWindowListener(new java.awt.event.WindowAdapter() {
@@ -62,11 +63,13 @@ public class frmModifType extends javax.swing.JFrame {
         jLabel2.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
         jLabel2.setText("Nom du type d'individu");
 
+        txtNom.setEditable(false);
+
         btnValider.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
-        btnValider.setText("Valdier");
-        btnValider.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btnValiderMouseClicked(evt);
+        btnValider.setText("Valider");
+        btnValider.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnValiderActionPerformed(evt);
             }
         });
 
@@ -78,6 +81,14 @@ public class frmModifType extends javax.swing.JFrame {
             }
         });
 
+        btnSupprimer.setForeground(new java.awt.Color(255, 0, 0));
+        btnSupprimer.setText("Supprimer");
+        btnSupprimer.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSupprimerActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -86,19 +97,23 @@ public class frmModifType extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(tglBtnModifier, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(45, Short.MAX_VALUE)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(45, 45, 45)
+                .addComponent(jLabel1))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel1)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                            .addComponent(btnValider, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addContainerGap())
-                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                            .addComponent(jLabel2)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(txtNom, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(85, 85, 85)))))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addComponent(btnSupprimer)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnValider, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap())
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addGap(0, 35, Short.MAX_VALUE)
+                        .addComponent(jLabel2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txtNom, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(85, 85, 85))))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -111,8 +126,10 @@ public class frmModifType extends javax.swing.JFrame {
                     .addComponent(jLabel2))
                 .addGap(77, 77, 77)
                 .addComponent(tglBtnModifier)
-                .addGap(40, 40, 40)
-                .addComponent(btnValider)
+                .addGap(39, 39, 39)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnValider)
+                    .addComponent(btnSupprimer))
                 .addContainerGap())
         );
 
@@ -155,16 +172,26 @@ public class frmModifType extends javax.swing.JFrame {
         txtNom.setText(nomType);
     }//GEN-LAST:event_formWindowOpened
 
-    private void btnValiderMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnValiderMouseClicked
+    private void btnValiderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnValiderActionPerformed
         // TODO add your handling code here:
         fm.SetModifType(leType, txtNom.getText());
         
         JOptionPane d = new JOptionPane();
-        int retour = d.showConfirmDialog(this, "Votre modification à bien été prise en compte. Souaitez vous quitter cette fenêtre ?"," Modification effectuée", JOptionPane.OK_CANCEL_OPTION);
+        int retour = d.showConfirmDialog(this, "Votre modification à bien été prise en compte. Souhaitez vous quitter cette fenêtre ?"," Modification effectuée", JOptionPane.OK_CANCEL_OPTION);
         if(retour == OK_OPTION){
             dispose();
         }
-    }//GEN-LAST:event_btnValiderMouseClicked
+    }//GEN-LAST:event_btnValiderActionPerformed
+
+    private void btnSupprimerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSupprimerActionPerformed
+        // TODO add your handling code here:
+        int retour = JOptionPane.showConfirmDialog(this, "Etes vous sur de vouloir supprimer ce médicament ?"," Supprimer un médicament", JOptionPane.OK_CANCEL_OPTION);
+        if(retour == OK_OPTION){
+            fm.deleteType(leType);
+            dispose();
+        }
+        
+    }//GEN-LAST:event_btnSupprimerActionPerformed
 
     /**
      * @param args the command line arguments
@@ -202,6 +229,7 @@ public class frmModifType extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnSupprimer;
     private javax.swing.JButton btnValider;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;

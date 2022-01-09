@@ -24,4 +24,5 @@ public interface IMetier
     public TypeIndividu GetNomTypeModif(int nomType);
     public TypeIndividu GetNomType(String nomType);
     public TypeIndividu SetModifType(int idType, String nomType);
+    public TypeIndividu deleteType(int idType);
 }
