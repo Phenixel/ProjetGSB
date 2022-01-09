@@ -154,7 +154,7 @@ public class FonctionsMetier implements IMetier
         
         try {
             maCnx = ConnexionBDD.getCnx();
-            ps = maCnx.prepareStatement("SELECT TIN_CODE, TIN_LIBELLE FROM type_individu WHERE TIN_LIBELLE = '" +nomType+ "'");
+            ps = maCnx.prepareStatement("SELECT TIN_CODE, TIN_LIBELLE FROM type_individu WHERE TIN_CODE = '" +nomType+ "'");
             rs = ps.executeQuery();
             
             if(rs.next()){

@@ -21,13 +21,14 @@ public class frmModifType extends javax.swing.JFrame {
     /**
      * Creates new form frmModifType
      */
-    public frmModifType() {
-        initComponents();
-    }
     public frmModifType(int selectedRow) {
         initComponents();
         leType = selectedRow;
     }
+    public frmModifType() {
+        initComponents();
+    }
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
