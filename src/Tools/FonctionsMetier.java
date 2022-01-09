@@ -366,7 +366,7 @@ public class FonctionsMetier implements IMetier
         return unType;
     }
 
-    // @Override
+    @Override
     public TypeIndividu GetNomTypeModif(int nomType){
         TypeIndividu leType = null;
         
@@ -385,7 +385,7 @@ public class FonctionsMetier implements IMetier
         return leType;
     }
 
-    // @Override
+    @Override
     public TypeIndividu GetNomType(String nomType){
         TypeIndividu leType = null;
         
@@ -404,7 +404,7 @@ public class FonctionsMetier implements IMetier
         return leType;
     }
 
-    // @Override
+    @Override
     public TypeIndividu SetModifType(int idType, String nomType) {
         TypeIndividu unType = null;
         try {
