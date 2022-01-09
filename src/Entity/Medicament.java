@@ -13,6 +13,7 @@ public class Medicament {
     private int med_depotlegal;
     private String med_nomcommercial;
     private int fam_code;
+    private String fam_libelle;
     private String med_composition;
     private String med_effets;
     private String med_contreindic;
@@ -22,6 +23,18 @@ public class Medicament {
         med_depotlegal = unDepotLegal;
         med_nomcommercial = unNom;
         fam_code = unFamCode;
+        med_composition = uneComposition;
+        med_effets = unEffet;
+        med_contreindic = uneContreindic;
+        med_prixechantillon = unPrix;
+    }
+     public Medicament (String unNom){
+        med_nomcommercial = unNom;
+    }
+    public Medicament (int unDepotLegal, String unNom, String unFamLibelle, String uneComposition, String unEffet, String uneContreindic, float unPrix){
+        med_depotlegal = unDepotLegal;
+        med_nomcommercial = unNom;
+        fam_libelle = unFamLibelle;
         med_composition = uneComposition;
         med_effets = unEffet;
         med_contreindic = uneContreindic;
@@ -117,6 +130,13 @@ public class Medicament {
      */
     public void setMed_prixechantillon(float med_prixechantillon) {
         this.med_prixechantillon = med_prixechantillon;
+    }
+
+    /**
+     * @return the fam_libelle
+     */
+    public String getFam_libelle() {
+        return fam_libelle;
     }
     
     
