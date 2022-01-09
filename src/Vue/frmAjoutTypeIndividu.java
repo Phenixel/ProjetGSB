@@ -38,7 +38,6 @@ public class frmAjoutTypeIndividu extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         txtNom = new javax.swing.JTextField();
         btnAjouter = new javax.swing.JButton();
-        lblErreur = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -59,10 +58,6 @@ public class frmAjoutTypeIndividu extends javax.swing.JFrame {
             }
         });
 
-        lblErreur.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        lblErreur.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblErreur.setBorder(new javax.swing.border.MatteBorder(null));
-
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -72,15 +67,12 @@ public class frmAjoutTypeIndividu extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(btnAjouter, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(64, 64, 64)
-                        .addComponent(lblErreur, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGap(138, 138, 138))
+                        .addComponent(btnAjouter, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel2)
                         .addGap(18, 18, 18)
-                        .addComponent(txtNom, javax.swing.GroupLayout.PREFERRED_SIZE, 333, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(57, 57, 57))))
+                        .addComponent(txtNom, javax.swing.GroupLayout.PREFERRED_SIZE, 333, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(57, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 435, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -96,9 +88,7 @@ public class frmAjoutTypeIndividu extends javax.swing.JFrame {
                     .addComponent(jLabel2)
                     .addComponent(txtNom, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(98, 98, 98)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnAjouter)
-                    .addComponent(lblErreur))
+                .addComponent(btnAjouter)
                 .addContainerGap(21, Short.MAX_VALUE))
         );
 
@@ -129,14 +119,14 @@ public class frmAjoutTypeIndividu extends javax.swing.JFrame {
             TypeIndividu unType = fm.GetNomType(txtNom.getText());
             if(unType == null){
                 fm.addTypeIndividu(txtNom.getText());
-                lblErreur.setText("Type d'individu ajouté !");
+                JOptionPane.showMessageDialog(this, "Type individu ajouté !"," Ajout effectué ",JOptionPane.INFORMATION_MESSAGE);
             }
             else{
                 JOptionPane d = new JOptionPane();
                 int retour = d.showConfirmDialog(this, "le nom de ce type d'individu que vous souhaitez ajouter existe déjà. Etes vous sur que vous voulez l'ajouter à la base de donnée ?", "Possible duplication", JOptionPane.OK_CANCEL_OPTION);
                 if(retour == OK_OPTION){
                     fm.addTypeIndividu(txtNom.getText());
-                    lblErreur.setText("Médicament ajouté !");
+                    JOptionPane.showMessageDialog(this, "Type individu ajouté !"," Ajout effectué ",JOptionPane.INFORMATION_MESSAGE);
                 }
             
         }
@@ -185,7 +175,6 @@ public class frmAjoutTypeIndividu extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JLabel lblErreur;
     private javax.swing.JTextField txtNom;
     // End of variables declaration//GEN-END:variables
 }

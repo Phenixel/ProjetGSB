@@ -67,6 +67,7 @@ public class frmModifType extends javax.swing.JFrame {
 
         btnValider.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
         btnValider.setText("Valider");
+        btnValider.setEnabled(false);
         btnValider.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnValiderActionPerformed(evt);
@@ -81,7 +82,8 @@ public class frmModifType extends javax.swing.JFrame {
             }
         });
 
-        btnSupprimer.setForeground(new java.awt.Color(255, 0, 0));
+        btnSupprimer.setBackground(new java.awt.Color(255, 51, 51));
+        btnSupprimer.setForeground(new java.awt.Color(255, 255, 255));
         btnSupprimer.setText("Supprimer");
         btnSupprimer.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
