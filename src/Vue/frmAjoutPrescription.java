@@ -6,8 +6,10 @@
 package Vue;
 import Entity.Dosage;
 import Entity.Medicament;
+import Entity.Prescrire;
 import Entity.TypeIndividu;
 import Tools.FonctionsMetier;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -42,6 +44,7 @@ public class frmAjoutPrescription extends javax.swing.JFrame {
         btnAddPrescription = new javax.swing.JButton();
         jLabel7 = new javax.swing.JLabel();
         cmbDosCode = new javax.swing.JComboBox<>();
+        lblStatus = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setPreferredSize(new java.awt.Dimension(445, 445));
@@ -109,7 +112,9 @@ public class frmAjoutPrescription extends javax.swing.JFrame {
                                     .addComponent(cbmTypeIndividu, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGap(143, 143, 143)
-                                .addComponent(btnAddPrescription, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(btnAddPrescription, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(27, 27, 27)
+                                .addComponent(lblStatus, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
         jPanel1Layout.setVerticalGroup(
@@ -134,7 +139,9 @@ public class frmAjoutPrescription extends javax.swing.JFrame {
                     .addComponent(jLabel4)
                     .addComponent(txtPoso, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addComponent(btnAddPrescription)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnAddPrescription)
+                    .addComponent(lblStatus, javax.swing.GroupLayout.PREFERRED_SIZE, 0, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(35, Short.MAX_VALUE))
         );
 
@@ -159,7 +166,19 @@ public class frmAjoutPrescription extends javax.swing.JFrame {
     private void btnAddPrescriptionMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAddPrescriptionMouseClicked
         // TODO add your handling code here:
         fm = new FonctionsMetier();
-        fm.addAjoutPres(cmbMedicament.getSelectedItem().toString(), cbmTypeIndividu.getSelectedItem().toString(), cmbDosCode.getSelectedItem().toString(), txtPoso.getText());
+        
+        if(fm.checkLimitText(txtPoso.getText())) {
+            Prescrire laPres = fm.getPrescription(cmbMedicament.getSelectedItem().toString(), cbmTypeIndividu.getSelectedItem().toString(), cmbDosCode.getSelectedItem().toString());
+            if(laPres == null){
+                    fm.addAjoutPres(cmbMedicament.getSelectedItem().toString(), cbmTypeIndividu.getSelectedItem().toString(), cmbDosCode.getSelectedItem().toString(), txtPoso.getText());
+                    JOptionPane.showMessageDialog(this, "La prescription a bien été effectuée !"," Ajout effectué ",JOptionPane.PLAIN_MESSAGE);
+                } else {
+                JOptionPane.showMessageDialog(this, "Cette combinaison existe déjà et ne peut être rajoutée"," Erreur ",JOptionPane.WARNING_MESSAGE);
+            }
+        } else {
+            JOptionPane.showMessageDialog(this, "Merci de ne pas dépasser 255 caractères pour la posologie"," Erreur ",JOptionPane.WARNING_MESSAGE);
+        }
+        // fm.addAjoutPres(cmbMedicament.getSelectedItem().toString(), cbmTypeIndividu.getSelectedItem().toString(), cmbDosCode.getSelectedItem().toString(), txtPoso.getText());
         
     }//GEN-LAST:event_btnAddPrescriptionMouseClicked
 
@@ -224,6 +243,7 @@ public class frmAjoutPrescription extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JLabel lblStatus;
     private javax.swing.JTextField txtPoso;
     // End of variables declaration//GEN-END:variables
 }

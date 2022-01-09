@@ -223,26 +223,30 @@ public class FonctionsMetier implements IMetier
     public Prescrire addAjoutPres(String medDepotLegal, String tinCode, String dosCode, String prePosologie) {
     Prescrire unePres = null;
         try {
-        maCnx = ConnexionBDD.getCnx();
-        ps = maCnx.prepareStatement("SELECT MED_DEPOTLEGAL FROM medicament WHERE MED_NOMCOMMERCIAL = '"+medDepotLegal+"'");
-        rs = ps.executeQuery();
-        rs.next();
-        int depotLegal = rs.getInt(1);
-        rs.close();
+            maCnx = ConnexionBDD.getCnx();
+            ps = maCnx.prepareStatement("SELECT MED_DEPOTLEGAL FROM medicament WHERE MED_NOMCOMMERCIAL = '"+medDepotLegal+"'");
+            rs = ps.executeQuery();
+            rs.next();
+            int depotLegal = rs.getInt(1);
+            rs.close();
+
+            ps = maCnx.prepareStatement("SELECT TIN_CODE FROM type_individu WHERE TIN_LIBELLE = '"+tinCode+"'");
+            rs = ps.executeQuery();
+            rs.next();
+            int typeCode = rs.getInt(1);
+            rs.close(); 
+
+            ps = maCnx.prepareStatement("SELECT DOS_CODE FROM dosage WHERE CONCAT(DOS_QUANTITE,' ',DOS_UNITE) = '"+dosCode+"'");
+            rs = ps.executeQuery();
+            rs.next();
+            int dosageCode = rs.getInt(1);
+            rs.close(); 
         
-        ps = maCnx.prepareStatement("SELECT TIN_CODE FROM type_individu WHERE TIN_LIBELLE = '"+tinCode+"'");
-        rs = ps.executeQuery();
-        rs.next();
-        int typeCode = rs.getInt(1);
-        rs.close(); 
-        
-        ps = maCnx.prepareStatement("SELECT DOS_CODE FROM dosage WHERE CONCAT(DOS_QUANTITE,' ',DOS_UNITE) = '"+dosCode+"'");
-        rs = ps.executeQuery();
-        rs.next();
-        int dosageCode = rs.getInt(1);
-        rs.close(); 
-        
-            ps = maCnx.prepareStatement("INSERT INTO prescrire (MED_DEPOTLEGAL, TIN_CODE, DOS_CODE, PRE_POSOLOGIE) VALUES ("+ depotLegal + "," + typeCode + "," + dosageCode+",'"+prePosologie+"')");
+            ps = maCnx.prepareStatement("INSERT INTO prescrire (MED_DEPOTLEGAL, TIN_CODE, DOS_CODE, PRE_POSOLOGIE) VALUES (?,?,?,?)");
+            ps.setInt(1, depotLegal);
+            ps.setInt(2, typeCode);
+            ps.setInt(3, dosageCode);
+            ps.setString(4, prePosologie);
             ps.executeUpdate();
         } catch (SQLException ex) {
             Logger.getLogger(FonctionsMetier.class.getName()).log(Level.SEVERE, null, ex);
@@ -280,5 +284,47 @@ public class FonctionsMetier implements IMetier
         }
         
         return longTextOk;
+    }
+    
+    @Override
+    public Prescrire getPrescription(String nomMedoc, String nomType, String dosCode) {
+        Prescrire laPres = null;
+        
+        try {
+            
+            maCnx = ConnexionBDD.getCnx();
+            ps = maCnx.prepareStatement("SELECT MED_DEPOTLEGAL FROM medicament WHERE MED_NOMCOMMERCIAL = '"+nomMedoc+"'");
+            rs = ps.executeQuery();
+            rs.next();
+            int depotLegal = rs.getInt(1);
+            rs.close();
+            
+            ps = maCnx.prepareStatement("SELECT TIN_CODE FROM type_individu WHERE TIN_LIBELLE = '"+nomType+"'");
+            rs = ps.executeQuery();
+            rs.next();
+            int typeCode = rs.getInt(1);
+            rs.close();
+            
+            ps = maCnx.prepareStatement("SELECT DOS_CODE FROM dosage WHERE CONCAT(DOS_QUANTITE,' ',DOS_UNITE) = '"+dosCode+"'");
+            rs = ps.executeQuery();
+            rs.next();
+            int dosageCode = rs.getInt(1);
+            rs.close(); 
+            
+            maCnx = ConnexionBDD.getCnx();
+            ps = maCnx.prepareStatement("SELECT MED_DEPOTLEGAL, TIN_CODE, DOS_CODE FROM prescrire WHERE CONCAT(MED_DEPOTLEGAL, TIN_CODE, DOS_CODE) = CONCAT(?,?,?)");
+            ps.setInt(1, depotLegal);
+            ps.setInt(2, typeCode);
+            ps.setInt(3, dosageCode);
+            rs = ps.executeQuery();
+            
+            if(rs.next()){
+                laPres = new Prescrire(rs.getInt(1),rs.getInt(2),rs.getInt(3));
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(FonctionsMetier.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        return laPres;
     }
 }

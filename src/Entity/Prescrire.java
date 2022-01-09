@@ -21,6 +21,12 @@ public class Prescrire {
         dos_code = unDosCode;
         pre_posologie = unePrePosologie;
     }
+    
+    public Prescrire(int unMedDepotLegal, int unTinCode, int unDosCode) {
+        med_depotlegal = unMedDepotLegal;
+        tin_code = unTinCode;
+        dos_code = unDosCode;
+    }
 
     /**
      * @return the med_depotlegal
