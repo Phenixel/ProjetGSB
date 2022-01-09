@@ -15,7 +15,6 @@ import java.util.ArrayList;
 
 public interface IMetier 
 {
-    
     public ArrayList<Medicament> GetAllMedicament();
     public utilisateur VerifierIdentifiants(String login, String mdp);
     public ArrayList<TypeIndividu> GetAllTypeIndividu();
@@ -30,4 +29,5 @@ public interface IMetier
     public ArrayList<Dosage> GetAllDosage();
     public boolean checkLimitText(String text);
     public boolean isNumeric(String str);
+    public Prescrire getPrescription(String nomMedoc, String nomType, String dosCode);
 }
