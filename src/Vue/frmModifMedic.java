@@ -330,6 +330,7 @@ public class frmModifMedic extends javax.swing.JFrame {
         int retour = JOptionPane.showConfirmDialog(this, "Etes vous sur de vouloir supprimer ce médicament ?"," Supprimer un médicament", JOptionPane.OK_CANCEL_OPTION);
         if(retour == OK_OPTION){
             fm.deleteMedic(leMedicament);
+            dispose();
         }
     }//GEN-LAST:event_btnSupprimerActionPerformed
 
