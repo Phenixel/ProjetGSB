@@ -4,7 +4,7 @@
  */
 package Vue;
 
-import Entity.utilisateur;
+import Entity.Utilisateur;
 import Tools.ConnexionBDD;
 import Tools.FonctionsMetier;
 import javax.swing.JOptionPane;
@@ -182,7 +182,7 @@ public class frmAuthentification extends javax.swing.JFrame {
             cnx = new ConnexionBDD();
             fm = new FonctionsMetier();
             
-            utilisateur unUser = fm.VerifierIdentifiants(txtLogin.getText(), txtMdp.getText());
+            Utilisateur unUser = fm.VerifierIdentifiants(txtLogin.getText(), txtMdp.getText());
             
             if(unUser != null){
                 frmMenuPrincipal frm = new frmMenuPrincipal(txtLogin.getText());

@@ -9,13 +9,13 @@ package Entity;
  *
  * @author maxim
  */
-public class utilisateur
+public class Utilisateur
 {
     private int idUser;
     private String login;
     private String mdp;
     
-    public utilisateur (int unId, String unLogin, String unMdp)
+    public Utilisateur (int unId, String unLogin, String unMdp)
     {
         idUser = unId;
         login = unLogin;

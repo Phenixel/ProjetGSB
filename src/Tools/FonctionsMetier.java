@@ -9,7 +9,7 @@ import Entity.Famille;
 import Entity.Medicament;
 import Entity.Prescrire;
 import Entity.TypeIndividu;
-import Entity.utilisateur;
+import Entity.Utilisateur;
 import Entity.Dosage;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -30,8 +30,8 @@ public class FonctionsMetier implements IMetier
     private Connection maCnx;
 
     @Override
-    public utilisateur VerifierIdentifiants(String login, String mdp) {
-        utilisateur user = null;
+    public Utilisateur VerifierIdentifiants(String login, String mdp) {
+        Utilisateur user = null;
         try {
             
             maCnx = ConnexionBDD.getCnx();
@@ -41,7 +41,7 @@ public class FonctionsMetier implements IMetier
             rs = ps.executeQuery();
             
             if(rs.next()){
-                user = new utilisateur(Integer.parseInt(rs.getString(1)), rs.getString(2), rs.getString(3));
+                user = new Utilisateur(Integer.parseInt(rs.getString(1)), rs.getString(2), rs.getString(3));
             }
         } catch (SQLException ex) {
             Logger.getLogger(FonctionsMetier.class.getName()).log(Level.SEVERE, null, ex);
