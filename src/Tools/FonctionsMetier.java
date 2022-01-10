@@ -36,8 +36,9 @@ public class FonctionsMetier implements IMetier
             
             maCnx = ConnexionBDD.getCnx();
             
-            ps = maCnx.prepareStatement("SELECT idUser, login, mdp from utilisateur where login = '"+ login +"' and mdp = '"+ mdp +"' ");
-            
+            ps = maCnx.prepareStatement("SELECT idUser, login, mdp from utilisateur where login = ? and mdp = ? ");
+            ps.setString(1, login);
+            ps.setString(2, mdp);
             rs = ps.executeQuery();
             
             if(rs.next()){
@@ -102,19 +103,14 @@ public class FonctionsMetier implements IMetier
             rs.close();
             
             
-            ps = maCnx.prepareStatement("INSERT INTO medicament "
-                    + "(MED_NOMCOMMERCIAL, FAM_CODE, MED_COMPOSITION, MED_EFFETS, MED_CONTREINDIC, MED_PRIXECHANTILLON) "
-                    + "VALUES ('"+ nomMedicament +"',"
-                    + numFam+ ","
-                    + "'"+ medComposition + "',"
-                    + "'"+ medEffets + "',"
-                    + "'"+ medContreIndic + "',"
-                    + prix +");");
+            ps = maCnx.prepareStatement("INSERT INTO medicament (MED_NOMCOMMERCIAL, FAM_CODE, MED_COMPOSITION, MED_EFFETS, MED_CONTREINDIC, MED_PRIXECHANTILLON) VALUES (?,?,?,?,?,?);");
+            ps.setString(1, nomMedicament);
+            ps.setInt(2, numFam);
+            ps.setString(3, medComposition);
+            ps.setString(4, medEffets);
+            ps.setString(5, medContreIndic);
+            ps.setFloat(6, prix);
             ps.executeUpdate();
-                    
-//            if(rs.next()){
-//                unMedicament = new Medicament(rs.getInt(1), rs.getString(2), rs.getInt(3), rs.getString(4), rs.getString(5), rs.getString(6), rs.getFloat(7));
-//            }
         } catch (SQLException ex) {
             Logger.getLogger(FonctionsMetier.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -137,7 +133,8 @@ public class FonctionsMetier implements IMetier
         
         try {
             maCnx = ConnexionBDD.getCnx();
-            ps = maCnx.prepareStatement("SELECT m.MED_DEPOTLEGAL, m.MED_NOMCOMMERCIAL, f.FAM_libelle, M.MED_COMPOSITION, m.MED_EFFETS, m.MED_CONTREINDIC, m.MED_PRIXECHANTILLON from medicament as m INNER join famille as f on m.FAM_CODE = f.FAM_CODE WHERE m.MED_DEPOTLEGAL = "+ idMedic);
+            ps = maCnx.prepareStatement("SELECT m.MED_DEPOTLEGAL, m.MED_NOMCOMMERCIAL, f.FAM_libelle, M.MED_COMPOSITION, m.MED_EFFETS, m.MED_CONTREINDIC, m.MED_PRIXECHANTILLON from medicament as m INNER join famille as f on m.FAM_CODE = f.FAM_CODE WHERE m.MED_DEPOTLEGAL = ?");
+            ps.setInt(1, idMedic);
             rs = ps.executeQuery();
             
             if(rs.next()){
@@ -157,7 +154,8 @@ public class FonctionsMetier implements IMetier
         
         try {
             maCnx = ConnexionBDD.getCnx();
-            ps = maCnx.prepareStatement("SELECT MED_NOMCOMMERCIAL FROM medicament WHERE MED_NOMCOMMERCIAL = '" +nomMedic+ "'");
+            ps = maCnx.prepareStatement("SELECT MED_NOMCOMMERCIAL FROM medicament WHERE MED_NOMCOMMERCIAL = ?;");
+            ps.setString(1, nomMedic);
             rs = ps.executeQuery();
             
             if(rs.next()){
@@ -195,7 +193,7 @@ public class FonctionsMetier implements IMetier
         try {
             maCnx = ConnexionBDD.getCnx();
             
-            ps = maCnx.prepareStatement("SELECT fam_code FROM famille WHERE fam_libelle = '"+famCode+"'");
+            ps = maCnx.prepareStatement("SELECT fam_code FROM famille WHERE fam_libelle = '"+famCode+"';");
             rs = ps.executeQuery();
             rs.next();
             
@@ -224,19 +222,22 @@ public class FonctionsMetier implements IMetier
     Prescrire unePres = null;
         try {
             maCnx = ConnexionBDD.getCnx();
-            ps = maCnx.prepareStatement("SELECT MED_DEPOTLEGAL FROM medicament WHERE MED_NOMCOMMERCIAL = '"+medDepotLegal+"'");
+            ps = maCnx.prepareStatement("SELECT MED_DEPOTLEGAL FROM medicament WHERE MED_NOMCOMMERCIAL = ?;");
+            ps.setString(1, medDepotLegal);
             rs = ps.executeQuery();
             rs.next();
             int depotLegal = rs.getInt(1);
             rs.close();
 
-            ps = maCnx.prepareStatement("SELECT TIN_CODE FROM type_individu WHERE TIN_LIBELLE = '"+tinCode+"'");
+            ps = maCnx.prepareStatement("SELECT TIN_CODE FROM type_individu WHERE TIN_LIBELLE = ?;");
+            ps.setString(1, tinCode);
             rs = ps.executeQuery();
             rs.next();
             int typeCode = rs.getInt(1);
             rs.close(); 
 
-            ps = maCnx.prepareStatement("SELECT DOS_CODE FROM dosage WHERE CONCAT(DOS_QUANTITE,' ',DOS_UNITE) = '"+dosCode+"'");
+            ps = maCnx.prepareStatement("SELECT DOS_CODE FROM dosage WHERE CONCAT(DOS_QUANTITE,' ',DOS_UNITE) = ?;");
+            ps.setString(1, dosCode);
             rs = ps.executeQuery();
             rs.next();
             int dosageCode = rs.getInt(1);
@@ -358,7 +359,8 @@ public class FonctionsMetier implements IMetier
         TypeIndividu unType = null;
         try {
             maCnx = ConnexionBDD.getCnx();
-            ps = maCnx.prepareStatement("INSERT INTO type_individu (TIN_LIBELLE) VALUE ('"+unNom+"')");
+            ps = maCnx.prepareStatement("INSERT INTO type_individu (TIN_LIBELLE) VALUE (?);");
+            ps.setString(1, unNom);
             ps.executeUpdate();
         } catch (SQLException ex) {
             Logger.getLogger(FonctionsMetier.class.getName()).log(Level.SEVERE, null, ex);
@@ -372,7 +374,8 @@ public class FonctionsMetier implements IMetier
         
         try {
             maCnx = ConnexionBDD.getCnx();
-            ps = maCnx.prepareStatement("SELECT TIN_CODE, TIN_LIBELLE FROM type_individu WHERE TIN_CODE = '" +nomType+ "'");
+            ps = maCnx.prepareStatement("SELECT TIN_CODE, TIN_LIBELLE FROM type_individu WHERE TIN_CODE = ?;");
+            ps.setInt(1, nomType);
             rs = ps.executeQuery();
             
             if(rs.next()){
@@ -391,7 +394,8 @@ public class FonctionsMetier implements IMetier
         
         try {
             maCnx = ConnexionBDD.getCnx();
-            ps = maCnx.prepareStatement("SELECT TIN_CODE, TIN_LIBELLE FROM type_individu WHERE TIN_LIBELLE = '" +nomType+ "'");
+            ps = maCnx.prepareStatement("SELECT TIN_CODE, TIN_LIBELLE FROM type_individu WHERE TIN_LIBELLE = ?;");
+            ps.setString(1, nomType);
             rs = ps.executeQuery();
             
             if(rs.next()){
