@@ -11,6 +11,7 @@ import Entity.Prescrire;
 import Entity.TypeIndividu;
 import Entity.Utilisateur;
 import Entity.Dosage;
+import Entity.Interragis;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -115,16 +116,6 @@ public class FonctionsMetier implements IMetier
             Logger.getLogger(FonctionsMetier.class.getName()).log(Level.SEVERE, null, ex);
         }
         return unMedicament;
-    }
-
-    @Override
-    public TypeIndividu addTypeIndividu() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public Prescrire addPrescription() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
@@ -332,11 +323,7 @@ public class FonctionsMetier implements IMetier
     @Override
     public boolean isNumeric(String str)
     {
-        for (char c : str.toCharArray())
-        {
-            if (!Character.isDigit(c)) return false;
-        }
-        return true;
+        return str.matches("[+-]?\\d*(\\.\\d+)?");
     }
 
     @Override
@@ -437,5 +424,46 @@ public class FonctionsMetier implements IMetier
             Logger.getLogger(FonctionsMetier.class.getName()).log(Level.SEVERE, null, ex);
         }
         return unType;
+    }
+
+    @Override
+    public Interragis addInterraction(int medActuel, String medPerturbateur) {
+        Interragis uneInterraction = null;
+        try {
+            maCnx = ConnexionBDD.getCnx();
+            ps = maCnx.prepareStatement("SELECT MED_DEPOTLEGAL from medicament WHERE MED_NOMCOMMERCIAL = ?");
+            ps.setString(1, medPerturbateur);
+            ps.executeQuery();
+            rs.next();
+            int idMedPerturbateur = rs.getInt(1);
+            rs.close();
+            
+            maCnx = ConnexionBDD.getCnx();
+            ps = maCnx.prepareStatement("INSERT INTO interagis (MED_PERTURBATEUR, MED_MED_PERTURBE) VALUES (?,?);");
+            ps.setInt(1, medActuel);
+            ps.setInt(2, idMedPerturbateur);
+            ps.executeUpdate();
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(FonctionsMetier.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return uneInterraction;
+    }
+
+    @Override
+    public int getNextId() {
+        int leMaxId = 0;
+        try {
+            maCnx = ConnexionBDD.getCnx();
+            ps = maCnx.prepareStatement("SELECT max(MED_DEPOTLEGAL)+1 FROM medicament;");
+            rs = ps.executeQuery();
+            
+            while(rs.next()){
+                leMaxId = rs.getInt(1);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(FonctionsMetier.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return leMaxId;
     }
 }

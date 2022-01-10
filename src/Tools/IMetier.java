@@ -7,6 +7,7 @@ package Tools;
 
 import Entity.Dosage;
 import Entity.Famille;
+import Entity.Interragis;
 import Entity.Medicament;
 import Entity.Prescrire;
 import Entity.TypeIndividu;
@@ -20,8 +21,6 @@ public interface IMetier
     public ArrayList<TypeIndividu> GetAllTypeIndividu();
     public ArrayList<Famille> GetAllFamille();
     public Medicament AddMedicament(String nomMedicament, String famCode, String medComposition, String medEffets, String medContreIndic, float prix);
-    public TypeIndividu addTypeIndividu();
-    public Prescrire addPrescription();
     public Prescrire addAjoutPres(String medDepotLegal, String tinCode, String dosCode, String prePosologie);
     public Medicament GetUnMedic(int idMedic);
     public Medicament GetNomMedic(String nomMedic);
@@ -36,4 +35,6 @@ public interface IMetier
     public TypeIndividu GetNomType(String nomType);
     public TypeIndividu SetModifType(int idType, String nomType);
     public TypeIndividu deleteType(int idType);
+    public Interragis addInterraction(int medActuel, String medPerturbateur);
+    public int getNextId();
 }
