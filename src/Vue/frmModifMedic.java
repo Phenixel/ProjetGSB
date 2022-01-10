@@ -6,6 +6,7 @@
 package Vue;
 
 import Entity.Famille;
+import Entity.Medicament;
 import Tools.FonctionsMetier;
 import javax.swing.JOptionPane;
 import static javax.swing.JOptionPane.OK_OPTION;
@@ -62,6 +63,7 @@ public class frmModifMedic extends javax.swing.JFrame {
         jScrollPane3 = new javax.swing.JScrollPane();
         txtContreIndic = new javax.swing.JTextArea();
         btnSupprimer = new javax.swing.JButton();
+        cbmInterraction = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setResizable(false);
@@ -141,6 +143,8 @@ public class frmModifMedic extends javax.swing.JFrame {
             }
         });
 
+        cbmInterraction.setEnabled(false);
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -179,20 +183,24 @@ public class frmModifMedic extends javax.swing.JFrame {
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel6)
-                                    .addComponent(jLabel7)
-                                    .addComponent(jLabel9))
+                                    .addComponent(jLabel7))
                                 .addGap(18, 18, 18)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(jPanel1Layout.createSequentialGroup()
                                         .addComponent(txtPrix, javax.swing.GroupLayout.PREFERRED_SIZE, 202, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addComponent(jLabel8))
-                                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 244, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 244, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(cbmInterraction, javax.swing.GroupLayout.PREFERRED_SIZE, 358, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(20, 26, Short.MAX_VALUE)))
                 .addContainerGap())
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel1)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel9)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -231,7 +239,9 @@ public class frmModifMedic extends javax.swing.JFrame {
                     .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel9)
-                .addGap(58, 58, 58)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(cbmInterraction, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(20, 20, 20)
                 .addComponent(tglBtnModif)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 25, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -264,6 +274,10 @@ public class frmModifMedic extends javax.swing.JFrame {
             cbmNomFamille.addItem(fam.getFam_libelle());
         }
         
+        for (Medicament med : fm.GetAllMedicament()){
+            cbmInterraction.addItem(med.getMed_nomcommercial());
+        }
+        
         String nomMedic = fm.GetUnMedic(leMedicament).getMed_nomcommercial();
         String compo = fm.GetUnMedic(leMedicament).getMed_composition();
         String effet = fm.GetUnMedic(leMedicament).getMed_effets();
@@ -277,6 +291,9 @@ public class frmModifMedic extends javax.swing.JFrame {
         txtEffets.setText(effet);
         txtContreIndic.setText(contreIndic);
         txtPrix.setText(String.valueOf(prix));
+        
+        
+        cbmInterraction.setSelectedItem(ABORT);
         
     }//GEN-LAST:event_formWindowOpened
 
@@ -315,14 +332,13 @@ public class frmModifMedic extends javax.swing.JFrame {
         //Insérer l'update
         if(fm.isNumeric(txtPrix.getText())){
             fm.SetModifMedic(leMedicament, txtNomMedic.getText(), cbmNomFamille.getSelectedItem().toString(), txtComposition.getText(), txtEffets.getText(), txtContreIndic.getText(), Float.parseFloat(txtPrix.getText()));
+            int retour = JOptionPane.showConfirmDialog(this, "Votre modification a bien été prise en compte. Souhaitez vous quitter cette fenêtre ?"," Modification effectuée", JOptionPane.OK_CANCEL_OPTION);
+            if(retour == OK_OPTION){
+                dispose();
+            }
         }
         else{
             JOptionPane.showMessageDialog(this, "Merci de vérifier que le prix ne comporte que des chiffres"," Erreur ",JOptionPane.WARNING_MESSAGE);
-        }
-        
-        int retour = JOptionPane.showConfirmDialog(this, "Votre modification à bien été prise en compte. Souaitez vous quitter cette fenêtre ?"," Modification effectuée", JOptionPane.OK_CANCEL_OPTION);
-        if(retour == OK_OPTION){
-            dispose();
         }
     }//GEN-LAST:event_btnConfirmerActionPerformed
 
@@ -373,6 +389,7 @@ public class frmModifMedic extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnConfirmer;
     private javax.swing.JButton btnSupprimer;
+    private javax.swing.JComboBox<String> cbmInterraction;
     private javax.swing.JComboBox<String> cbmNomFamille;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;

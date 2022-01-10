@@ -109,6 +109,10 @@ public class frmAjoutMedic extends javax.swing.JFrame {
         txtContreIndic.setRows(5);
         jScrollPane5.setViewportView(txtContreIndic);
 
+        cbmInterraction.setMaximumRowCount(10);
+        cbmInterraction.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { " " }));
+        cbmInterraction.setEnabled(false);
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -229,18 +233,24 @@ public class frmAjoutMedic extends javax.swing.JFrame {
                 Medicament unMedicament = fm.GetNomMedic(txtNomMedic.getText());
                 if(unMedicament == null){
                     fm.AddMedicament(txtNomMedic.getText(), cbmNomFamille.getSelectedItem().toString(), txtComposition.getText(), txtEffets.getText(), txtContreIndic.getText(), Float.parseFloat(txtPrix.getText()));
+//                    if(cbmInterraction.getSelectedItem().toString().compareTo("") != 0){
+//                        fm.addInterraction(fm.getNextId(), cbmInterraction.getSelectedItem().toString());
+//                    }
                     JOptionPane.showMessageDialog(this, "Médicament ajouté !"," Ajout ",JOptionPane.INFORMATION_MESSAGE);
                 }
                 else{
-                    int retour = JOptionPane.showConfirmDialog(this, "le nom du médicament que vous souhaitez ajouter existe déjà. Etes vous sur que vous voulez l'ajouter à la base de donnée ?", "Possible duplication", JOptionPane.OK_CANCEL_OPTION);
+                    int retour = JOptionPane.showConfirmDialog(this, "Le nom du médicament que vous souhaitez ajouter existe déjà. Etes vous sur que vous voulez l'ajouter à la base de données ?", "Possible duplication", JOptionPane.OK_CANCEL_OPTION);
                     if(retour == OK_OPTION){
                         fm.AddMedicament(txtNomMedic.getText(), cbmNomFamille.getSelectedItem().toString(), txtComposition.getText(), txtEffets.getText(), txtContreIndic.getText(), Float.parseFloat(txtPrix.getText()));
+//                        if(cbmInterraction.getSelectedItem().toString().compareTo("") != 0){
+//                            fm.addInterraction(fm.getNextId(), cbmInterraction.getSelectedItem().toString());
+//                        }
                         JOptionPane.showMessageDialog(this, "Médicament ajouté !"," Ajout ",JOptionPane.INFORMATION_MESSAGE);
                     }
                 }
             }
             else{
-                JOptionPane.showMessageDialog(this, "Merci de ne pas depasser 255 caractéres lors de vos ajouts de médicaments"," Erreur ",JOptionPane.WARNING_MESSAGE);
+                JOptionPane.showMessageDialog(this, "Merci de ne pas dépasser 255 caractères lors de vos ajouts de médicaments"," Erreur ",JOptionPane.WARNING_MESSAGE);
             }
         }
         

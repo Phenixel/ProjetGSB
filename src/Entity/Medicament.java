@@ -28,8 +28,11 @@ public class Medicament {
         med_contreindic = uneContreindic;
         med_prixechantillon = unPrix;
     }
-     public Medicament (String unNom){
+    public Medicament (String unNom){
         med_nomcommercial = unNom;
+    }
+    public Medicament (int lId){
+        med_depotlegal = lId;
     }
     public Medicament (int unDepotLegal, String unNom, String unFamLibelle, String uneComposition, String unEffet, String uneContreindic, float unPrix){
         med_depotlegal = unDepotLegal;
