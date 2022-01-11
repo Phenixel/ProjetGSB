@@ -9,6 +9,11 @@ Le projet fonctionne sur NetBean. Il suffit de cloner le repository et de l'ouvr
 La base de données est disponible à la racine du projet git.
 
 ## Versions
-11.01.2022 : Version Beta 0.1.0
+[11.01.2022] : Version Beta 0.1.0
+- Affichage : type individu et médicaments
+- Ajout/modification type individu
+- Ajout/modification médicaments
+- Ajout prescription
+
 ___
 Auteurs : Yonathan Cardoso & Maxime Buat
