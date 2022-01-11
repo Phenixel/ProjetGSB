@@ -60,8 +60,9 @@ public class frmMenuPrincipal extends javax.swing.JFrame {
         jLabel9 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         lblBonjour = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        btnQuit = new javax.swing.JButton();
         btnRaffraichir = new javax.swing.JButton();
+        btnInterraction = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setBackground(new java.awt.Color(102, 255, 51));
@@ -185,6 +186,7 @@ public class frmMenuPrincipal extends javax.swing.JFrame {
         jLabel5.setText("Médicaments");
 
         btnAddPrescription.setBackground(new java.awt.Color(153, 255, 153));
+        btnAddPrescription.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         btnAddPrescription.setText("Nouvelles prescription");
         btnAddPrescription.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -215,7 +217,7 @@ public class frmMenuPrincipal extends javax.swing.JFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, 315, Short.MAX_VALUE)
+                .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, 337, Short.MAX_VALUE)
                 .addGap(18, 18, 18)
                 .addComponent(jLabel9)
                 .addGap(47, 47, 47))
@@ -227,13 +229,13 @@ public class frmMenuPrincipal extends javax.swing.JFrame {
         lblBonjour.setForeground(new java.awt.Color(0, 153, 102));
         lblBonjour.setText("Bonjour,");
 
-        jButton1.setBackground(new java.awt.Color(255, 102, 102));
-        jButton1.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-        jButton1.setForeground(new java.awt.Color(255, 255, 255));
-        jButton1.setText("Fermer la session");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        btnQuit.setBackground(new java.awt.Color(255, 102, 102));
+        btnQuit.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        btnQuit.setForeground(new java.awt.Color(255, 255, 255));
+        btnQuit.setText("Fermer la session");
+        btnQuit.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                btnQuitActionPerformed(evt);
             }
         });
 
@@ -244,6 +246,15 @@ public class frmMenuPrincipal extends javax.swing.JFrame {
         btnRaffraichir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnRaffraichirActionPerformed(evt);
+            }
+        });
+
+        btnInterraction.setBackground(new java.awt.Color(153, 255, 153));
+        btnInterraction.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        btnInterraction.setText("Ajouter interraction");
+        btnInterraction.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnInterractionActionPerformed(evt);
             }
         });
 
@@ -269,18 +280,6 @@ public class frmMenuPrincipal extends javax.swing.JFrame {
                             .addComponent(btnAddMedic)
                             .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.LEADING))))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(46, 46, 46)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jButton1)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(panel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(btnAddPrescription, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                .addGap(38, 38, 38)
-                                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addContainerGap())
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -289,6 +288,22 @@ public class frmMenuPrincipal extends javax.swing.JFrame {
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(lblBonjour, javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addComponent(btnRaffraichir, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addContainerGap())))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(46, 46, 46)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(btnInterraction, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(panel1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btnAddPrescription, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabel7, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(38, 38, 38)
+                                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(btnQuit)
                                 .addContainerGap())))))
         );
         layout.setVerticalGroup(
@@ -299,10 +314,7 @@ public class frmMenuPrincipal extends javax.swing.JFrame {
                     .addComponent(jLabel1)
                     .addComponent(lblBonjour))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jLabel6)
-                        .addGap(31, 31, 31))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -311,28 +323,31 @@ public class frmMenuPrincipal extends javax.swing.JFrame {
                                 .addComponent(jLabel5)
                                 .addComponent(jLabel4))
                             .addComponent(btnRaffraichir))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGap(18, 18, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(jScrollPane1)
-                                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                                    .addComponent(jScrollPane2)
                                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                        .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                         .addGap(20, 20, 20)
                                         .addComponent(panel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(btnAddPrescription))
-                                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addComponent(btnAddPrescription)))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(btnAddMedic)
-                                    .addComponent(btnAddType))
-                                .addGap(0, 40, Short.MAX_VALUE))
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                        .addComponent(btnAddMedic)
+                                        .addComponent(btnInterraction))
+                                    .addComponent(btnAddType)))
                             .addGroup(layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jButton1)))
-                        .addContainerGap())))
+                                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(btnQuit)))
+                        .addGap(19, 19, 19))
+                    .addComponent(jLabel6))
+                .addContainerGap())
         );
 
         pack();
@@ -401,11 +416,11 @@ public class frmMenuPrincipal extends javax.swing.JFrame {
         frm.setVisible(true);
     }//GEN-LAST:event_tblTypeIndividuMouseClicked
   
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void btnQuitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnQuitActionPerformed
         
         System.exit(0);
         
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_btnQuitActionPerformed
 
     private void btnRaffraichirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRaffraichirActionPerformed
         // TODO add your handling code here:
@@ -418,6 +433,14 @@ public class frmMenuPrincipal extends javax.swing.JFrame {
         tblTypeIndividu.setModel(mdlTypeIndividu);
         
     }//GEN-LAST:event_btnRaffraichirActionPerformed
+
+    private void btnInterractionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInterractionActionPerformed
+        // TODO add your handling code here:
+        
+        frmInterraction frm = new frmInterraction();
+        frm.setVisible(true);
+        
+    }//GEN-LAST:event_btnInterractionActionPerformed
 
     /**
      * @param args the command line arguments
@@ -458,8 +481,9 @@ public class frmMenuPrincipal extends javax.swing.JFrame {
     private javax.swing.JButton btnAddMedic;
     private javax.swing.JButton btnAddPrescription;
     private javax.swing.JButton btnAddType;
+    private javax.swing.JButton btnInterraction;
+    private javax.swing.JButton btnQuit;
     private javax.swing.JButton btnRaffraichir;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

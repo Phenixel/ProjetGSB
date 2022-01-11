@@ -427,21 +427,13 @@ public class FonctionsMetier implements IMetier
     }
 
     @Override
-    public Interragis addInterraction(int medActuel, String medPerturbateur) {
+    public Interragis addInterraction(int medPerturbateur, int medPerturbe) {
         Interragis uneInterraction = null;
         try {
             maCnx = ConnexionBDD.getCnx();
-            ps = maCnx.prepareStatement("SELECT MED_DEPOTLEGAL from medicament WHERE MED_NOMCOMMERCIAL = ?");
-            ps.setString(1, medPerturbateur);
-            ps.executeQuery();
-            rs.next();
-            int idMedPerturbateur = rs.getInt(1);
-            rs.close();
-            
-            maCnx = ConnexionBDD.getCnx();
             ps = maCnx.prepareStatement("INSERT INTO interagis (MED_PERTURBATEUR, MED_MED_PERTURBE) VALUES (?,?);");
-            ps.setInt(1, medActuel);
-            ps.setInt(2, idMedPerturbateur);
+            ps.setInt(1, medPerturbe);
+            ps.setInt(2, medPerturbateur);
             ps.executeUpdate();
             
         } catch (SQLException ex) {
@@ -465,5 +457,25 @@ public class FonctionsMetier implements IMetier
             Logger.getLogger(FonctionsMetier.class.getName()).log(Level.SEVERE, null, ex);
         }
         return leMaxId;
+    }
+
+    @Override
+    public ArrayList<Medicament> getAllInterraction(int leMedic) {
+        ArrayList<Medicament> lesMedicaments = new ArrayList<>();
+        try {
+            maCnx = ConnexionBDD.getCnx();
+            ps = maCnx.prepareStatement("SELECT medicament.MED_NOMCOMMERCIAL FROM medicament INNER JOIN interagis on medicament.MED_DEPOTLEGAL = interagis.MED_PERTURBATEUR WHERE MED_MED_PERTURBE = ?");
+            ps.setInt(1, leMedic);
+            rs = ps.executeQuery();
+            while(rs.next())
+            {
+                Medicament med = new Medicament(rs.getString("medicament.MED_NOMCOMMERCIAL"));
+                lesMedicaments.add(med);
+            }
+            ps.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(FonctionsMetier.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return lesMedicaments;
     }
 }
