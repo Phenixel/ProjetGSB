@@ -427,21 +427,13 @@ public class FonctionsMetier implements IMetier
     }
 
     @Override
-    public Interragis addInterraction(int medActuel, String medPerturbateur) {
+    public Interragis addInterraction(int medPerturbateur, int medPerturbe) {
         Interragis uneInterraction = null;
         try {
             maCnx = ConnexionBDD.getCnx();
-            ps = maCnx.prepareStatement("SELECT MED_DEPOTLEGAL from medicament WHERE MED_NOMCOMMERCIAL = ?");
-            ps.setString(1, medPerturbateur);
-            ps.executeQuery();
-            rs.next();
-            int idMedPerturbateur = rs.getInt(1);
-            rs.close();
-            
-            maCnx = ConnexionBDD.getCnx();
             ps = maCnx.prepareStatement("INSERT INTO interagis (MED_PERTURBATEUR, MED_MED_PERTURBE) VALUES (?,?);");
-            ps.setInt(1, medActuel);
-            ps.setInt(2, idMedPerturbateur);
+            ps.setInt(1, medPerturbe);
+            ps.setInt(2, medPerturbateur);
             ps.executeUpdate();
             
         } catch (SQLException ex) {

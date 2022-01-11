@@ -35,6 +35,6 @@ public interface IMetier
     public TypeIndividu GetNomType(String nomType);
     public TypeIndividu SetModifType(int idType, String nomType);
     public TypeIndividu deleteType(int idType);
-    public Interragis addInterraction(int medActuel, String medPerturbateur);
+    public Interragis addInterraction(int medPerturbateur, int medPerturbe);
     public int getNextId();
 }
