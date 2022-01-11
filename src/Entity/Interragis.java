@@ -16,6 +16,10 @@ public class Interragis {
         med_perturbateur = unPerturbateur;
         med_perturbe = unPerturbe;
     }
+    
+    public Interragis(int unPerturbe){
+        med_perturbe = unPerturbe;
+    }
 
     /**
      * @return the med_perturbateur

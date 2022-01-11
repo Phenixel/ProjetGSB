@@ -37,4 +37,5 @@ public interface IMetier
     public TypeIndividu deleteType(int idType);
     public Interragis addInterraction(int medPerturbateur, int medPerturbe);
     public int getNextId();
+    public ArrayList<Medicament> getAllInterraction(int leMedic);
 }

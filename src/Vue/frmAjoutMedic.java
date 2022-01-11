@@ -52,11 +52,9 @@ public class frmAjoutMedic extends javax.swing.JFrame {
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         txtPrix = new javax.swing.JTextField();
-        jLabel8 = new javax.swing.JLabel();
         btnAddMedic = new javax.swing.JButton();
         jScrollPane5 = new javax.swing.JScrollPane();
         txtContreIndic = new javax.swing.JTextArea();
-        cbmInterraction = new javax.swing.JComboBox<>();
 
         jToggleButton1.setText("jToggleButton1");
 
@@ -95,8 +93,6 @@ public class frmAjoutMedic extends javax.swing.JFrame {
 
         jLabel7.setText("Prix");
 
-        jLabel8.setText("Interaction");
-
         btnAddMedic.setText("Ajouter");
         btnAddMedic.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -108,10 +104,6 @@ public class frmAjoutMedic extends javax.swing.JFrame {
         txtContreIndic.setLineWrap(true);
         txtContreIndic.setRows(5);
         jScrollPane5.setViewportView(txtContreIndic);
-
-        cbmInterraction.setMaximumRowCount(10);
-        cbmInterraction.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { " " }));
-        cbmInterraction.setEnabled(false);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -143,13 +135,9 @@ public class frmAjoutMedic extends javax.swing.JFrame {
                             .addComponent(jScrollPane2)
                             .addComponent(jScrollPane1)))
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel7)
-                            .addComponent(jLabel8))
-                        .addGap(53, 53, 53)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtPrix)
-                            .addComponent(cbmInterraction, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                        .addComponent(jLabel7)
+                        .addGap(91, 91, 91)
+                        .addComponent(txtPrix)))
                 .addGap(50, 50, 50))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -188,13 +176,9 @@ public class frmAjoutMedic extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtPrix, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel7))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel8)
-                    .addComponent(cbmInterraction, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(52, 52, 52)
+                .addGap(46, 46, 46)
                 .addComponent(btnAddMedic)
-                .addContainerGap(65, Short.MAX_VALUE))
+                .addContainerGap(30, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -233,18 +217,12 @@ public class frmAjoutMedic extends javax.swing.JFrame {
                 Medicament unMedicament = fm.GetNomMedic(txtNomMedic.getText());
                 if(unMedicament == null){
                     fm.AddMedicament(txtNomMedic.getText(), cbmNomFamille.getSelectedItem().toString(), txtComposition.getText(), txtEffets.getText(), txtContreIndic.getText(), Float.parseFloat(txtPrix.getText()));
-//                    if(cbmInterraction.getSelectedItem().toString().compareTo("") != 0){
-//                        fm.addInterraction(fm.getNextId(), cbmInterraction.getSelectedItem().toString());
-//                    }
                     JOptionPane.showMessageDialog(this, "Médicament ajouté !"," Ajout ",JOptionPane.INFORMATION_MESSAGE);
                 }
                 else{
                     int retour = JOptionPane.showConfirmDialog(this, "Le nom du médicament que vous souhaitez ajouter existe déjà. Etes vous sur que vous voulez l'ajouter à la base de données ?", "Possible duplication", JOptionPane.OK_CANCEL_OPTION);
                     if(retour == OK_OPTION){
                         fm.AddMedicament(txtNomMedic.getText(), cbmNomFamille.getSelectedItem().toString(), txtComposition.getText(), txtEffets.getText(), txtContreIndic.getText(), Float.parseFloat(txtPrix.getText()));
-//                        if(cbmInterraction.getSelectedItem().toString().compareTo("") != 0){
-//                            fm.addInterraction(fm.getNextId(), cbmInterraction.getSelectedItem().toString());
-//                        }
                         JOptionPane.showMessageDialog(this, "Médicament ajouté !"," Ajout ",JOptionPane.INFORMATION_MESSAGE);
                     }
                 }
@@ -261,10 +239,6 @@ public class frmAjoutMedic extends javax.swing.JFrame {
         
         for (Famille fam : fm.GetAllFamille()){
             cbmNomFamille.addItem(fam.getFam_libelle());
-        }
-        
-        for (Medicament med : fm.GetAllMedicament()){
-            cbmInterraction.addItem(med.getMed_nomcommercial());
         }
         
     }//GEN-LAST:event_formWindowOpened
@@ -307,7 +281,6 @@ public class frmAjoutMedic extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAddMedic;
-    private javax.swing.JComboBox<String> cbmInterraction;
     private javax.swing.JComboBox<String> cbmNomFamille;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -316,7 +289,6 @@ public class frmAjoutMedic extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;

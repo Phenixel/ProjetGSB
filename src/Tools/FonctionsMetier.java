@@ -458,4 +458,24 @@ public class FonctionsMetier implements IMetier
         }
         return leMaxId;
     }
+
+    @Override
+    public ArrayList<Medicament> getAllInterraction(int leMedic) {
+        ArrayList<Medicament> lesMedicaments = new ArrayList<>();
+        try {
+            maCnx = ConnexionBDD.getCnx();
+            ps = maCnx.prepareStatement("SELECT medicament.MED_NOMCOMMERCIAL FROM medicament INNER JOIN interagis on medicament.MED_DEPOTLEGAL = interagis.MED_PERTURBATEUR WHERE MED_MED_PERTURBE = ?");
+            ps.setInt(1, leMedic);
+            rs = ps.executeQuery();
+            while(rs.next())
+            {
+                Medicament med = new Medicament(rs.getString("medicament.MED_NOMCOMMERCIAL"));
+                lesMedicaments.add(med);
+            }
+            ps.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(FonctionsMetier.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return lesMedicaments;
+    }
 }
