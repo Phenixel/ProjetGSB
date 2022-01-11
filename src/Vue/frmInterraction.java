@@ -5,6 +5,7 @@
  */
 package Vue;
 
+import Entity.Interragis;
 import Model.ModelMedicament;
 import Tools.FonctionsMetier;
 import javax.swing.JOptionPane;
@@ -149,10 +150,17 @@ public class frmInterraction extends javax.swing.JFrame {
         
         int medPerturbe = Integer.parseInt(tblMedPerturbe.getValueAt(tblMedPerturbe.getSelectedRow(), 0).toString());
         int medPerturbateur = Integer.parseInt(tblMedPerturbateur.getValueAt(tblMedPerturbateur.getSelectedRow(), 0).toString());
-
+        
         if(medPerturbe != medPerturbateur){
-            fm.addInterraction(medPerturbateur, medPerturbe);
-            JOptionPane.showMessageDialog(this, "Interraction ajoutée"," Ajout ",JOptionPane.INFORMATION_MESSAGE);
+            
+            Interragis uneInterraction = fm.verifierInterraction(medPerturbe, medPerturbateur);
+            
+            if(uneInterraction != null){
+                JOptionPane.showMessageDialog(this, "Cette interraction existe déjà."," Erreur ",JOptionPane.ERROR_MESSAGE);
+            }else{
+                fm.addInterraction(medPerturbateur, medPerturbe);
+                JOptionPane.showMessageDialog(this, "Interraction ajoutée"," Ajout ",JOptionPane.INFORMATION_MESSAGE);
+            }
         }else{
             JOptionPane.showMessageDialog(this, "Veuillez choisir deux médicaments différents."," Erreur ",JOptionPane.ERROR_MESSAGE);
         }
