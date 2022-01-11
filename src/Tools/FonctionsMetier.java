@@ -478,4 +478,24 @@ public class FonctionsMetier implements IMetier
         }
         return lesMedicaments;
     }
+
+    @Override
+    public Interragis verifierInterraction(int medPerturbateur, int medPerturbe) {
+        Interragis inte = null;
+        try {
+            maCnx = ConnexionBDD.getCnx();
+            ps = maCnx.prepareStatement("SELECT MED_PERTURBATEUR, MED_MED_PERTURBE FROM interagis WHERE MED_PERTURBATEUR = ? and MED_MED_PERTURBE = ?;");
+            ps.setInt(1, medPerturbateur);
+            ps.setInt(2, medPerturbe);
+            rs = ps.executeQuery();
+            
+            if(rs.next()){
+                inte = new Interragis(rs.getInt("MED_PERTURBATEUR"),rs.getInt("MED_MED_PERTURBE"));
+            }
+            ps.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(FonctionsMetier.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return inte;
+    }
 }

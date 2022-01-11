@@ -188,9 +188,6 @@ public class frmAuthentification extends javax.swing.JFrame {
                 frmMenuPrincipal frm = new frmMenuPrincipal(txtLogin.getText());
                 frm.setVisible(true);
                 dispose();
-                
-                //En attendant
-//                lblErreur.setText("Connection réussie !.");
             }else{
                 JOptionPane.showMessageDialog(this, "Indentifiants incorrectes. Veuillez vérifier les informations renseignées.","Indentifiants incorrectes",JOptionPane.WARNING_MESSAGE);
             }
