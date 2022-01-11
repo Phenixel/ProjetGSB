@@ -14,6 +14,7 @@ La base de données est disponible à la racine du projet git.
 - Ajout/modification type individu
 - Ajout/modification médicaments
 - Ajout prescription
+- Ajout interraction
 
 ___
 Auteurs : Yonathan Cardoso & Maxime Buat
