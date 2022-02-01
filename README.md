@@ -18,3 +18,4 @@ La base de données est disponible à la racine du projet git.
 
 ___
 Auteurs : Yonathan Cardoso & Maxime Buat
+Documentation : https://phenixel.notion.site/GSB-Documentations-a6fc9cce8b694c6b96fa6a228dddb32e
