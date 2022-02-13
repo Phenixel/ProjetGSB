@@ -11,7 +11,7 @@ import Tools.FonctionsMetier;
 
 /**
  *
- * @author maxim
+ * @author pheni
  */
 public class frmMenuPrincipal extends javax.swing.JFrame {
     
@@ -68,6 +68,9 @@ public class frmMenuPrincipal extends javax.swing.JFrame {
         setBackground(new java.awt.Color(102, 255, 51));
         setResizable(false);
         addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowActivated(java.awt.event.WindowEvent evt) {
+                formWindowActivated(evt);
+            }
             public void windowOpened(java.awt.event.WindowEvent evt) {
                 formWindowOpened(evt);
             }
@@ -369,16 +372,7 @@ public class frmMenuPrincipal extends javax.swing.JFrame {
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
         // TODO add your handling code here:
         
-        fm = new FonctionsMetier();
-        mdlMedicament = new ModelMedicament();
-        mdlMedicament.loadDatas(fm.GetAllMedicament());
-        tblMedicament.setModel(mdlMedicament);
         
-        mdlTypeIndividu = new ModelTypeIndividu();
-        mdlTypeIndividu.loadDatas(fm.GetAllTypeIndividu());
-        tblTypeIndividu.setModel(mdlTypeIndividu);
-        
-        lblBonjour.setText("Bonjour, " + nomUser);
         
     }//GEN-LAST:event_formWindowOpened
 
@@ -441,6 +435,21 @@ public class frmMenuPrincipal extends javax.swing.JFrame {
         frm.setVisible(true);
         
     }//GEN-LAST:event_btnInterractionActionPerformed
+
+    private void formWindowActivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowActivated
+        // TODO add your handling code here:
+        
+        fm = new FonctionsMetier();
+        mdlMedicament = new ModelMedicament();
+        mdlMedicament.loadDatas(fm.GetAllMedicament());
+        tblMedicament.setModel(mdlMedicament);
+        
+        mdlTypeIndividu = new ModelTypeIndividu();
+        mdlTypeIndividu.loadDatas(fm.GetAllTypeIndividu());
+        tblTypeIndividu.setModel(mdlTypeIndividu);
+        
+        lblBonjour.setText("Bonjour, " + nomUser);
+    }//GEN-LAST:event_formWindowActivated
 
     /**
      * @param args the command line arguments

@@ -412,21 +412,6 @@ public class FonctionsMetier implements IMetier
     }
 
     @Override
-    public TypeIndividu deleteType(int idType) {
-        TypeIndividu unType = null;
-        try {
-            maCnx = ConnexionBDD.getCnx();
-            ps = maCnx.prepareStatement("DELETE FROM type_individu WHERE TIN_CODE = ?;");
-            ps.setInt(1, idType);
-            ps.executeUpdate();
-            
-        } catch (SQLException ex) {
-            Logger.getLogger(FonctionsMetier.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        return unType;
-    }
-
-    @Override
     public Interragis addInterraction(int medPerturbateur, int medPerturbe) {
         Interragis uneInterraction = null;
         try {
