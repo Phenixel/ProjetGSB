@@ -19,7 +19,8 @@ public class frmModifType extends javax.swing.JFrame {
     
     static int leType;
     /**
-     * Creates new form frmModifType
+     * Affiche le nom qui a été cliqué depuis le tableau Type Individu du frmMenuPrincipal
+     * @author Maxime
      */
     public frmModifType(int selectedRow) {
         initComponents();
@@ -146,6 +147,11 @@ public class frmModifType extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
+    /**
+     * Change le texte du bouton modifier, rend modifiable la zone txtNom et cliquable le bouton valider
+     * @param evt 
+     * @author Maxime
+     */
     private void tglBtnModifierMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tglBtnModifierMouseClicked
         // TODO add your handling code here:
         
@@ -160,6 +166,11 @@ public class frmModifType extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_tglBtnModifierMouseClicked
 
+    /**
+     * Affiche le nom qui a été cliqué depuis le tableau Type Individu du frmMenuPrincipal
+     * @author Maxime
+     * @param evt 
+     */
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
         // TODO add your handling code here:
         fm = new FonctionsMetier();
@@ -168,6 +179,10 @@ public class frmModifType extends javax.swing.JFrame {
         txtNom.setText(nomType);
     }//GEN-LAST:event_formWindowOpened
 
+    /**
+     * Ajoute 
+     * @param evt 
+     */
     private void btnValiderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnValiderActionPerformed
         // TODO add your handling code here:
         
