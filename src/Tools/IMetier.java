@@ -37,5 +37,6 @@ public interface IMetier
     public Interragis addInterraction(int medPerturbateur, int medPerturbe);
     public int getNextId();
     public ArrayList<Medicament> getAllInterraction(int leMedic);
+    public ArrayList<Medicament> getLesInterraction (int leMedic);
     public Interragis verifierInterraction(int medPerturbateur, int medPerturbe);
 }
