@@ -174,11 +174,6 @@ public class frmMenuPrincipal extends javax.swing.JFrame {
                 btnAddTypeMouseClicked(evt);
             }
         });
-        btnAddType.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnAddTypeActionPerformed(evt);
-            }
-        });
 
         jLabel4.setFont(new java.awt.Font("Arial Black", 0, 14)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(0, 153, 102));
@@ -356,11 +351,11 @@ public class frmMenuPrincipal extends javax.swing.JFrame {
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
-
-    private void btnAddTypeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddTypeActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnAddTypeActionPerformed
-
+    /**
+     * Ouverture de la fenêtre qui permet d'ajouter un type individu
+     * @param evt 
+     * @author Maxime
+     */
     private void btnAddTypeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAddTypeMouseClicked
         // Ici ajouter un type individu
         
@@ -375,7 +370,12 @@ public class frmMenuPrincipal extends javax.swing.JFrame {
         
         
     }//GEN-LAST:event_formWindowOpened
-
+    
+    /**
+     * Affiche la page permettant de modifier le médicament cliqué
+     * @param evt 
+     * @author Phen
+     */
     private void tblMedicamentMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblMedicamentMouseClicked
         // TODO add your handling code here:
         
@@ -387,6 +387,11 @@ public class frmMenuPrincipal extends javax.swing.JFrame {
         
     }//GEN-LAST:event_tblMedicamentMouseClicked
 
+    /**
+     * Ouverture de la fenêtre qui permet d'ajouter un médicament
+     * @param evt 
+     * @author Phen
+     */
     private void btnAddMedicMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAddMedicMouseClicked
         // TODO add your handling code here:
         
@@ -395,6 +400,11 @@ public class frmMenuPrincipal extends javax.swing.JFrame {
         
     }//GEN-LAST:event_btnAddMedicMouseClicked
 
+    /**
+     * Ouverture de la fenêtre qui permet d'ajouter une prescription
+     * @param evt 
+     * @author Maxime
+     */
     private void btnAddPrescriptionMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAddPrescriptionMouseClicked
         // TODO add your handling code here:
         frmAjoutPrescription frm = new frmAjoutPrescription();
@@ -402,6 +412,11 @@ public class frmMenuPrincipal extends javax.swing.JFrame {
         
     }//GEN-LAST:event_btnAddPrescriptionMouseClicked
 
+    /**
+     * Affiche la page permettant de modifier le type individu cliqué
+     * @param evt 
+     * @author Maxime
+     */
     private void tblTypeIndividuMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblTypeIndividuMouseClicked
         // TODO add your handling code here:
         
@@ -410,12 +425,22 @@ public class frmMenuPrincipal extends javax.swing.JFrame {
         frm.setVisible(true);
     }//GEN-LAST:event_tblTypeIndividuMouseClicked
   
+    /**
+     * Ferme toute l'application
+     * @param evt 
+     * @author Phen
+     */
     private void btnQuitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnQuitActionPerformed
         
         System.exit(0);
         
     }//GEN-LAST:event_btnQuitActionPerformed
 
+    /**
+     * Permet de raffraichir les informations des tables du menu principal
+     * @param evt 
+     * @author Maxime
+     */
     private void btnRaffraichirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRaffraichirActionPerformed
         // TODO add your handling code here:
         
@@ -428,6 +453,11 @@ public class frmMenuPrincipal extends javax.swing.JFrame {
         
     }//GEN-LAST:event_btnRaffraichirActionPerformed
 
+    /**
+     * Affiche la page permettant d'ajouter des interractions aux médicaments
+     * @param evt 
+     * @author Phen
+     */
     private void btnInterractionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInterractionActionPerformed
         // TODO add your handling code here:
         
@@ -436,6 +466,10 @@ public class frmMenuPrincipal extends javax.swing.JFrame {
         
     }//GEN-LAST:event_btnInterractionActionPerformed
 
+    /**
+     * Permet de raffraichir les informations des tables dès que la fenêtre est active
+     * @param evt
+     */
     private void formWindowActivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowActivated
         // TODO add your handling code here:
         
