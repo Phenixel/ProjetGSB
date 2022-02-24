@@ -8,6 +8,11 @@ package Vue;
 import Model.ModelMedicament;
 import Model.ModelTypeIndividu;
 import Tools.FonctionsMetier;
+import java.util.Map;
+import org.jfree.chart.ChartFactory;
+import org.jfree.chart.ChartFrame;
+import org.jfree.chart.JFreeChart;
+import org.jfree.data.general.DefaultPieDataset;
 
 /**
  *
@@ -56,8 +61,8 @@ public class frmMenuPrincipal extends javax.swing.JFrame {
         jLabel6 = new javax.swing.JLabel();
         btnAddPrescription = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
-        jLabel8 = new javax.swing.JLabel();
-        jLabel9 = new javax.swing.JLabel();
+        btnPieChart = new javax.swing.JButton();
+        jLabel10 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         lblBonjour = new javax.swing.JLabel();
         btnQuit = new javax.swing.JButton();
@@ -194,31 +199,37 @@ public class frmMenuPrincipal extends javax.swing.JFrame {
 
         jPanel1.setBackground(new java.awt.Color(204, 255, 204));
 
-        jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/statistiques-gif.gif"))); // NOI18N
+        btnPieChart.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
+        btnPieChart.setText("Nombre de prescription par type d'individu");
+        btnPieChart.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnPieChartMouseClicked(evt);
+            }
+        });
 
-        jLabel9.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
-        jLabel9.setForeground(new java.awt.Color(0, 102, 0));
-        jLabel9.setText("Fonctionnalité en cours de développement");
+        jLabel10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/statistiques-gif.gif"))); // NOI18N
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap(95, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel9)
-                    .addComponent(jLabel8))
-                .addContainerGap(91, Short.MAX_VALUE))
+                .addContainerGap()
+                .addComponent(btnPieChart)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(158, Short.MAX_VALUE)
+                .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 340, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(99, 99, 99))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, 337, Short.MAX_VALUE)
-                .addGap(18, 18, 18)
-                .addComponent(jLabel9)
-                .addGap(47, 47, 47))
+                .addGap(26, 26, 26)
+                .addComponent(jLabel10, javax.swing.GroupLayout.DEFAULT_SIZE, 332, Short.MAX_VALUE)
+                .addGap(27, 27, 27)
+                .addComponent(btnPieChart)
+                .addContainerGap())
         );
 
         jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/medicament_icone.png"))); // NOI18N
@@ -485,6 +496,21 @@ public class frmMenuPrincipal extends javax.swing.JFrame {
         lblBonjour.setText("Bonjour, " + nomUser);
     }//GEN-LAST:event_formWindowActivated
 
+    private void btnPieChartMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnPieChartMouseClicked
+        // TODO add your handling code here:
+        DefaultPieDataset donnees = new DefaultPieDataset();
+        // Permet de remplir un jeu de séries dans notre objet donnees
+        // DatasSet
+        for(Map.Entry valeur : fm.GetDatasPieChart().entrySet())
+        {
+            donnees.setValue(valeur.getKey().toString(),Double.parseDouble(valeur.getValue().toString()));
+        }
+        JFreeChart graph = ChartFactory.createPieChart("Nombre de prescription par type d'individu",donnees,true,true,false);
+        ChartFrame fra = new ChartFrame("Graphique Pie Chart", graph);
+        fra.pack();
+        fra.setVisible(true);
+    }//GEN-LAST:event_btnPieChartMouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -525,17 +551,17 @@ public class frmMenuPrincipal extends javax.swing.JFrame {
     private javax.swing.JButton btnAddPrescription;
     private javax.swing.JButton btnAddType;
     private javax.swing.JButton btnInterraction;
+    private javax.swing.JButton btnPieChart;
     private javax.swing.JButton btnQuit;
     private javax.swing.JButton btnRaffraichir;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
