@@ -469,9 +469,10 @@ public class FonctionsMetier implements IMetier
         ArrayList<Medicament> lesMedicaments = new ArrayList<>();
         try {
             maCnx = ConnexionBDD.getCnx();
-            ps = maCnx.prepareStatement("SELECT medicament.MED_DEPOTLEGAL, medicament.MED_NOMCOMMERCIAL FROM medicament WHERE medicament.MED_DEPOTLEGAL NOT IN "
-                    + "(SELECT medicament.MED_DEPOTLEGAL FROM medicament "
-                    + "INNER JOIN interagis on medicament.MED_DEPOTLEGAL = interagis.MED_PERTURBATEUR WHERE interagis.MED_MED_PERTURBE = ? OR medicament.MED_DEPOTLEGAL = ?);");
+            ps = maCnx.prepareStatement("SELECT medicament.MED_DEPOTLEGAL, medicament.MED_NOMCOMMERCIAL from medicament\n" +
+                "WHERE medicament.MED_DEPOTLEGAL not in (\n" +
+                "SELECT interagis.MED_PERTURBATEUR from interagis WHERE interagis.MED_MED_PERTURBE = ?)\n" +
+                "and medicament.MED_DEPOTLEGAL <> ?");
             ps.setInt(1, leMedic);
             ps.setInt(2, leMedic);
             rs = ps.executeQuery();
