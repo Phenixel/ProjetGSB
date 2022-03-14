@@ -9,6 +9,7 @@ import Entity.Interragis;
 import Model.ModelMedicament;
 import Tools.FonctionsMetier;
 import javax.swing.JOptionPane;
+import static javax.swing.JOptionPane.OK_OPTION;
 
 /**
  *
@@ -18,6 +19,7 @@ public class frmInterraction extends javax.swing.JFrame {
     
     FonctionsMetier fm;
     ModelMedicament mdlMedicament;
+    ModelMedicament mdlMedicamentAuto;
 
     /**
      * Creates new form frmInterraction
@@ -61,6 +63,11 @@ public class frmInterraction extends javax.swing.JFrame {
 
             }
         ));
+        tblMedPerturbateur.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblMedPerturbateurMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(tblMedPerturbateur);
 
         tblMedPerturbe.setModel(new javax.swing.table.DefaultTableModel(
@@ -117,7 +124,7 @@ public class frmInterraction extends javax.swing.JFrame {
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btnAddInterraction)
-                .addContainerGap(10, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -139,10 +146,10 @@ public class frmInterraction extends javax.swing.JFrame {
         // TODO add your handling code here:
         
         fm = new FonctionsMetier();
+        
         mdlMedicament = new ModelMedicament();
         mdlMedicament.loadDatas(fm.GetAllMedicament());
         tblMedPerturbateur.setModel(mdlMedicament);
-        tblMedPerturbe.setModel(mdlMedicament);
     }//GEN-LAST:event_formWindowOpened
 
     private void btnAddInterractionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddInterractionActionPerformed
@@ -151,21 +158,35 @@ public class frmInterraction extends javax.swing.JFrame {
         int medPerturbe = Integer.parseInt(tblMedPerturbe.getValueAt(tblMedPerturbe.getSelectedRow(), 0).toString());
         int medPerturbateur = Integer.parseInt(tblMedPerturbateur.getValueAt(tblMedPerturbateur.getSelectedRow(), 0).toString());
         
-        if(medPerturbe != medPerturbateur){
-            
-            Interragis uneInterraction = fm.verifierInterraction(medPerturbe, medPerturbateur);
-            
-            if(uneInterraction != null){
-                JOptionPane.showMessageDialog(this, "Cette interraction existe déjà."," Erreur ",JOptionPane.ERROR_MESSAGE);
-            }else{
-                fm.addInterraction(medPerturbateur, medPerturbe);
-                JOptionPane.showMessageDialog(this, "Interraction ajoutée"," Ajout ",JOptionPane.INFORMATION_MESSAGE);
-            }
-        }else{
-            JOptionPane.showMessageDialog(this, "Veuillez choisir deux médicaments différents."," Erreur ",JOptionPane.ERROR_MESSAGE);
-        }
+//        if(medPerturbe != medPerturbateur){
+//            
+//            Interragis uneInterraction = fm.verifierInterraction(medPerturbe, medPerturbateur);
+//            
+//            if(uneInterraction != null){
+//                JOptionPane.showMessageDialog(this, "Cette interraction existe déjà."," Erreur ",JOptionPane.ERROR_MESSAGE);
+//            }else{
+//                fm.addInterraction(medPerturbateur, medPerturbe);
+//                JOptionPane.showMessageDialog(this, "Interraction ajoutée"," Ajout ",JOptionPane.INFORMATION_MESSAGE);
+//            }
+//        }else{
+//            JOptionPane.showMessageDialog(this, "Veuillez choisir deux médicaments différents."," Erreur ",JOptionPane.ERROR_MESSAGE);
+//        }
+        
+        fm.addInterraction(medPerturbateur, medPerturbe);
+        JOptionPane.showMessageDialog(this, "Interraction ajoutée"," Ajout ",JOptionPane.INFORMATION_MESSAGE);
+        dispose();
         
     }//GEN-LAST:event_btnAddInterractionActionPerformed
+
+    private void tblMedPerturbateurMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblMedPerturbateurMouseClicked
+        // TODO add your handling code here:
+        
+        int medSelected = Integer.parseInt(tblMedPerturbateur.getValueAt(tblMedPerturbateur.getSelectedRow(), 0).toString());
+        
+        mdlMedicamentAuto = new ModelMedicament();
+        mdlMedicamentAuto.loadDatas(fm.getLesInterraction(medSelected));
+        tblMedPerturbe.setModel(mdlMedicamentAuto);
+    }//GEN-LAST:event_tblMedPerturbateurMouseClicked
 
     /**
      * @param args the command line arguments
