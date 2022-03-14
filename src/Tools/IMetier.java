@@ -13,6 +13,7 @@ import Entity.Prescrire;
 import Entity.TypeIndividu;
 import Entity.Utilisateur;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public interface IMetier 
 {
@@ -38,4 +39,5 @@ public interface IMetier
     public int getNextId();
     public ArrayList<Medicament> getAllInterraction(int leMedic);
     public Interragis verifierInterraction(int medPerturbateur, int medPerturbe);
+    public HashMap<String,Integer> GetDatasPieChart();
 }

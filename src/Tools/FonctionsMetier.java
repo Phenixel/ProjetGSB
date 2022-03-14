@@ -17,6 +17,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -482,5 +483,25 @@ public class FonctionsMetier implements IMetier
             Logger.getLogger(FonctionsMetier.class.getName()).log(Level.SEVERE, null, ex);
         }
         return inte;
+    }
+    
+    @Override
+    public HashMap<String,Integer> GetDatasPieChart()
+    {
+        HashMap<String,Integer> lesDatas = new HashMap<>();
+        try {
+
+            maCnx = ConnexionBDD.getCnx();
+            ps = maCnx.prepareStatement("SELECT type_individu.TIN_LIBELLE ,COUNT(*) FROM `prescrire` INNER JOIN type_individu on prescrire.TIN_CODE = type_individu.TIN_CODE GROUP BY prescrire.TIN_CODE");
+            rs = ps.executeQuery();
+            while(rs.next())
+            {
+                lesDatas.put(rs.getString(1),rs.getInt(2));
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(FonctionsMetier.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return lesDatas;
     }
 }
