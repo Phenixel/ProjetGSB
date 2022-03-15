@@ -199,7 +199,8 @@ public class frmMenuPrincipal extends javax.swing.JFrame {
 
         jPanel1.setBackground(new java.awt.Color(204, 255, 204));
 
-        btnPieChart.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
+        btnPieChart.setBackground(new java.awt.Color(153, 255, 153));
+        btnPieChart.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         btnPieChart.setText("Nombre de prescription par type d'individu");
         btnPieChart.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -227,8 +228,8 @@ public class frmMenuPrincipal extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addGap(26, 26, 26)
                 .addComponent(jLabel10, javax.swing.GroupLayout.DEFAULT_SIZE, 332, Short.MAX_VALUE)
-                .addGap(27, 27, 27)
-                .addComponent(btnPieChart)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(btnPieChart, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
 
