@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1
--- Généré le : dim. 09 jan. 2022 à 22:52
+-- Généré le : ven. 25 mars 2022 à 00:26
 -- Version du serveur :  10.4.18-MariaDB
 -- Version de PHP : 8.0.3
 
@@ -18,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Base de données : `gsb`
+-- Base de données : `projet_gsb_java`
 --
 
 -- --------------------------------------------------------
@@ -285,8 +285,8 @@ ALTER TABLE `utilisateur`
 -- Contraintes pour la table `interagis`
 --
 ALTER TABLE `interagis`
-  ADD CONSTRAINT `interagis_ibfk_1` FOREIGN KEY (`MED_PERTURBATEUR`) REFERENCES `medicament` (`MED_DEPOTLEGAL`),
-  ADD CONSTRAINT `interagis_ibfk_2` FOREIGN KEY (`MED_MED_PERTURBE`) REFERENCES `medicament` (`MED_DEPOTLEGAL`);
+  ADD CONSTRAINT `interagis_ibfk_1` FOREIGN KEY (`MED_PERTURBATEUR`) REFERENCES `medicament` (`MED_DEPOTLEGAL`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `interagis_ibfk_2` FOREIGN KEY (`MED_MED_PERTURBE`) REFERENCES `medicament` (`MED_DEPOTLEGAL`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Contraintes pour la table `medicament`
@@ -298,7 +298,7 @@ ALTER TABLE `medicament`
 -- Contraintes pour la table `prescrire`
 --
 ALTER TABLE `prescrire`
-  ADD CONSTRAINT `prescrire_ibfk_1` FOREIGN KEY (`MED_DEPOTLEGAL`) REFERENCES `medicament` (`MED_DEPOTLEGAL`),
+  ADD CONSTRAINT `prescrire_ibfk_1` FOREIGN KEY (`MED_DEPOTLEGAL`) REFERENCES `medicament` (`MED_DEPOTLEGAL`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `prescrire_ibfk_2` FOREIGN KEY (`TIN_CODE`) REFERENCES `type_individu` (`TIN_CODE`),
   ADD CONSTRAINT `prescrire_ibfk_3` FOREIGN KEY (`DOS_CODE`) REFERENCES `dosage` (`DOS_CODE`);
 COMMIT;
