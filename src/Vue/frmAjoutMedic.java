@@ -224,12 +224,22 @@ public class frmAjoutMedic extends javax.swing.JFrame {
                 Medicament unMedicament = fm.GetNomMedic(txtNomMedic.getText());
                 if(unMedicament == null){
                     fm.AddMedicament(txtNomMedic.getText(), cbmNomFamille.getSelectedItem().toString(), txtComposition.getText(), txtEffets.getText(), txtContreIndic.getText(), Float.parseFloat(txtPrix.getText()));
+                    txtNomMedic.setText("");
+                    txtComposition.setText("");
+                    txtEffets.setText("");
+                    txtContreIndic.setText("");
+                    txtPrix.setText("");
                     JOptionPane.showMessageDialog(this, "Médicament ajouté !"," Ajout ",JOptionPane.INFORMATION_MESSAGE);
                 }
                 else{
                     int retour = JOptionPane.showConfirmDialog(this, "Le nom du médicament que vous souhaitez ajouter existe déjà. Etes vous sur que vous voulez l'ajouter à la base de données ?", "Possible duplication", JOptionPane.OK_CANCEL_OPTION);
                     if(retour == OK_OPTION){
                         fm.AddMedicament(txtNomMedic.getText(), cbmNomFamille.getSelectedItem().toString(), txtComposition.getText(), txtEffets.getText(), txtContreIndic.getText(), Float.parseFloat(txtPrix.getText()));
+                        txtNomMedic.setText("");
+                        txtComposition.setText("");
+                        txtEffets.setText("");
+                        txtContreIndic.setText("");
+                        txtPrix.setText("");
                         JOptionPane.showMessageDialog(this, "Médicament ajouté !"," Ajout ",JOptionPane.INFORMATION_MESSAGE);
                     }
                 }
