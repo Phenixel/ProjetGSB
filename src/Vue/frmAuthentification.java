@@ -185,9 +185,20 @@ public class frmAuthentification extends javax.swing.JFrame {
             Utilisateur unUser = fm.VerifierIdentifiants(txtLogin.getText(), txtMdp.getText());
             
             if(unUser != null){
-                frmMenuPrincipal frm = new frmMenuPrincipal(txtLogin.getText());
-                frm.setVisible(true);
-                dispose();
+                
+                if(txtLogin.getText().compareTo("admin") == 0){
+                    frmGestionUsers frmAdmin = new frmGestionUsers();
+                    frmAdmin.setVisible(true);
+                    
+                    frmMenuPrincipal frm = new frmMenuPrincipal(txtLogin.getText());
+                    frm.setVisible(true);
+                    dispose();
+                }
+                else{
+                    frmMenuPrincipal frm = new frmMenuPrincipal(txtLogin.getText());
+                    frm.setVisible(true);
+                    dispose();
+                }
             }else{
                 JOptionPane.showMessageDialog(this, "Indentifiants incorrectes. Veuillez vérifier les informations renseignées.","Indentifiants incorrectes",JOptionPane.WARNING_MESSAGE);
             }

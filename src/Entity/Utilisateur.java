@@ -50,5 +50,19 @@ public class Utilisateur
     public void setMdp(String mdp) {
         this.mdp = mdp;
     }
+
+    /**
+     * @return the idUser
+     */
+    public int getIdUser() {
+        return idUser;
+    }
+
+    /**
+     * @param idUser the idUser to set
+     */
+    public void setIdUser(int idUser) {
+        this.idUser = idUser;
+    }
     
 }
