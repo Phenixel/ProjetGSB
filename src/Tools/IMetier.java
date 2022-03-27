@@ -44,4 +44,7 @@ public interface IMetier
     public HashMap<String,Integer> GetDatasBarChart();
     public ArrayList<Medicament> GetPlusPrescrit();
     public ArrayList<Medicament> GetMoinsPrescrit();
+    public Utilisateur addutilisateur(String login, String mdp);
+    public ArrayList<Utilisateur> getAllUtilisateur();
+    public Utilisateur DeleteUser(int idUser);
 }

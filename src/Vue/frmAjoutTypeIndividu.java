@@ -123,6 +123,7 @@ public class frmAjoutTypeIndividu extends javax.swing.JFrame {
                 TypeIndividu unType = fm.GetNomType(txtNom.getText());
                 if(unType == null){
                     fm.addTypeIndividu(txtNom.getText());
+                    txtNom.setText("");
                     JOptionPane.showMessageDialog(this, "Type individu ajouté !"," Ajout effectué ",JOptionPane.INFORMATION_MESSAGE);
                 }
                 else{
@@ -130,6 +131,7 @@ public class frmAjoutTypeIndividu extends javax.swing.JFrame {
                     int retour = d.showConfirmDialog(this, "le nom de ce type d'individu que vous souhaitez ajouter existe déjà. Etes vous sur que vous voulez l'ajouter à la base de donnée ?", "Possible duplication", JOptionPane.OK_CANCEL_OPTION);
                     if(retour == OK_OPTION){
                         fm.addTypeIndividu(txtNom.getText());
+                        txtNom.setText("");
                         JOptionPane.showMessageDialog(this, "Type individu ajouté !"," Ajout effectué ",JOptionPane.INFORMATION_MESSAGE);
                     }
                 }

@@ -593,4 +593,53 @@ public class FonctionsMetier implements IMetier
         }
         return lesDatas;
     }
+
+    @Override
+    public Utilisateur addutilisateur(String login, String mdp) {
+        Utilisateur unUtilisateur = null;
+        try {
+            maCnx = ConnexionBDD.getCnx();
+            ps = maCnx.prepareStatement("INSERT INTO utilisateur (login, mdp) VALUE (?, ?);");
+            ps.setString(1, login);
+            ps.setString(2, mdp);
+            ps.executeUpdate();
+        } catch (SQLException ex) {
+            Logger.getLogger(FonctionsMetier.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return unUtilisateur;
+    }
+
+    @Override
+    public ArrayList<Utilisateur> getAllUtilisateur() {
+        ArrayList<Utilisateur> lesUsers = new ArrayList<>();
+        try {
+            maCnx = ConnexionBDD.getCnx();
+            ps = maCnx.prepareStatement("SELECT `idUser`,`login`,`mdp` FROM utilisateur");
+            rs = ps.executeQuery();
+            while(rs.next())
+            {
+                Utilisateur user = new Utilisateur(rs.getInt("idUser"),rs.getString("login"), rs.getString("mdp"));
+                lesUsers.add(user);
+            }
+            ps.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(FonctionsMetier.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return lesUsers;
+    }
+
+    @Override
+    public Utilisateur DeleteUser(int idUser) {
+        Utilisateur unUtilisateur = null;
+        try {
+            maCnx = ConnexionBDD.getCnx();
+            ps = maCnx.prepareStatement("DELETE FROM utilisateur WHERE idUser = ?;");
+            ps.setInt(1, idUser);
+            ps.executeUpdate();
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(FonctionsMetier.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return unUtilisateur;
+    }
 }
