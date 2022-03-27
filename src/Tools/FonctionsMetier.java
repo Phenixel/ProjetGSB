@@ -574,4 +574,23 @@ public class FonctionsMetier implements IMetier
         }
         return lesMedicaments;
     }
+
+    @Override
+    public HashMap<String,Integer> GetDatasBarChart() {
+        HashMap<String, Integer> lesDatas = new HashMap<>();
+        try {
+
+            maCnx = ConnexionBDD.getCnx();
+            ps = maCnx.prepareStatement("SELECT famille.FAM_LIBELLE, COUNT(*) FROM medicament INNER JOIN famille on medicament.FAM_CODE = famille.FAM_CODE GROUP BY famille.FAM_LIBELLE");
+            rs = ps.executeQuery();
+            while(rs.next())
+            {
+                lesDatas.put(rs.getString(1), rs.getInt(2));
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(FonctionsMetier.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return lesDatas;
+    }
 }
