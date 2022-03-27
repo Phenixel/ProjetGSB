@@ -351,15 +351,20 @@ public class frmModifMedic extends javax.swing.JFrame {
     private void btnConfirmerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConfirmerActionPerformed
         // TODO add your handling code here:
         //Insérer l'update
-        if(fm.isNumeric(txtPrix.getText())){
-            fm.SetModifMedic(leMedicament, txtNomMedic.getText(), cbmNomFamille.getSelectedItem().toString(), txtComposition.getText(), txtEffets.getText(), txtContreIndic.getText(), Float.parseFloat(txtPrix.getText()));
-            int retour = JOptionPane.showConfirmDialog(this, "Votre modification a bien été prise en compte. Souhaitez vous quitter cette fenêtre ?"," Modification effectuée", JOptionPane.OK_CANCEL_OPTION);
-            if(retour == OK_OPTION){
-                dispose();
-            }
+        if(txtNomMedic.getText().compareTo("") == 0 || txtComposition.getText().compareTo("") == 0 || txtEffets.getText().compareTo("") == 0 || txtContreIndic.getText().compareTo("") == 0 || txtPrix.getText().compareTo("") == 0){
+            JOptionPane.showMessageDialog(this, "Merci de vérifier que tous les champs soient rempli"," Erreur ",JOptionPane.WARNING_MESSAGE);
         }
         else{
-            JOptionPane.showMessageDialog(this, "Merci de vérifier que le prix ne comporte que des chiffres"," Erreur ",JOptionPane.WARNING_MESSAGE);
+            if(fm.isNumeric(txtPrix.getText())){
+                fm.SetModifMedic(leMedicament, txtNomMedic.getText(), cbmNomFamille.getSelectedItem().toString(), txtComposition.getText(), txtEffets.getText(), txtContreIndic.getText(), Float.parseFloat(txtPrix.getText()));
+                    int retour = JOptionPane.showConfirmDialog(this, "Votre modification a bien été prise en compte. Souhaitez vous quitter cette fenêtre ?"," Modification effectuée", JOptionPane.OK_CANCEL_OPTION);
+                    if(retour == OK_OPTION){
+                        dispose();
+                    }
+            }
+            else{
+                JOptionPane.showMessageDialog(this, "Merci de vérifier que le prix ne comporte que des chiffres"," Erreur ",JOptionPane.WARNING_MESSAGE);
+            }
         }
     }//GEN-LAST:event_btnConfirmerActionPerformed
 

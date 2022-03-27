@@ -528,4 +528,69 @@ public class FonctionsMetier implements IMetier
         }
         return lesDatas;
     }
+    
+    @Override
+    public ArrayList<Medicament> GetPlusPrescrit() {
+        ArrayList<Medicament> lesMedicaments = new ArrayList<>();
+        try {
+            maCnx = ConnexionBDD.getCnx();
+            ps = maCnx.prepareStatement("SELECT medicament.MED_NOMCOMMERCIAL\n" +
+"FROM medicament\n" +
+"INNER JOIN prescrire ON medicament.MED_DEPOTLEGAL=prescrire.MED_DEPOTLEGAL\n" +
+"GROUP BY medicament.MED_NOMCOMMERCIAL\n" +
+"HAVING COUNT(*) = ( SELECT MAX(nb) FROM (SELECT MED_DEPOTLEGAL,COUNT(MED_DEPOTLEGAL) as nb FROM prescrire GROUP BY MED_DEPOTLEGAL) as temp)");
+            rs = ps.executeQuery();
+            while(rs.next())
+            {
+                Medicament med = new Medicament(rs.getString(1));
+                lesMedicaments.add(med);
+            }
+            ps.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(FonctionsMetier.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return lesMedicaments;
+    }
+    
+    @Override
+    public ArrayList<Medicament> GetMoinsPrescrit() {
+        ArrayList<Medicament> lesMedicaments = new ArrayList<>();
+        try {
+            maCnx = ConnexionBDD.getCnx();
+            ps = maCnx.prepareStatement("SELECT medicament.MED_NOMCOMMERCIAL\n" +
+"FROM medicament\n" +
+"INNER JOIN prescrire ON medicament.MED_DEPOTLEGAL=prescrire.MED_DEPOTLEGAL\n" +
+"GROUP BY medicament.MED_NOMCOMMERCIAL\n" +
+"HAVING COUNT(*) = ( SELECT MIN(nb) FROM (SELECT MED_DEPOTLEGAL,COUNT(MED_DEPOTLEGAL) as nb FROM prescrire GROUP BY MED_DEPOTLEGAL) as temp)");
+            rs = ps.executeQuery();
+            while(rs.next())
+            {
+                Medicament med = new Medicament(rs.getString(1));
+                lesMedicaments.add(med);
+            }
+            ps.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(FonctionsMetier.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return lesMedicaments;
+    }
+
+    @Override
+    public HashMap<String,Integer> GetDatasBarChart() {
+        HashMap<String, Integer> lesDatas = new HashMap<>();
+        try {
+
+            maCnx = ConnexionBDD.getCnx();
+            ps = maCnx.prepareStatement("SELECT famille.FAM_LIBELLE, COUNT(*) FROM medicament INNER JOIN famille on medicament.FAM_CODE = famille.FAM_CODE GROUP BY famille.FAM_LIBELLE");
+            rs = ps.executeQuery();
+            while(rs.next())
+            {
+                lesDatas.put(rs.getString(1), rs.getInt(2));
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(FonctionsMetier.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return lesDatas;
+    }
 }

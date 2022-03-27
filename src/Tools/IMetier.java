@@ -41,4 +41,7 @@ public interface IMetier
     public ArrayList<Medicament> getLesInterraction (int leMedic);
     public Interragis verifierInterraction(int medPerturbateur, int medPerturbe);
     public HashMap<String,Integer> GetDatasPieChart();
+    public HashMap<String,Integer> GetDatasBarChart();
+    public ArrayList<Medicament> GetPlusPrescrit();
+    public ArrayList<Medicament> GetMoinsPrescrit();
 }
