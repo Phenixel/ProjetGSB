@@ -9,7 +9,13 @@ import Model.ModelMedicament;
 import Model.ModelPMPrescriptions;
 import Model.ModelTypeIndividu;
 import Tools.FonctionsMetier;
+import java.awt.Desktop;
+import java.io.IOException;
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.util.Map;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartFrame;
 import org.jfree.chart.JFreeChart;
@@ -78,6 +84,7 @@ public class frmMenuPrincipal extends javax.swing.JFrame {
         btnInterraction = new javax.swing.JButton();
         txtSearch = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
+        lblBtnInfos = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setBackground(new java.awt.Color(102, 255, 51));
@@ -317,6 +324,13 @@ public class frmMenuPrincipal extends javax.swing.JFrame {
             }
         });
 
+        lblBtnInfos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/info.png"))); // NOI18N
+        lblBtnInfos.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lblBtnInfosMouseClicked(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -351,13 +365,16 @@ public class frmMenuPrincipal extends javax.swing.JFrame {
                     .addComponent(btnAddPrescription, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(448, 448, 448)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jSeparator1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(lblBonjour, javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(btnRaffraichir, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(btnRaffraichir, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(lblBtnInfos, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(126, 126, 126)
+                                        .addComponent(lblBonjour)))
                                 .addContainerGap())))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(12, 12, 12)
@@ -375,7 +392,9 @@ public class frmMenuPrincipal extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jLabel1)
-                    .addComponent(lblBonjour))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(lblBonjour)
+                        .addComponent(lblBtnInfos)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
@@ -617,6 +636,20 @@ public class frmMenuPrincipal extends javax.swing.JFrame {
         tblMedicament.setModel(mdlMedicament);
     }//GEN-LAST:event_jButton1ActionPerformed
 
+    private void lblBtnInfosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblBtnInfosMouseClicked
+        // TODO add your handling code here:
+        
+        Desktop desk = Desktop.getDesktop();
+        
+        try {
+            // now we enter our URL that we want to open in our
+            // default browser
+            desk.browse(new URI("https://phenixel.notion.site/GSB-Documentations-556f32ac3d674c279e06e8e795597708"));
+        } catch (URISyntaxException | IOException ex) {
+            Logger.getLogger(frmMenuPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_lblBtnInfosMouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -677,6 +710,7 @@ public class frmMenuPrincipal extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JLabel lblBonjour;
+    private javax.swing.JLabel lblBtnInfos;
     private java.awt.Panel panel1;
     private javax.swing.JTable tblMedicament;
     private javax.swing.JTable tblMoinsPrescrit;
