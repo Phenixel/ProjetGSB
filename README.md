@@ -9,7 +9,11 @@ Le projet fonctionne sur NetBean. Il suffit de cloner le repository et de l'ouvr
 La base de données est disponible à la racine du projet git.
 
 ## Versions
-[27.03.2022] : Version release 1.0.0
+[27.03.2022] : Version release 1.1.0
+- Ajout d'une interface d'administration
+- fix de bugs mineurs
+
+[26.03.2022] : Version release 1.0.0
 - Possibilité de supprimer les médicaments
 - Ajout des graphiques et statistiques
 - fix de bugs sur l'ajout d'interactions
