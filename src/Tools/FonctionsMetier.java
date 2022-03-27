@@ -642,4 +642,24 @@ public class FonctionsMetier implements IMetier
         }
         return unUtilisateur;
     }
+
+    @Override
+    public ArrayList<Medicament> GetMedicamentBySearch(String nomMedic) {
+        ArrayList<Medicament> lesMedicaments = new ArrayList<>();
+        try {
+            maCnx = ConnexionBDD.getCnx();
+            ps = maCnx.prepareStatement("SELECT MED_DEPOTLEGAL, MED_NOMCOMMERCIAL, FAM_CODE, MED_COMPOSITION, MED_EFFETS, MED_CONTREINDIC, MED_PRIXECHANTILLON FROM medicament WHERE MED_NOMCOMMERCIAL LIKE ? ");
+            ps.setString(1, '%' + nomMedic +'%');
+            rs = ps.executeQuery();
+            while(rs.next())
+            {
+                Medicament med = new Medicament(rs.getInt("MED_DEPOTLEGAL"),rs.getString("MED_NOMCOMMERCIAL"), rs.getInt("FAM_CODE"), rs.getString("MED_COMPOSITION"), rs.getString("MED_EFFETS"), rs.getString("MED_CONTREINDIC"), rs.getFloat("MED_PRIXECHANTILLON"));
+                lesMedicaments.add(med);
+            }
+            ps.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(FonctionsMetier.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return lesMedicaments;
+    }
 }

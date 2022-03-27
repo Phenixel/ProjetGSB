@@ -18,6 +18,7 @@ import java.util.HashMap;
 public interface IMetier 
 {
     public ArrayList<Medicament> GetAllMedicament();
+    public ArrayList<Medicament> GetMedicamentBySearch(String nomMedic);
     public Utilisateur VerifierIdentifiants(String login, String mdp);
     public ArrayList<TypeIndividu> GetAllTypeIndividu();
     public ArrayList<Famille> GetAllFamille();
