@@ -178,7 +178,7 @@ public class frmGestionUsers extends javax.swing.JFrame {
                 int selectedUser = Integer.parseInt(tblUsers.getValueAt(tblUsers.getSelectedRow(), 0).toString());
                 fm.DeleteUser(selectedUser);
                 mdlUsers.loadDatas(fm.getAllUtilisateur());
-                JOptionPane.showMessageDialog(this, "Utilisateur supprimer !"," Suppression ",JOptionPane.INFORMATION_MESSAGE);
+                JOptionPane.showMessageDialog(this, "Utilisateur supprimé !"," Suppression ",JOptionPane.INFORMATION_MESSAGE);
             }
         }else{
             JOptionPane.showMessageDialog(this, "Vous ne pouvez pas supprimer l'utilisateur admin"," Suppression ",JOptionPane.INFORMATION_MESSAGE);
